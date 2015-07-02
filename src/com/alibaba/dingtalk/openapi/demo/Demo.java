@@ -1,55 +1,53 @@
 package com.alibaba.dingtalk.openapi.demo;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.alibaba.dingtalk.openapi.demo.auth.AuthHelper;
 import com.alibaba.dingtalk.openapi.demo.department.Department;
 import com.alibaba.dingtalk.openapi.demo.department.DepartmentHelper;
+import com.alibaba.dingtalk.openapi.demo.media.MediaHelper;
+import com.alibaba.dingtalk.openapi.demo.message.ConversationMessageDelivery;
+import com.alibaba.dingtalk.openapi.demo.message.ImageMessage;
+import com.alibaba.dingtalk.openapi.demo.message.LightAppMessageDelivery;
+import com.alibaba.dingtalk.openapi.demo.message.LinkMessage;
+import com.alibaba.dingtalk.openapi.demo.message.MessageHelper;
+import com.alibaba.dingtalk.openapi.demo.message.TextMessage;
 import com.alibaba.dingtalk.openapi.demo.user.User;
 import com.alibaba.dingtalk.openapi.demo.user.UserHelper;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 
 public class Demo {
 	
+	private static String TO_USER = "manager4671";
+	private static String TO_PARTY = "";
+	private static String AGENT_ID = "531605";
+	private static String SENDER = "manager4671";
+	private static String CID = "";
+	
+	
 	public static void main(String[] args) {
 		
-		// 获取access token
-		String accessToken = AuthHelper.getAccessToken();
-		
-		if (accessToken != null) {
+		try {
+			// 获取access token
+			String accessToken = AuthHelper.getAccessToken();
 			log("成功获取access token: ", accessToken);
 			
 			//创建部门
-			String name = "TestDept.12";
+			String name = "TestDept.16";
 			String parentId = "1";
 			String order = "1";
-			long departmentId = DepartmentHelper.createDepartment(accessToken, name, parentId, order);
-			if (departmentId != 0) {
-				log("成功创建部门", name, " 部门id=", departmentId);
-			}
-			else {
-				log("创建部门失败");
-			}
+			long departmentId = DepartmentHelper.createDepartment(accessToken, 
+					name, parentId, order);
+			log("成功创建部门", name, " 部门id=", departmentId);
+			
 			//获取部门列表
 			List<Department> list = DepartmentHelper.listDepartments(accessToken);
-			if (list != null) {
-				log("成功获取部门列表", list);
-			}
-			else {
-				log("获取部门失败");
-			}
+			log("成功获取部门列表", list);
 			
 			//更新部门
-			boolean isUpdated = DepartmentHelper.updateDepartment(accessToken, name, parentId, order,
-					departmentId);
-			if (isUpdated){
-				log("成功更新部门"," 部门id=", departmentId);
-			}
-			else {
-				log("更新部门失败");
-			}
-			
+			DepartmentHelper.updateDepartment(accessToken, name, parentId, order, departmentId);
+			log("成功更新部门"," 部门id=", departmentId);
 			
 			//创建成员
 			User user = new User("id_yuhuan", "name_yuhuan");
@@ -57,52 +55,74 @@ public class Demo {
 			user.mobile = "18645512324";
 			user.department = new ArrayList();
 			user.department.add(departmentId);
-			boolean isCreated = UserHelper.createUser(accessToken, user);
-			if (isCreated) {
-				log("成功创建成员","成员信息=", user);
-			}
-			else {
-				log("创建成员失败");
-			}
+			UserHelper.createUser(accessToken, user);
+			log("成功创建成员","成员信息=", user);
+			
+			//上传图片
+			File file = new File("/Users/liqiao/Desktop/icon.jpg");
+			MediaHelper.MediaUploadResult uploadResult = 
+					MediaHelper.upload(accessToken, MediaHelper.TYPE_IMAGE, file);
+			log("成功上传图片", uploadResult);
+			
+			//下载图片
+			String fileDir = "/Users/liqiao/Desktop/";
+			MediaHelper.download(accessToken, uploadResult.media_id, fileDir);
+			log("成功下载图片");
+			
+			TextMessage textMessage = new TextMessage("TextMessage");
+			ImageMessage imageMessage = new ImageMessage(uploadResult.media_id);
+			LinkMessage linkMessage = new LinkMessage("http://www.baidu.com", "@lALOACZwe2Rk", 
+					"Link Message", "This is a link message");
+			
+			//发送微应用消息
+			String toUsers = TO_USER;
+			String toParties = TO_PARTY;
+			String agentId = AGENT_ID;
+			LightAppMessageDelivery lightAppMessageDelivery = 
+					new LightAppMessageDelivery(toUsers, toParties, agentId);
+			
+			lightAppMessageDelivery.withMessage(textMessage);
+			MessageHelper.send(accessToken, lightAppMessageDelivery);
+			log("成功发送 微应用文本消息");
+			lightAppMessageDelivery.withMessage(imageMessage);
+			MessageHelper.send(accessToken, lightAppMessageDelivery);
+			log("成功发送 微应用图片消息");			
+			lightAppMessageDelivery.withMessage(linkMessage);
+			MessageHelper.send(accessToken, lightAppMessageDelivery);
+			log("成功发送 微应用link消息");
+			
+			//发送会话消息
+			String sender = SENDER;
+			String cid = CID;
+			ConversationMessageDelivery conversationMessageDelivery = 
+					new ConversationMessageDelivery(sender, cid, agentId);
+			
+			conversationMessageDelivery.withMessage(textMessage);
+			MessageHelper.send(accessToken, conversationMessageDelivery);
+			log("成功发送 会话文本消息");
+			conversationMessageDelivery.withMessage(imageMessage);
+			MessageHelper.send(accessToken, conversationMessageDelivery);
+			log("成功发送 会话图片消息");			
+			conversationMessageDelivery.withMessage(linkMessage);
+			MessageHelper.send(accessToken, conversationMessageDelivery);
+			log("成功发送 会话link消息");
 			
 			//更新成员
 			user.mobile = "18612341234";
-			boolean isUpdate = UserHelper.updateUser(accessToken, user);
-			if (isUpdate) {
-				log("成功更新成员","成员信息=", user);
-			}
-			else {
-				log("更新成员失败");
-			}
+			UserHelper.updateUser(accessToken, user);
+			log("成功更新成员","成员信息=", user);
 			
 			//获取成员
-			User isGet = UserHelper.getUser(accessToken, user.userid);
-			if (isGet != null) {
-				log("成功获取成员","成员userid=", user.userid);
-			}
-			else {
-				log("获取成员失败", "成员userid=", user.userid);
-			}
+			UserHelper.getUser(accessToken, user.userid);
+			log("成功获取成员","成员userid=", user.userid);
 			
 			//获取部门成员
-			int fetch_child = 0;
-			List<User> userList = UserHelper.getDepartmentUser(accessToken, departmentId, fetch_child);
-			if (userList != null) {
-				log("成功获取部门成员","部门成员user=", userList);
-			}
-			else {
-				log("获取部门成员失败");
-			}
+			List<User> userList = UserHelper.getDepartmentUser(accessToken, departmentId, 0);
+			log("成功获取部门成员","部门成员user=", userList);
 			
 			//获取部门成员（详情）
-			int fetch_child2 = 0;
-			List<User> userList2 = UserHelper.getUserDetails(accessToken, departmentId, fetch_child2);
-			if (userList2 != null) {
-				log("成功获取部门成员详情","部门成员详情user=", userList2);
-			}
-			else {
-				log("获取部门成员失败");
-			}
+			List<User> userList2 = UserHelper.getUserDetails(accessToken, departmentId, 0);
+			log("成功获取部门成员详情","部门成员详情user=", userList2);
 			
 			//批量删除成员
 			User user2 = new User("id_yuhuan2", "name_yuhuan2");
@@ -115,13 +135,8 @@ public class Demo {
 			List<String> useridlist = new ArrayList();
 			useridlist.add(user.userid);
 			useridlist.add(user2.userid);
-			boolean isBatchDeleted = UserHelper.batchDeleteUser(accessToken, useridlist);
-			if (isBatchDeleted) {
-				log("成功批量删除成员","成员列表useridlist=",useridlist);
-			}
-			else {
-				log("批量删除成员失败");
-			}
+			UserHelper.batchDeleteUser(accessToken, useridlist);
+			log("成功批量删除成员","成员列表useridlist=",useridlist);
 			
 			//删除成员
 			User user3 = new User("id_yuhuan3", "name_yuhuan3");
@@ -130,23 +145,17 @@ public class Demo {
 			user3.department = new ArrayList();
 			user3.department.add(departmentId);
 			UserHelper.createUser(accessToken, user3);
-			boolean isDelete = UserHelper.deleteUser(accessToken, user3.userid);
-			if (isDelete) {
-				log("成功删除成员","成员userid=", user3.userid);
-			}
-			else {
-				log("删除成员失败");
-			}
+			UserHelper.deleteUser(accessToken, user3.userid);
+			log("成功删除成员","成员userid=", user3.userid);
 			
 			//删除部门
-			boolean isDeleted = DepartmentHelper.deleteDepartment(accessToken, departmentId);
-			if (isDeleted) {
-				log("成功删除部门"," 部门id=", departmentId);
-			}
-			else {
-				log("删除部门失败");
-			}	
+			DepartmentHelper.deleteDepartment(accessToken, departmentId);
+			log("成功删除部门"," 部门id=", departmentId);
+			
 		}
+		catch (OApiException e) {
+			e.printStackTrace();
+		}		
 	}
 	
 	

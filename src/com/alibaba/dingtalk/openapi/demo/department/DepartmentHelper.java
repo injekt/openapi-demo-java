@@ -5,59 +5,59 @@ import java.util.List;
 
 import com.alibaba.dingtalk.openapi.demo.Env;
 import com.alibaba.dingtalk.openapi.demo.OApiException;
+import com.alibaba.dingtalk.openapi.demo.OApiResultException;
 import com.alibaba.dingtalk.openapi.demo.utils.HttpHelper;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
 public class DepartmentHelper {
 
-	public static long createDepartment(String accessToken, String name, String parentId, String order) {
+	public static long createDepartment(String accessToken, String name, 
+			String parentId, String order) throws OApiException {
 		String url = Env.OAPI_HOST + "/department/create?" +
 				"access_token=" + accessToken;
-		long id = 0; //无效id
 		JSONObject args = new JSONObject();
 		args.put("name", name);
 		args.put("parentid", parentId);
 		args.put("order", order);
-		try {
-			id = HttpHelper.httpPost(url, args, "id", Long.class);
-		} catch (OApiException e) {
-			e.printStackTrace();
+		JSONObject response = HttpHelper.httpPost(url, args);
+		if (response.containsKey("id")) {
+			return response.getLong("id");
 		}
-		return id;
+		else {
+			throw new OApiResultException("id");
+		}
 	}
+
 	
-	public static List<Department> listDepartments(String accessToken) {
+	public static List<Department> listDepartments(String accessToken) 
+			throws OApiException {
 		String url = Env.OAPI_HOST + "/department/list?" +
 				"access_token=" + accessToken;
-		List<Department> list = null;
-		try {
-			JSONArray arr = HttpHelper.httpGet(url, "department", JSONArray.class);
-			list = new ArrayList<>();
+		JSONObject response = HttpHelper.httpGet(url);
+		if (response.containsKey("department")) {
+			JSONArray arr = response.getJSONArray("department");
+			List<Department> list  = new ArrayList<>();
 			for (int i = 0; i < arr.size(); i++) {
 				list.add(arr.getObject(i, Department.class));
 			}
-		} catch (OApiException e) {
-			e.printStackTrace();
+			return list;
 		}
-		return list;
+		else {
+			throw new OApiResultException("department");
+		}
 	}
 	
 	
-	public static boolean deleteDepartment(String accessToken, Long id){
+	public static void deleteDepartment(String accessToken, Long id) throws OApiException{
 		String url = Env.OAPI_HOST  + "/department/delete?" +
 				"access_token=" + accessToken + "&id=" + id;
-		try {
-			HttpHelper.httpGet(url, null, null);
-			return true;
-		} catch (OApiException e) {
-			e.printStackTrace();
-			return false;
-		}
+		HttpHelper.httpGet(url);
 	}
 	
 	
-	public static boolean updateDepartment(String accessToken, String name, String parentId, String order, long id){
+	public static void updateDepartment(String accessToken, String name, 
+			String parentId, String order, long id) throws OApiException{
 		String url = Env.OAPI_HOST  + "/department/update?" +
 				"access_token=" + accessToken;
 		JSONObject args = new JSONObject();
@@ -65,12 +65,6 @@ public class DepartmentHelper {
 		args.put("parentid", parentId);
 		args.put("order", order);
 		args.put("id",id);
-		try {
-			HttpHelper.httpPost(url, args, null, null);
-			return true;
-		} catch (OApiException e) {
-			e.printStackTrace();
-			return false;
-		}
+		HttpHelper.httpPost(url, args);
 	}
 }
