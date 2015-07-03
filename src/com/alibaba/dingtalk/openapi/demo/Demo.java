@@ -19,13 +19,6 @@ import com.alibaba.dingtalk.openapi.demo.user.UserHelper;
 
 public class Demo {
 	
-	private static String TO_USER = "manager4671";
-	private static String TO_PARTY = "";
-	private static String AGENT_ID = "531605";
-	private static String SENDER = "manager4671";
-	private static String CID = "";
-	
-	
 	public static void main(String[] args) {
 		
 		try {
@@ -75,9 +68,9 @@ public class Demo {
 					"Link Message", "This is a link message");
 			
 			//发送微应用消息
-			String toUsers = TO_USER;
-			String toParties = TO_PARTY;
-			String agentId = AGENT_ID;
+			String toUsers = Vars.TO_USER;
+			String toParties = Vars.TO_PARTY;
+			String agentId = Vars.AGENT_ID;
 			LightAppMessageDelivery lightAppMessageDelivery = 
 					new LightAppMessageDelivery(toUsers, toParties, agentId);
 			
@@ -92,8 +85,8 @@ public class Demo {
 			log("成功发送 微应用link消息");
 			
 			//发送会话消息
-			String sender = SENDER;
-			String cid = CID;
+			String sender = Vars.SENDER;
+			String cid = Vars.CID;
 			ConversationMessageDelivery conversationMessageDelivery = 
 					new ConversationMessageDelivery(sender, cid, agentId);
 			
