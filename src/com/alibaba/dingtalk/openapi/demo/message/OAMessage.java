@@ -3,36 +3,31 @@ package com.alibaba.dingtalk.openapi.demo.message;
 import java.util.List;
 
 /** 
-  {
-    "touser": "72397", 
-    "msgtype": "oa", 
-    "agentid": "6", 
-    "oa": {
-        "message_url": "http://dingtalk.com", 
-        "head": {
-            "bgcolor": "FFCC0000"
-        }, 
-        "body": {
-            "title": "标题", 
-            "form": [
-                {
-                    "key": "姓名", 
-                    "value": "张三"
-                }, 
-                {
-                    "key": "年龄", 
-                    "value": "30"
-                }
-            ], 
-            "rich": {
-                "num": "15.6", 
-                "unit": "元"
+  { 
+    "message_url": "http://dingtalk.com", 
+    "head": {
+        "bgcolor": "FFCC0000"
+    }, 
+    "body": {
+        "title": "标题", 
+        "form": [
+            {
+                "key": "姓名", 
+                "value": "张三"
             }, 
-            "content": "大段文本", 
-            "image": "@lADOAAGXIszazQKA", 
-            "file_count": "3", 
-            "author": "李四"
-        }
+            {
+                "key": "年龄", 
+                "value": "30"
+            }
+        ], 
+        "rich": {
+            "num": "15.6", 
+            "unit": "元"
+        }, 
+        "content": "大段文本", 
+        "image": "@lADOAAGXIszazQKA", 
+        "file_count": "3", 
+        "author": "李四"
     }
  */
 public class OAMessage extends Message {
