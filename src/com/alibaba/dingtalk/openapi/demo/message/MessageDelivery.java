@@ -1,5 +1,6 @@
 package com.alibaba.dingtalk.openapi.demo.message;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 
 public class MessageDelivery {
@@ -16,7 +17,7 @@ public class MessageDelivery {
 	public JSONObject toJsonObject() {
 		JSONObject json = new JSONObject();
 		json.put("msgtype", this.msgtype);
-		json.put(this.msgtype, this.message);
+		json.put(this.msgtype, JSON.toJSON(this.message));
 		return json;
 	}
 }

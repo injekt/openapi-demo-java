@@ -13,6 +13,7 @@ import com.alibaba.dingtalk.openapi.demo.message.ImageMessage;
 import com.alibaba.dingtalk.openapi.demo.message.LightAppMessageDelivery;
 import com.alibaba.dingtalk.openapi.demo.message.LinkMessage;
 import com.alibaba.dingtalk.openapi.demo.message.MessageHelper;
+import com.alibaba.dingtalk.openapi.demo.message.OAMessage;
 import com.alibaba.dingtalk.openapi.demo.message.TextMessage;
 import com.alibaba.dingtalk.openapi.demo.user.User;
 import com.alibaba.dingtalk.openapi.demo.user.UserHelper;
@@ -67,6 +68,33 @@ public class Demo {
 			LinkMessage linkMessage = new LinkMessage("http://www.baidu.com", "@lALOACZwe2Rk", 
 					"Link Message", "This is a link message");
 			
+			//创建oa消息
+			OAMessage oaMessage = new OAMessage();
+			oaMessage.message_url = "http://www.dingtalk.com";
+			OAMessage.Head head = new OAMessage.Head();
+			head.bgcolor = "FFCC0000";
+			oaMessage.head = head;
+			OAMessage.Body body = new OAMessage.Body();
+			body.title = "征婚启事";
+			OAMessage.Body.Form form1 = new OAMessage.Body.Form();
+			form1.key = "姓名";
+			form1.value = "刘增产";
+			OAMessage.Body.Form form2 = new OAMessage.Body.Form();
+			form2.key = "年龄";
+			form2.value = "18";
+			body.form = new ArrayList();
+			body.form.add(form1);
+			body.form.add(form2);
+			OAMessage.Body.Rich rich = new OAMessage.Body.Rich();
+			rich.num = "5";
+			rich.unit = "毛";
+			body.rich = rich;
+			body.content = "这是一则严肃的征婚启事。不约。";
+			body.image = "";
+			body.file_found = "3";
+			body.author = "识器";
+			oaMessage.body = body;
+			
 			//发送微应用消息
 			String toUsers = Vars.TO_USER;
 			String toParties = Vars.TO_PARTY;
@@ -83,6 +111,9 @@ public class Demo {
 			lightAppMessageDelivery.withMessage(linkMessage);
 			MessageHelper.send(accessToken, lightAppMessageDelivery);
 			log("成功发送 微应用link消息");
+			lightAppMessageDelivery.withMessage(oaMessage);
+			MessageHelper.send(accessToken, lightAppMessageDelivery);
+			log("成功发送 微应用oa消息");
 			
 			//发送会话消息
 			String sender = Vars.SENDER;
