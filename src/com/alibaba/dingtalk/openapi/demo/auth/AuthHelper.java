@@ -19,4 +19,16 @@ public class AuthHelper {
 			throw new OApiResultException("access_token");
 		}
 	}
+	
+	public static String getJsapiTicket(String accessToken) throws OApiException {
+		String url = Env.OAPI_HOST + "/get_jsapi_ticket?" + 
+				"type=jsapi" + "&access_token=" + accessToken;
+		JSONObject response = HttpHelper.httpGet(url);
+		if (response.containsKey("ticket")) {
+			return response.getString("ticket");
+		}
+		else {
+			throw new OApiResultException("ticket");
+		}
+	}
 }

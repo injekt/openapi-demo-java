@@ -27,6 +27,10 @@ public class Demo {
 			String accessToken = AuthHelper.getAccessToken();
 			log("成功获取access token: ", accessToken);
 			
+			// 获取jsapi ticket
+			String ticket = AuthHelper.getJsapiTicket(accessToken);
+			log("成功获取jsapi ticket: ", ticket);
+			
 			//创建部门
 			String name = "TestDept.16";
 			String parentId = "1";
