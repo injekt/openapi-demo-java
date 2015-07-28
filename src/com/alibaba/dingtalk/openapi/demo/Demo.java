@@ -31,6 +31,13 @@ public class Demo {
 			String ticket = AuthHelper.getJsapiTicket(accessToken);
 			log("成功获取jsapi ticket: ", ticket);
 			
+			// 获取签名
+			String nonceStr = "nonceStr";
+			long timeStamp = System.currentTimeMillis();
+			String url = "http://www.dingtalk.com";
+			String signature = AuthHelper.sign(ticket, nonceStr, timeStamp, url);
+			log("成功签名: ", signature);
+			
 			//创建部门
 			String name = "TestDept.16";
 			String parentId = "1";

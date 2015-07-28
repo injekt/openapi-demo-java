@@ -1,5 +1,10 @@
 package com.alibaba.dingtalk.openapi.demo.auth;
 
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Formatter;
+
 import com.alibaba.dingtalk.openapi.demo.Env;
 import com.alibaba.dingtalk.openapi.demo.OApiException;
 import com.alibaba.dingtalk.openapi.demo.OApiResultException;
@@ -30,5 +35,31 @@ public class AuthHelper {
 		else {
 			throw new OApiResultException("ticket");
 		}
+	}
+	
+	public static String sign(String ticket, String nonceStr, long timeStamp, String url) 
+			throws OApiException {
+		String plain = "jsapi_ticket=" + ticket + "&noncestr=" + nonceStr +
+	            "&timestamp=" + String.valueOf(timeStamp) + "&url=" + url;
+		try {
+			MessageDigest sha1 = MessageDigest.getInstance("SHA-1");
+			sha1.reset();
+			sha1.update(plain.getBytes("UTF-8"));
+			return bytesToHex(sha1.digest());
+		} catch (NoSuchAlgorithmException e) {
+			throw new OApiResultException(e.getMessage());
+		} catch (UnsupportedEncodingException e) {
+			throw new OApiResultException(e.getMessage());
+		}
+	}
+	
+	private static String bytesToHex(byte[] hash) {
+		Formatter formatter = new Formatter();
+        for (byte b : hash){
+            formatter.format("%02x", b);
+        }
+        String result = formatter.toString();
+        formatter.close();
+        return result;
 	}
 }
