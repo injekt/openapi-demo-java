@@ -5,15 +5,16 @@
 <title>jsapi-demo</title>
 </head>
 
-<body onload="form.submit();">
-<script language="JavaScript">
-var _config = <%= com.alibaba.dingtalk.jsapi.demo.app.getConfig(request.getRequestURL().toString())%>;
+<body >
+<script type="text/javascript">
+var _config = <%= com.alibaba.dingtalk.openapi.demo.auth.AuthHelper.getConfig(request.getRequestURL().toString(),request.getQueryString()) %>;
 </script>
-<script language="JavaScript" src="http://g.alicdn.com/ilw/ding/0.3.8/scripts/dingtalk.js">
+<script type="text/javascript" src="javascripts/zepto.min.js"></script>
+<script type="text/javascript" src="http://g.alicdn.com/ilw/ding/0.3.8/scripts/dingtalk.js">
 </script>
-<script language="JavaScript" src="javascripts/demo.js">
+<script type="text/javascript" src="javascripts/logger.js"></script>
+<script type="text/javascript" src="javascripts/demo.js">
 </script>
-    <h1>hello world!</h1>
 </body>
 
 </html>

@@ -58,10 +58,10 @@ public class UserHelper {
 	
 	
 	//获取部门成员
-	public static List<User> getDepartmentUser(String accessToken, long department_id, int fetch_child) 
+	public static List<User> getDepartmentUser(String accessToken, long department_id) 
 			throws OApiException {
 		String url = Env.OAPI_HOST + "/user/simplelist?" +
-				"access_token=" + accessToken + "&department_id=" + 1 + "&fetch_child=" + 0;
+				"access_token=" + accessToken + "&department_id=" + 1;
 		JSONObject response = HttpHelper.httpGet(url);
 		if (response.containsKey("userlist")) {
 			List<User> list = new ArrayList<>();
@@ -78,10 +78,10 @@ public class UserHelper {
 	
 	
 	//获取部门成员（详情）
-	public static List<User> getUserDetails(String accessToken, long department_id, int fetch_child) 
+	public static List<User> getUserDetails(String accessToken, long department_id) 
 			throws OApiException {
 		String url = Env.OAPI_HOST + "/user/list?" +
-				"access_token=" + accessToken + "&department_id=" + 1 + "&fetch_child=" + 0;
+				"access_token=" + accessToken + "&department_id=" + 1;
 		JSONObject response = HttpHelper.httpGet(url);
 		if (response.containsKey("userlist")) {
 			JSONArray arr = response.getJSONArray("userlist");
@@ -94,5 +94,11 @@ public class UserHelper {
 		else {
 			throw new OApiResultException("userlist");
 		}
+	}
+	public static JSONObject getUserInfo(String accessToken, String code) throws OApiException{
+		
+		String url = Env.OAPI_HOST + "/user/getuserinfo?" + "access_token=" + accessToken + "&code=" + code;
+		JSONObject response = HttpHelper.httpGet(url);
+		return response;
 	}
 }

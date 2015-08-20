@@ -152,11 +152,11 @@ public class Demo {
 			log("成功获取成员","成员userid=", user.userid);
 			
 			//获取部门成员
-			List<User> userList = UserHelper.getDepartmentUser(accessToken, departmentId, 0);
+			List<User> userList = UserHelper.getDepartmentUser(accessToken, departmentId);
 			log("成功获取部门成员","部门成员user=", userList);
 			
 			//获取部门成员（详情）
-			List<User> userList2 = UserHelper.getUserDetails(accessToken, departmentId, 0);
+			List<User> userList2 = UserHelper.getUserDetails(accessToken, departmentId);
 			log("成功获取部门成员详情","部门成员详情user=", userList2);
 			
 			//批量删除成员

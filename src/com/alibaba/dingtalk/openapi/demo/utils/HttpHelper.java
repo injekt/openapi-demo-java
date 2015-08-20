@@ -52,8 +52,8 @@ public class HttpHelper {
 
                 JSONObject result = JSON.parseObject(resultStr);
                 if (result.getInteger("errcode") == 0) {
-                	result.remove("errcode");
-                	result.remove("errmsg");
+//                	result.remove("errcode");
+//                	result.remove("errmsg");
                     return result;
                 } else {
                     System.out.println("request url=" + url + ",return value=");
