@@ -3,12 +3,10 @@ package com.alibaba.dingtalk.openapi.demo.user;
 import com.alibaba.dingtalk.openapi.demo.Env;
 import com.alibaba.dingtalk.openapi.demo.OApiException;
 import com.alibaba.dingtalk.openapi.demo.OApiResultException;
-import com.alibaba.dingtalk.openapi.demo.department.Department;
 import com.alibaba.dingtalk.openapi.demo.utils.HttpHelper;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import java.util.ArrayList;
 import java.util.List;
