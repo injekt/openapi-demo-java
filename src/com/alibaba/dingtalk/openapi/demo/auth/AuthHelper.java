@@ -1,6 +1,7 @@
 package com.alibaba.dingtalk.openapi.demo.auth;
 
 import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Formatter;
@@ -61,5 +62,34 @@ public class AuthHelper {
         String result = formatter.toString();
         formatter.close();
         return result;
+	}
+	
+public static String getConfig(String urlString, String queryString){
+		
+		String queryStringEncode = null;
+		String url;
+		if(queryString != null){
+			queryStringEncode = URLDecoder.decode(queryString);
+			url = urlString + "?" + queryStringEncode;
+		}
+		else{
+			url = urlString;
+		}
+		System.out.println(url);
+		String nonceStr = "abcdefg";
+		long timeStamp = System.currentTimeMillis()/1000;
+		String signedUrl = url;
+		String accessToken = null;
+		String ticket = null;
+		String signature = null;
+		try {
+			accessToken = AuthHelper.getAccessToken();
+			ticket = AuthHelper.getJsapiTicket(accessToken);
+			signature = AuthHelper.sign(ticket, nonceStr, timeStamp, signedUrl);
+		} catch (OApiException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "{signature:'"+signature+"',nonceStr:'"+nonceStr+"',timeStamp:'"+timeStamp+"',corpId:'"+Env.CORP_ID+"'}";
 	}
 }

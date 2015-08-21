@@ -2,6 +2,8 @@
  * Created by liqiao on 8/10/15.
  */
 
+logger.i('Here we go...');
+
 /**
  * _config comes from server-side template. see views/index.jade
  */
@@ -11,55 +13,75 @@ dd.config({
     timeStamp: _config.timeStamp,
     nonceStr: _config.nonceStr,
     signature: _config.signature,
-    jsApiList: ['device.notification.confirm',
-        'device.notification.toast',
+    jsApiList: ['runtime.info',
+        'biz.contact.choose',
+        'device.notification.confirm',
         'device.notification.alert',
         'device.notification.prompt',
-        'biz.chat.chooseConversation',
         'biz.ding.post']
 });
 
+document.addEventListener('runtimeready', function() {
+    logger.i('runtime ready');
+    try {
+        dd.runtime.permission.requestAuthCode({
+            corpId: _config.corpId,
+            onSuccess: function (info) {
+                logger.i('authcode: ' + info.code);
+                $.ajax({
+                    url: 'userinfo?code=' + info.code,
+                    type: 'GET',
+                    success: function (data, status, xhr) {
+                    	alert(JSON.parse(data).userid);
+                        var info = JSON.parse(data);
+                        if (info.errcode === 0) {
+                            logger.i('user id: ' + info.userid);
+                        }
+                        else {
+                            logger.e('auth error: ' + data);
+                        }
+                    },
+                    error: function (xhr, errorType, error) {
+                        logger.e(errorType + ', ' + error);
+                    }
+                });
+            },
+            onFail: function (err) {
+                logger.e('fail: ' + JSON.stringify(err));
+            }
+        });
+    }
+    catch(e) {
+        logger.e(e);
+    }
+});
+
 dd.ready(function() {
-    alert('dd ready');
+    logger.i('dd.ready rocks!');
 
     document.addEventListener('pause', function() {
-        alert('pause');
+        logger.i('pause');
     });
 
     document.addEventListener('resume', function() {
-        alert('resume');
+        logger.i('resume');
     });
 
-    var head = document.querySelector('h1');
-    head.innerHTML = head.innerHTML + ' It rocks!';
+    document.addEventListener('backbutton', function(ev) {
+        ev.preventDefault();
+        logger.i('backbutton');
+    });
 
-    dd.device.notification.toast({
-        icon: '', //icon样式，有success和error，默认为空 0.0.2
-        text: 'this is text', //提示信息
-        duration: 3, //显示持续时间，单位秒，默认按系统规范[android只有两种(<=2s >2s)]
-        delay: 0, //延迟显示，单位秒，默认0
-        onSuccess : function(result) {
-            /*{}*/
-        },
-        onFail : function(err) {}
-
-
-    })
-
-
-    dd.device.notification.alert({
-        message: 'dd.device.notification.alert',
-        title: 'This is title',
-        buttonName: 'button',
-        onSuccess: function(data) {
-            alert('win: ' + JSON.stringify(data));
+    dd.runtime.info({
+        onSuccess: function(info) {
+            logger.i('runtime info: ' + JSON.stringify(info));
         },
         onFail: function(err) {
-            alert('fail: ' + JSON.stringify(err));
+            logger.e('fail: ' + JSON.stringify(err));
         }
     });
 });
 
 dd.error(function(err) {
-    alert('dd error: ' + JSON.stringify(err));
+    logger.e('dd error: ' + JSON.stringify(err));
 });

@@ -1,19 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="2.5" 
-    xmlns="http://java.sun.com/xml/ns/javaee" 
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
-    http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"> 
-    
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
   <servlet>
-  <display-name>app</display-name>
-  <servlet-name>app</servlet-name>
-  <servlet-class>com.demo.app</servlet-class>  <!--Servlet类的位置-->
- </servlet>
- <servlet-mapping>
-  <servlet-name>app</servlet-name>
-  <url-pattern>/app</url-pattern>
- </servlet-mapping>
- 
- 
+    <display-name>Userinfo</display-name>
+    <servlet-name>Userinfo</servlet-name>
+    <servlet-class>com.alibaba.dingtalk.jsapi.demo.Userinfo</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Userinfo</servlet-name>
+    <url-pattern>/userinfo</url-pattern>
+  </servlet-mapping>
 </web-app>
