@@ -61,7 +61,7 @@ public class UserHelper {
 	public static List<User> getDepartmentUser(String accessToken, long department_id) 
 			throws OApiException {
 		String url = Env.OAPI_HOST + "/user/simplelist?" +
-				"access_token=" + accessToken + "&department_id=" + 1;
+				"access_token=" + accessToken + "&department_id=" + department_id;
 		JSONObject response = HttpHelper.httpGet(url);
 		if (response.containsKey("userlist")) {
 			List<User> list = new ArrayList<>();
@@ -81,7 +81,7 @@ public class UserHelper {
 	public static List<User> getUserDetails(String accessToken, long department_id) 
 			throws OApiException {
 		String url = Env.OAPI_HOST + "/user/list?" +
-				"access_token=" + accessToken + "&department_id=" + 1;
+				"access_token=" + accessToken + "&department_id=" + department_id;
 		JSONObject response = HttpHelper.httpGet(url);
 		if (response.containsKey("userlist")) {
 			JSONArray arr = response.getJSONArray("userlist");
