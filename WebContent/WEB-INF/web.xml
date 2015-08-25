@@ -3,10 +3,19 @@
   <servlet>
     <display-name>Userinfo</display-name>
     <servlet-name>Userinfo</servlet-name>
-    <servlet-class>com.alibaba.dingtalk.jsapi.demo.Userinfo</servlet-class>
+    <servlet-class>com.alibaba.dingtalk.openapi.servlet.Userinfo</servlet-class>
+  </servlet>
+  <servlet>
+    <display-name>Isv_receive</display-name>
+    <servlet-name>Isv_receive</servlet-name>
+    <servlet-class>com.alibaba.dingtalk.openapi.servlet.Isv_receive</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Userinfo</servlet-name>
     <url-pattern>/userinfo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Isv_receive</servlet-name>
+    <url-pattern>/isv_receive</url-pattern>
   </servlet-mapping>
 </web-app>

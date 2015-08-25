@@ -39,10 +39,10 @@ dd.ready(function() {
         onSuccess: function (info) {
             logger.i('authcode: ' + info.code);
             $.ajax({
-                url: '/userinfo.php?code=' + info.code,
+                url: 'userinfo?code=' + info.code,
                 type: 'GET',
                 success: function (data, status, xhr) {
-                    var info = JSON.parse(JSON.parse(data));
+                    var info = JSON.parse(data);
                     if (info.errcode === 0) {
                         logger.i('user id: ' + info.userid);
                     }
@@ -51,9 +51,11 @@ dd.ready(function() {
                     }
                 },
                 error: function (xhr, errorType, error) {
+                	alert("yinyien");
                     logger.e(errorType + ', ' + error);
                 }
             });
+            
         },
         onFail: function (err) {
             logger.e('fail: ' + JSON.stringify(err));
