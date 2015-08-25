@@ -2,7 +2,7 @@
 <html>
 <head>
 <link type="text/css" rel="stylesheet" href="stylesheets/style.css" />
-<title>jsapi-demo</title>
+<title>index</title>
 </head>
 
 <body >

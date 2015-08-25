@@ -1,4 +1,4 @@
-package com.alibaba.dingtalk.jsapi.demo;
+package com.alibaba.dingtalk.openapi.servlet;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -12,6 +12,7 @@ import com.alibaba.dingtalk.openapi.demo.user.UserHelper;
 
 /**
  * Servlet implementation class userinfo
+ * 这个servlet用来获取用户信息
  */
 public class Userinfo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -30,13 +31,17 @@ public class Userinfo extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String code = request.getParameter("code");
+		System.out.println(code);
+
 		try {
 			String accessToken = AuthHelper.getAccessToken();
 			response.getWriter().append(UserHelper.getUserInfo(accessToken, code).toString());
+//			System.out.println(UserHelper.getUserInfo(accessToken, code).toString());
+
 		} catch (OApiException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			response.getWriter().append("");
+			response.getWriter().append(e.getMessage());
 		}
 	}
 
