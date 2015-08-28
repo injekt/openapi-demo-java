@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
   <servlet>
-    <display-name>Userinfo</display-name>
-    <servlet-name>Userinfo</servlet-name>
-    <servlet-class>com.alibaba.dingtalk.openapi.servlet.Userinfo</servlet-class>
+    <display-name>UserInfo</display-name>
+    <servlet-name>UserInfo</servlet-name>
+    <servlet-class>com.alibaba.dingtalk.openapi.servlet.UserInfo</servlet-class>
   </servlet>
   <servlet>
-    <display-name>Isv_receive</display-name>
-    <servlet-name>Isv_receive</servlet-name>
-    <servlet-class>com.alibaba.dingtalk.openapi.servlet.Isv_receive</servlet-class>
+    <display-name>IsvReceiveServlet</display-name>
+    <servlet-name>IsvReceiveServlet</servlet-name>
+    <servlet-class>com.alibaba.dingtalk.openapi.servlet.IsvReceiveServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Userinfo</servlet-name>
+    <servlet-name>UserInfo</servlet-name>
     <url-pattern>/userinfo</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>Isv_receive</servlet-name>
-    <url-pattern>/isv_receive</url-pattern>
+    <servlet-name>IsvReceiveServlet</servlet-name>
+    <url-pattern>/isvreceiveservlet</url-pattern>
   </servlet-mapping>
 </web-app>

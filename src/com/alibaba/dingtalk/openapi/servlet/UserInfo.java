@@ -14,13 +14,13 @@ import com.alibaba.dingtalk.openapi.demo.user.UserHelper;
  * Servlet implementation class userinfo
  * 这个servlet用来获取用户信息
  */
-public class Userinfo extends HttpServlet {
+public class UserInfo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Userinfo() {
+    public UserInfo() {
         super();
         // TODO Auto-generated constructor stub
     }

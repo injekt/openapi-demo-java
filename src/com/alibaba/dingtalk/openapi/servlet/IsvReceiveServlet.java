@@ -16,13 +16,13 @@ import com.alibaba.dingtalk.openapi.demo.utils.aes.DingTalkEncryptor;
 import com.alibaba.fastjson.JSONObject;
 
 /**
- * Servlet implementation class Isv_receive
+ * Servlet implementation class IsvReceiveServlet
  * 这个servlet用来接收钉钉服务器回调接口的推送
  */
-public class Isv_receive extends HttpServlet {
+public class IsvReceiveServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public Isv_receive() {
+	public IsvReceiveServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
