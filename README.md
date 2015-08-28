@@ -3,5 +3,10 @@
 ## Awesome project
 
 ### Getting started
-1. set up your own corp id and corp secret in Env.java
+1. 在Env.java中配置所需要的参数
+
 2. launch in your prayers
+
+3. 查看“权限验证配置”的demo,请从WebContent/index.jsp开始看
+
+4. 查看回调接口加解密demo，请从IsvReceiveServlet.java开始看
