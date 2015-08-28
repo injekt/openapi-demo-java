@@ -35,7 +35,7 @@ public class Isv_receive extends HttpServlet {
         /**url中的随机字符串**/
         String nonce = request.getParameter("nonce");
         
-        /**post数据数据中的加密数据**/
+        /**post数据包数据中的加密数据**/
         ServletInputStream sis =  request.getInputStream(); 
         BufferedReader br = new BufferedReader(new InputStreamReader(sis));
         String line = null;
