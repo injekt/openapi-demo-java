@@ -34,7 +34,7 @@ public class DingTalkEncryptor {
      * 构造函数
      * @param token             钉钉开放平台上，开发者设置的token
      * @param encodingAesKey  钉钉开放台上，开发者设置的EncodingAESKey
-     * @param corpId            企业的corpid
+     * @param corpId           ISV进行配置的时候应该传对应套件的SUITE_KEY，普通企业是Corpid
      * @throws DingTalkEncryptException 执行失败，请查看该异常的错误码和具体的错误信息
      */
     public DingTalkEncryptor(String token, String encodingAesKey, String corpId) throws DingTalkEncryptException{
