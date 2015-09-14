@@ -25,6 +25,6 @@
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>EventChangeReceiveServlet</servlet-name>
-    <url-pattern>/enevtreceuve</url-pattern>
+    <url-pattern>/eventreceive</url-pattern>
   </servlet-mapping>
 </web-app>
