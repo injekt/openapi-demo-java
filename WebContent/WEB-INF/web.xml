@@ -10,6 +10,11 @@
     <servlet-name>IsvReceiveServlet</servlet-name>
     <servlet-class>com.alibaba.dingtalk.openapi.servlet.IsvReceiveServlet</servlet-class>
   </servlet>
+  <servlet>
+    <display-name>EventChangeReceiveServlet</display-name>
+    <servlet-name>EventChangeReceiveServlet</servlet-name>
+    <servlet-class>com.alibaba.dingtalk.openapi.servlet.EventChangeReceiveServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>UserInfoServlet</servlet-name>
     <url-pattern>/userinfo</url-pattern>
@@ -17,5 +22,9 @@
   <servlet-mapping>
     <servlet-name>IsvReceiveServlet</servlet-name>
     <url-pattern>/isvreceive</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>EventChangeReceiveServlet</servlet-name>
+    <url-pattern>/enevtreceuve</url-pattern>
   </servlet-mapping>
 </web-app>
