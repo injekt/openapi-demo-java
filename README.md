@@ -1,4 +1,5 @@
 # open api demo (java ver.)
+版本要求: jdk.1.7.0
 
 ## Awesome project
 
