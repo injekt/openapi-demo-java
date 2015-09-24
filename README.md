@@ -1,4 +1,5 @@
 # open api demo (java ver.)
+java version "1.7.0_75"
 
 ## Awesome project
 
