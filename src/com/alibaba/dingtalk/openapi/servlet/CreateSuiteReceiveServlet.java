@@ -16,13 +16,13 @@ import com.alibaba.dingtalk.openapi.demo.utils.aes.DingTalkEncryptor;
 import com.alibaba.fastjson.JSONObject;
 
 /**
- * Servlet implementation class IsvReceiveServlet
- * 这个servlet用来接收钉钉服务器回调接口的推送
+ * Servlet implementation class CreateSuiteReceiveServlet
+ * 这个servlet用来接收钉钉服务器创建套件回调接口的推送
  */
-public class IsvReceiveServlet extends HttpServlet {
+public class CreateSuiteReceiveServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public IsvReceiveServlet() {
+	public CreateSuiteReceiveServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -51,7 +51,7 @@ public class IsvReceiveServlet extends HttpServlet {
 		String plainText = null;
 		try {
 			//对于DingTalkEncryptor的第三个参数，ISV进行配置的时候传对应套件的SUITE_KEY，普通企业传Corpid,由于此回调接口只有isv使用，所以传Env.SUITE_KEY
-			dingTalkEncryptor = new DingTalkEncryptor(Env.TOKEN, Env.ENCODING_AES_KEY, Env.SUITE_KEY);
+			dingTalkEncryptor = new DingTalkEncryptor(Env.TOKEN, Env.ENCODING_AES_KEY, Env.CREATE_SUITE_KEY);
 			plainText = dingTalkEncryptor.getDecryptMsg(msgSignature, timeStamp, nonce, encrypt);
 		} catch (DingTalkEncryptException e) {
 			// TODO Auto-generated catch block
@@ -62,18 +62,10 @@ public class IsvReceiveServlet extends HttpServlet {
         /**对从encrypt解密出来的明文进行处理**/
 		JSONObject plainTextJson = JSONObject.parseObject(plainText);		
 		String eventType = plainTextJson.getString("EventType");
-		String res = "success";
+		String random = "";
 		switch (eventType){
-		case "suite_ticket":
-			Env.suiteTicket = request.getParameter("SuiteTicket");//do something
-			break;
-		case "tmp_auth_code":
-			Env.authCode = request.getParameter("AuthCode");//do something
-			break;
-		case "change_auth":// do something;
-			break;
-		case "check_update_suite_url":
-			res = plainTextJson.getString("Random");
+		case "check_create_suite_url":
+			random = plainTextJson.getString("Random");
 			String testSuiteKey = plainTextJson.getString("TestSuiteKey");
 			break;
 		default : //do something
@@ -84,7 +76,7 @@ public class IsvReceiveServlet extends HttpServlet {
 		long timeStampLong = Long.parseLong(timeStamp);
 		Map<String,String> jsonMap = null;
 		try {
-			jsonMap = dingTalkEncryptor.getEncryptedMap(res, timeStampLong, nonce);
+			jsonMap = dingTalkEncryptor.getEncryptedMap(random, timeStampLong, nonce);
 		} catch (DingTalkEncryptException e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
