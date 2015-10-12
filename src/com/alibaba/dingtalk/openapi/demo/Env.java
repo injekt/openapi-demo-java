@@ -12,6 +12,7 @@ public class Env {
 	public static String suiteTicket; 
 	public static String authCode; 
 	
+	public static final String CREATE_SUITE_KEY = "suite4xxxxxxxxxxxxxxx";
 	public static final String SUITE_KEY = "";
 	public static final String SUITE_SECRET = "";
 	public static final String TOKEN = "";
