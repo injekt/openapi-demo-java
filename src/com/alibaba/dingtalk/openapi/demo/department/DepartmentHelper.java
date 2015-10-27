@@ -13,13 +13,14 @@ import com.alibaba.fastjson.JSONObject;
 public class DepartmentHelper {
 
 	public static long createDepartment(String accessToken, String name, 
-			String parentId, String order) throws OApiException {
+			String parentId, String order, boolean createDeptGroup ) throws OApiException {
 		String url = Env.OAPI_HOST + "/department/create?" +
 				"access_token=" + accessToken;
 		JSONObject args = new JSONObject();
 		args.put("name", name);
 		args.put("parentid", parentId);
 		args.put("order", order);
+		args.put("createDeptGroup", createDeptGroup);
 		JSONObject response = HttpHelper.httpPost(url, args);
 		if (response.containsKey("id")) {
 			return response.getLong("id");
@@ -57,7 +58,8 @@ public class DepartmentHelper {
 	
 	
 	public static void updateDepartment(String accessToken, String name, 
-			String parentId, String order, long id) throws OApiException{
+			String parentId, String order, long id,
+			boolean autoAddUser, String deptManagerUseridList, boolean deptHiding, String deptPerimits) throws OApiException{
 		String url = Env.OAPI_HOST  + "/department/update?" +
 				"access_token=" + accessToken;
 		JSONObject args = new JSONObject();
@@ -65,6 +67,11 @@ public class DepartmentHelper {
 		args.put("parentid", parentId);
 		args.put("order", order);
 		args.put("id",id);
+		args.put("autoAddUser",autoAddUser);
+		args.put("deptManagerUseridList",deptManagerUseridList);
+		args.put("deptHiding",deptHiding);
+		args.put("deptPerimits",deptPerimits);
+
 		HttpHelper.httpPost(url, args);
 	}
 }
