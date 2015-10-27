@@ -26,6 +26,22 @@ public class CreateSuiteReceiveServlet extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
+	public static void main(String arg[]){
+		DingTalkEncryptor dingTalkEncryptor = null;
+		String plainText = null;
+		try {
+			//对于DingTalkEncryptor的第三个参数，ISV进行配置的时候传对应套件的SUITE_KEY，普通企业传Corpid,由于此回调接口只有isv使用，所以传Env.SUITE_KEY
+			dingTalkEncryptor = new DingTalkEncryptor("123456", "4g5j64qlyl3zvetqxz5jiocdr586fn2zvjpa8zls3ij", Env.CREATE_SUITE_KEY);
+			plainText = dingTalkEncryptor.getDecryptMsg("5a65ceeef9aab2d149439f82dc191dd6c5cbe2c0", "1445827045067", "nEXhMP4r", "1a3NBxmCFwkCJvfoQ7WhJHB+iX3qHPsc9JbaDznE1i03peOk1LaOQoRz3+nlyGNhwmwJ3vDMG+OzrHMeiZI7gTRWVdUBmfxjZ8Ej23JVYa9VrYeJ5as7XM/ZpulX8NEQis44w53h1qAgnC3PRzM7Zc/D6Ibr0rgUathB6zRHP8PYrfgnNOS9PhSBdHlegK+AGGanfwjXuQ9+0pZcy0w9lQ==");
+		} catch (DingTalkEncryptException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
+
+		System.out.println(plainText);
+		
+	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 /**url中的签名**/
