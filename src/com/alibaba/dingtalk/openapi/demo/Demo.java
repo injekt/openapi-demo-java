@@ -39,11 +39,12 @@ public class Demo {
 			log("成功签名: ", signature);
 			
 			//创建部门
-			String name = "TestDept.16";
+			String name = "TestDept.34";
 			String parentId = "1";
 			String order = "1";
+			boolean createDeptGroup = true;
 			long departmentId = DepartmentHelper.createDepartment(accessToken, 
-					name, parentId, order);
+					name, parentId, order, createDeptGroup);
 			log("成功创建部门", name, " 部门id=", departmentId);
 			
 			//获取部门列表
@@ -51,7 +52,12 @@ public class Demo {
 			log("成功获取部门列表", list);
 			
 			//更新部门
-			DepartmentHelper.updateDepartment(accessToken, name, parentId, order, departmentId);
+			name = "hahahaha";
+			boolean autoAddUser =  true;
+			String deptManagerUseridList = "11|11";
+			boolean deptHiding = false;
+			String deptPerimits = "aa|qq";
+			DepartmentHelper.updateDepartment(accessToken, name, parentId, order, departmentId, autoAddUser, deptManagerUseridList, deptHiding, deptPerimits);
 			log("成功更新部门"," 部门id=", departmentId);
 			
 			//创建成员

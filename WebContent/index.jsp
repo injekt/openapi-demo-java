@@ -10,7 +10,7 @@
 var _config = <%= com.alibaba.dingtalk.openapi.demo.auth.AuthHelper.getConfig(request.getRequestURL().toString(),request.getQueryString()) %>;
 </script>
 <script type="text/javascript" src="javascripts/zepto.min.js"></script>
-<script type="text/javascript" src="http://g.alicdn.com/ilw/ding/0.3.8/scripts/dingtalk.js">
+<script type="text/javascript" src="http://g.alicdn.com/ilw/ding/0.5.8/scripts/dingtalk.js">
 </script>
 <script type="text/javascript" src="javascripts/logger.js"></script>
 <script type="text/javascript" src="javascripts/demo.js">
