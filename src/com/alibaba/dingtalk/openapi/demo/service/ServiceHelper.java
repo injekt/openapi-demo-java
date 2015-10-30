@@ -25,19 +25,17 @@ public class ServiceHelper {
 		return suiteAccessToken;
 	}
 	
-	public static String getPermanentCode(String tmp_auth_cod, String suiteAccessToken ){
+	public static JSONObject getPermanentCode(String tmp_auth_cod, String suiteAccessToken ){
 		String url = Env.OAPI_HOST + "/service/get_permanent_code?suite_access_token=" + suiteAccessToken ;
 		JSONObject json = new JSONObject();
 		json.put("tmp_auth_code", tmp_auth_cod);
 		JSONObject reponseJson = null;
-		String permanentCode = null;
 		try {
 			reponseJson = HttpHelper.httpPost(url,json);
-			permanentCode = reponseJson.getString("permanent_code");
 		} catch (OApiException e) {
 			e.printStackTrace();
 		}
-		return permanentCode;		
+		return reponseJson;		
 	}
 	
 	public static String getCorpToken(String auth_corpid, String permanent_code, String suiteAccessToken ){

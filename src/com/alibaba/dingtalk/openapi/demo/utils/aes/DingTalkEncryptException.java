@@ -42,10 +42,10 @@ public class DingTalkEncryptException extends Exception {
         msgMap.put(COMPUTE_ENCRYPT_TEXT_ERROR,"计算加密文字错误");
         msgMap.put(COMPUTE_DECRYPT_TEXT_ERROR,"计算解密文字错误");
         msgMap.put(COMPUTE_DECRYPT_TEXT_LENGTH_ERROR,"计算解密文字长度不匹配");
-        msgMap.put(COMPUTE_DECRYPT_TEXT_CORPID_ERROR,"计算解密文字corpid不匹配");
+        msgMap.put(COMPUTE_DECRYPT_TEXT_CORPID_ERROR,"计算解密文字corpid或者suiteKey不匹配");
     }
 
-    private Integer  code;
+    public Integer  code;
     public DingTalkEncryptException(Integer exceptionCode){
         super(msgMap.get(exceptionCode));
         this.code = exceptionCode;

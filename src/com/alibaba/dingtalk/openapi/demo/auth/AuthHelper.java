@@ -128,6 +128,6 @@ public static String getConfig(String urlString, String queryString){
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return "{signature:'"+signature+"',nonceStr:'"+nonceStr+"',timeStamp:'"+timeStamp+"',corpId:'"+Env.CORP_ID+"'}";
+		return "{jsticket:'" + ticket + "',signature:'"+signature+"',nonceStr:'"+nonceStr+"',timeStamp:'"+timeStamp+"',corpId:'"+Env.CORP_ID+"'}";
 	}
 }

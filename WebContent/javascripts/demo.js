@@ -20,7 +20,7 @@ dd.config({
         'device.notification.prompt',
         'biz.ding.post']
 });
-
+logger.i("_config:" + JSON.stringify(_config));
 
 dd.ready(function() {
     logger.i('dd.ready rocks!');
