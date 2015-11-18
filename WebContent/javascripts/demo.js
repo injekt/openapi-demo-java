@@ -8,7 +8,7 @@ logger.i('Here we go...');
  * _config comes from server-side template. see views/index.jade
  */
 dd.config({
-    appId: '',
+	agentId: '11111',
     corpId: _config.corpId,
     timeStamp: _config.timeStamp,
     nonceStr: _config.nonceStr,

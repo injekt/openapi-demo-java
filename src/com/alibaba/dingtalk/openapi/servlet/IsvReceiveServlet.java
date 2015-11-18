@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.alibaba.dingtalk.openapi.demo.Env;
+import com.alibaba.dingtalk.openapi.demo.OApiException;
+import com.alibaba.dingtalk.openapi.demo.auth.AuthHelper;
 import com.alibaba.dingtalk.openapi.demo.service.ServiceHelper;
 import com.alibaba.dingtalk.openapi.demo.utils.aes.DingTalkEncryptException;
 import com.alibaba.dingtalk.openapi.demo.utils.aes.DingTalkEncryptor;
@@ -29,6 +31,7 @@ public class IsvReceiveServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("doGet" + ":let's rock!");
 		 /**url中的签名**/
         String msgSignature = request.getParameter("signature");
         /**url中的时间戳**/
@@ -89,11 +92,21 @@ public class IsvReceiveServlet extends HttpServlet {
 			Env.suiteToken = ServiceHelper.getSuiteToken(Env.SUITE_KEY, Env.SUITE_SECRET, Env.suiteTicket);
 			break;
 		case "tmp_auth_code":
+			System.out.println("tmp_auth_code" + ":let's rock!");
 			Env.authCode = plainTextJson.getString("AuthCode");//do something
+			System.out.println("yinyien" + "authCode");
 			JSONObject permanentJson = ServiceHelper.getPermanentCode(Env.authCode, Env.suiteToken);
 			String corpId = permanentJson.getJSONObject("auth_corp_info").getString("corpid");
 			String permanent_code = permanentJson.getString("permanent_code");//真实开发中，请务必将corpId和permanent_code做持久存储
 			ServiceHelper.getActivateSuite(Env.suiteToken, Env.SUITE_KEY, corpId, permanent_code);
+			try {
+				String jsticket = AuthHelper.getJsapiTicket(ServiceHelper.getCorpToken(corpId, permanent_code, Env.suiteToken));
+				System.out.println(jsticket);
+			} catch (OApiException e1) {
+				// TODO Auto-generated catch block
+				System.out.println(e1.toString());
+				e1.printStackTrace();
+			}
 			break;
 		case "change_auth":
 			String corpid = plainTextJson.getString("AuthCorpID");

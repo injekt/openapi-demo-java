@@ -130,4 +130,18 @@ public static String getConfig(String urlString, String queryString){
 		}
 		return "{jsticket:'" + ticket + "',signature:'"+signature+"',nonceStr:'"+nonceStr+"',timeStamp:'"+timeStamp+"',corpId:'"+Env.CORP_ID+"'}";
 	}
+public static String getSsoToken() throws OApiException {
+	String url =  "https://oapi.dingtalk.com/sso/gettoken?corpid=" + Env.CORP_ID + "&corpsecret=" + Env.SSO_Secret;
+	JSONObject response = HttpHelper.httpGet(url);
+	String ssoToken;
+	if (response.containsKey("access_token")) {
+		ssoToken = response.getString("access_token");
+	}
+	else {
+		throw new OApiResultException("Sso_token");
+	}
+	return ssoToken;
+	
+}
+
 }
