@@ -12,9 +12,11 @@ public class User {
 	public List<Long> department;
 	public String position;
 	public String mobile;
+	public String tel;
+	public String workPlace;
+	public String remark;
 	public String email;
-	public String openId;
-	public int status;
+	public String jobnumber;
 	public JSONObject extattr;
 	
 	public User() {
@@ -31,6 +33,6 @@ public class User {
 		return "User[userid:" + userid + ", name:" + name + ", active:" + active + ", "
 				+ "avatar:" + avatar + ", department:" + department +
 				", position:" + position + ", mobile:" + mobile + ", email:" + email + 
-				", openId:" + openId + ", status:" + status +", extattr:" + extattr;
+				", extattr:" + extattr;
 	}
 }
