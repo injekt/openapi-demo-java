@@ -1,9 +1,17 @@
 package com.alibaba.dingtalk.openapi.servlet;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.file.Path;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletInputStream;
@@ -14,8 +22,10 @@ import com.alibaba.dingtalk.openapi.demo.Env;
 import com.alibaba.dingtalk.openapi.demo.OApiException;
 import com.alibaba.dingtalk.openapi.demo.auth.AuthHelper;
 import com.alibaba.dingtalk.openapi.demo.service.ServiceHelper;
+import com.alibaba.dingtalk.openapi.demo.utils.FileUtils;
 import com.alibaba.dingtalk.openapi.demo.utils.aes.DingTalkEncryptException;
 import com.alibaba.dingtalk.openapi.demo.utils.aes.DingTalkEncryptor;
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 
 /**
@@ -24,16 +34,19 @@ import com.alibaba.fastjson.JSONObject;
  */
 public class IsvReceiveServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	
 	public IsvReceiveServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("doGet" + ":let's rock!");
+		System.out.println("doGet12" + ":let's rock!");
+       
 		 /**url中的签名**/
         String msgSignature = request.getParameter("signature");
+//		System.out.println("msgSignature" + msgS);
+
         /**url中的时间戳**/
         String timeStamp = request.getParameter("timestamp");
         /**url中的随机字符串**/
@@ -47,8 +60,14 @@ public class IsvReceiveServlet extends HttpServlet {
         while((line = br.readLine())!=null){
          sb.append(line);
         }
+        System.out.println("post12:"+sb);
         JSONObject jsonEncrypt = JSONObject.parseObject(sb.toString());
-		String encrypt = jsonEncrypt.getString("encrypt");
+        String encrypt = "";
+        try{
+    		encrypt = jsonEncrypt.getString("encrypt");
+        }catch(Exception e){
+        	e.printStackTrace();
+        }
 		
         /**对encrypt进行解密**/
 		DingTalkEncryptor dingTalkEncryptor = null;
@@ -90,18 +109,30 @@ public class IsvReceiveServlet extends HttpServlet {
 		case "suite_ticket":
 			Env.suiteTicket = plainTextJson.getString("SuiteTicket");//do something
 			Env.suiteToken = ServiceHelper.getSuiteToken(Env.SUITE_KEY, Env.SUITE_SECRET, Env.suiteTicket);
+	        System.out.println("suiteTicket12:"+Env.suiteTicket);
+	        System.out.println("suiteToken12:"+Env.suiteToken);
+	        
+	        Map<String,String> values = new HashMap<String, String>();
+	        values.put("suiteTicket", Env.suiteTicket);
+	        values.put("suiteToken", Env.suiteToken);
+	        JSON jsonTicket = FileUtils.generateJSON(values);
+	        FileUtils.write2File(jsonTicket, "ticket");
+	        System.out.println("json:"+FileUtils.read2JSON("ticket").toJSONString());
 			break;
 		case "tmp_auth_code":
-			System.out.println("tmp_auth_code" + ":let's rock!");
+			System.out.println("tmp_auth_code12:" + ":let's rock!");
 			Env.authCode = plainTextJson.getString("AuthCode");//do something
-			System.out.println("yinyien" + "authCode");
+	        System.out.println("authCode12:"+Env.authCode);
 			JSONObject permanentJson = ServiceHelper.getPermanentCode(Env.authCode, Env.suiteToken);
 			String corpId = permanentJson.getJSONObject("auth_corp_info").getString("corpid");
 			String permanent_code = permanentJson.getString("permanent_code");//真实开发中，请务必将corpId和permanent_code做持久存储
+			JSON json = FileUtils.generateJSON(corpId,permanent_code);
+			FileUtils.write2File(json,"permanentcode");
+	        System.out.println("json perm:"+FileUtils.read2JSON("permanentcode").toJSONString());
 			ServiceHelper.getActivateSuite(Env.suiteToken, Env.SUITE_KEY, corpId, permanent_code);
 			try {
 				String jsticket = AuthHelper.getJsapiTicket(ServiceHelper.getCorpToken(corpId, permanent_code, Env.suiteToken));
-				System.out.println(jsticket);
+				System.out.println("jsticket12:"+jsticket);
 			} catch (OApiException e1) {
 				// TODO Auto-generated catch block
 				System.out.println(e1.toString());
@@ -155,5 +186,7 @@ public class IsvReceiveServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+	
+	
 
 }
