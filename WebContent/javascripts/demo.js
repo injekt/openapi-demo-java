@@ -88,6 +88,10 @@ dd.ready(function() {
 					document.getElementById("userName").innerHTML = info.name;
 					document.getElementById("userId").innerHTML = info.userid;
                     document.getElementById("userImg").src = info.avatar;
+                    Element eImg = document.getElementById("userImg");
+					eImg.src = info.avatar;
+					eImg.height = '200';
+					eImg.height = '200';
 
 				},
 				error : function(xhr, errorType, error) {
