@@ -74,14 +74,14 @@ function openLink(){
 </head>
 
 <body >
-	<div>
+	<div align="center">
 		<img id ="userImg" alt="头像" src="./nav/default.png">
 	</div>
-	<div>
+	<div align="center">
 		<span>UserName:</span>
 		<div id="userName" style="display:inline-block"></div>
-	</div>
-	<div>
+	</div >
+	<div align="center">
 		<span>UserId:</span>
 		<div id="userId" style="display:inline-block"></div>
 	</div>
