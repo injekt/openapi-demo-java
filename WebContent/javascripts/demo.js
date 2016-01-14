@@ -23,7 +23,7 @@ dd.ready(function() {
 
 	dd.runtime.info({
 		onSuccess : function(info) {
-			logger.i('runtime info: ' + JSON.stringify(info));
+			alert('runtime info: ' + JSON.stringify(info));
 		},
 		onFail : function(err) {
 			logger.e('fail: ' + JSON.stringify(err));
@@ -41,15 +41,15 @@ dd.ready(function() {
 				success : function(data, status, xhr) {
 					var info = JSON.parse(data);
 					if (info.errcode === 0) {
-						logger.i('user id: ' + info.userid + " data:"
+						alert('user id: ' + info.userid + " data:"
 								+ JSON.stringify(info));
 					} else {
-						logger.e('auth error: ' + data);
+						alert('auth error: ' + data);
 					}
 				},
 				error : function(xhr, errorType, error) {
 					alert("yinyien:" + _config.corpId);
-					logger.e(errorType + ', ' + error);
+					alert(errorType + ', ' + error);
 				}
 			});
 
