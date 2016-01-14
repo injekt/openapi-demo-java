@@ -18,7 +18,14 @@ dd.config({
 		});
 
 dd.ready(function() {
-
+    dd.biz.navigation.setTitle({
+        title: '钉钉demo',
+        onSuccess: function(data) {
+        },
+        onFail: function(err) {
+            log.e(JSON.stringify(err));
+        }
+    });
 	// alert('dd.ready rocks!');
 
 	dd.runtime.info({

@@ -97,19 +97,19 @@ function openLink(){
  -->
  <ul>
 <li>
-	<div class="icon"><img src="list/1.jpg"></div>
+	<div class="icon"><img src="list/heart1.png"></div>
 	<div class="text">JSAPI</div>
 </li>
 <li>
-	<div class="icon"><img src="list/2.jpg"></div>
+	<div class="icon"><img src="list/heart2.png"></div>
 	<div class="text">导航框架</div>
 </li>
 <li>
-	<div class="icon"><img src="list/3.jpg"></div>
+	<div class="icon"><img src="list/heart3.png"></div>
 	<div class="text">开放平台文档</div>
 </li>
 <li>
-	<div class="icon"><img src="list/1.jpg"></div>
+	<div class="icon"><img src="list/heart4.png"></div>
 	<div class="text">go to list</div>
 </li>
 </ul>
