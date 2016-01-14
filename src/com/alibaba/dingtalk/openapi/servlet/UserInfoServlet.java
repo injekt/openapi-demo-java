@@ -31,10 +31,11 @@ public class UserInfoServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String code = request.getParameter("code");
-		System.out.println(code);
+		String corpId = request.getParameter("corpid");
+		System.out.println("code:"+code+" corpid:"+corpId);
 
 		try {
-			String accessToken = AuthHelper.getAccessToken();
+			String accessToken = AuthHelper.getAccessToken(corpId);
 			response.getWriter().append(UserHelper.getUserInfo(accessToken, code).toString());
 //			System.out.println(UserHelper.getUserInfo(accessToken, code).toString());
 

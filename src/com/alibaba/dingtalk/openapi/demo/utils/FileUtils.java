@@ -16,27 +16,12 @@ import com.alibaba.fastjson.JSONObject;
 public class FileUtils {
 	public static final String FILEPATH = "Permanent_Data";
 
-	public static JSON generateJSON(String key, String value) {
-		JSONObject json = new JSONObject();
-		json.put(key, value);
-		return json;
-	}
-
-	public static JSON generateJSON(Map<String, String> values) {
-		JSONObject json = new JSONObject();
-		Iterator<Entry<String, String>> iter = values.entrySet().iterator();
-		while (iter.hasNext()) {
-			Map.Entry entry = (Map.Entry) iter.next();
-			json.put(entry.getKey().toString(), entry.getValue().toString());
-		}
-		return json;
-	}
-
 	// json写入文件
 	public static void write2File(Object json, String fileName) {
 		BufferedWriter writer = null;
 		File filePath = new File(FILEPATH);
 		JSONObject eJSON = null;
+		
 		if (!filePath.exists() && !filePath.isDirectory()) {
 			filePath.mkdirs();
 		}
@@ -57,17 +42,14 @@ public class FileUtils {
 		try {
 			writer = new BufferedWriter(new FileWriter(file));
 
-			if (eJSON.equals(null)) {
+			if (eJSON==null) {
 				writer.write(json.toString());
 			} else {
 				Object[] array = ((JSONObject) json).keySet().toArray();
-				if (eJSON.containsKey(array[0].toString())) {
-					@SuppressWarnings("unchecked")
-					Map<String, String> values = JSON.parseObject(eJSON.toString(), Map.class);
-					values.put(array[0].toString(), ((JSONObject) json).get(array[0].toString()).toString());
-				} else {
-					eJSON.put(array[0].toString(), ((JSONObject) json).get(array[0].toString()));
+				for(int i=0;i<array.length;i++){
+					eJSON.put(array[i].toString(), ((JSONObject) json).get(array[i].toString()));
 				}
+
 				writer.write(eJSON.toString());
 			}
 
@@ -85,6 +67,7 @@ public class FileUtils {
 
 	}
 
+	// 读文件到json
 	public static JSONObject read2JSON(String fileName) {
 		File file = new File(FILEPATH + File.separator + fileName + ".xml");
 		if (!file.exists()) {
@@ -99,19 +82,25 @@ public class FileUtils {
 			while ((tempString = reader.readLine()) != null) {
 				laststr += tempString;
 			}
-
 			reader.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		JSON.parse(laststr);
 
 		return (JSONObject) JSON.parse(laststr);
 	}
 
 	// 通过key值获取文件中的value
-	public static void getKey(String key) {
-
+	public static Object getValue(String fileName, String key) {
+		JSONObject eJSON = null;
+		eJSON = (JSONObject) read2JSON(fileName);
+		if (null != eJSON && eJSON.containsKey(key)) {
+			@SuppressWarnings("unchecked")
+			Map<String, Object> values = JSON.parseObject(eJSON.toString(), Map.class);
+			return values.get(key);
+		} else {
+			return null;
+		}
 	}
 
 }

@@ -14,8 +14,7 @@
 
 <title>index</title>
 <script type="text/javascript">
-var _config = <%= com.alibaba.dingtalk.openapi.demo.auth.AuthHelper.getConfig(request.getRequestURL().toString(),request.getQueryString()) %>;
-alert(JSON.stringify(_config));
+var _config = <%= com.alibaba.dingtalk.openapi.demo.auth.AuthHelper.getConfig(request) %>;
 </script>
 <script type="text/javascript" src="javascripts/zepto.min.js"></script>
 <script type="text/javascript" src="http://g.alicdn.com/ilw/ding/0.7.3/scripts/dingtalk.js">
