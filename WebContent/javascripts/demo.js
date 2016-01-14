@@ -2,24 +2,25 @@
  * Created by liqiao on 8/10/15.
  */
 
-
 /**
  * _config comes from server-side template. see views/index.jade
  */
-dd.config({
-	agentId : _config.agentid,
-	corpId : _config.corpId,
-	timeStamp : _config.timeStamp,
-	nonceStr : _config.nonceStr,
-	signature : _config.signature,
-	jsApiList : [ 'runtime.info', 'biz.contact.choose',
-			'device.notification.confirm', 'device.notification.alert',
-			'device.notification.prompt', 'biz.ding.post', 'biz.util.openLink' ]
-});
+dd
+		.config({
+			agentId : _config.agentid,
+			corpId : _config.corpId,
+			timeStamp : _config.timeStamp,
+			nonceStr : _config.nonceStr,
+			signature : _config.signature,
+			jsApiList : [ 'runtime.info', 'biz.contact.choose',
+					'device.notification.confirm', 'device.notification.alert',
+					'device.notification.prompt', 'biz.ding.post',
+					'biz.util.openLink' ]
+		});
 
 dd.ready(function() {
-	
-//	alert('dd.ready rocks!');
+
+	// alert('dd.ready rocks!');
 
 	dd.runtime.info({
 		onSuccess : function(info) {
@@ -33,19 +34,16 @@ dd.ready(function() {
 	dd.runtime.permission.requestAuthCode({
 		corpId : _config.corpId,
 		onSuccess : function(info) {
-			logger.e('authcode: ' + info.code);
+			alert('authcode: ' + info.code);
 			$.ajax({
 				url : 'userinfo?code=' + info.code + '&corpid='
 						+ _config.corpId,
 				type : 'GET',
 				success : function(data, status, xhr) {
 					var info = JSON.parse(data);
-//					if (info.errcode === 0) {
-						alert('user id: ' + info.userid + " data:"
-								+ JSON.stringify(info));
-//					} else {
-					// alert('auth error: ' + data);
-					//					}
+					alert('user id: ' + info.userid + " data:"
+							+ JSON.stringify(info));
+					document.getElementById("userName").innerHTML = info.name;
 				},
 				error : function(xhr, errorType, error) {
 					alert("yinyien:" + _config.corpId);

@@ -43,6 +43,8 @@ function openLink(){
 </head>
 
 <body >
+	<span>UserName:</span>
+	<div id="userName"></div>
 	<div><button onclick="openLink()">JSAPI</button></div>
 	<div><button onclick="window.location='./nav/1.html'">go to nav</button></div>
 	<div><button onclick="window.location='./list/list.html'">go to list</button></div>
