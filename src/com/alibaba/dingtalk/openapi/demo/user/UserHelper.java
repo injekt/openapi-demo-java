@@ -3,6 +3,7 @@ package com.alibaba.dingtalk.openapi.demo.user;
 import com.alibaba.dingtalk.openapi.demo.Env;
 import com.alibaba.dingtalk.openapi.demo.OApiException;
 import com.alibaba.dingtalk.openapi.demo.OApiResultException;
+import com.alibaba.dingtalk.openapi.demo.utils.FileUtils;
 import com.alibaba.dingtalk.openapi.demo.utils.HttpHelper;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -41,6 +42,13 @@ public class UserHelper {
 	public static User getUser(String accessToken, String userid) throws OApiException {
 		String url = Env.OAPI_HOST + "/user/get?" +
 				"access_token=" + accessToken + "&userid=" + userid;
+		JSONObject json = HttpHelper.httpGet(url);
+		return JSON.parseObject(json.toJSONString(), User.class);
+	}
+	
+	public static User getUserRemote(String corpid,String userid) throws OApiException{
+		String url = Env.OAPI_HOST + "/user/get?" +
+				"access_token=" + FileUtils.getValue("accesstoken", corpid) + "&userid=" + userid;
 		JSONObject json = HttpHelper.httpGet(url);
 		return JSON.parseObject(json.toJSONString(), User.class);
 	}

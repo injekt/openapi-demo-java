@@ -14,11 +14,12 @@ dd.config({
 	signature : _config.signature,
 	jsApiList : [ 'runtime.info', 'biz.contact.choose',
 			'device.notification.confirm', 'device.notification.alert',
-			'device.notification.prompt', 'biz.ding.post' ]
+			'device.notification.prompt', 'biz.ding.post', 'biz.util.openLink' ]
 });
 
 dd.ready(function() {
-	logger.i('dd.ready rocks!');
+	
+	alert('dd.ready rocks!');
 
 	dd.runtime.info({
 		onSuccess : function(info) {

@@ -36,8 +36,8 @@ public class UserInfoServlet extends HttpServlet {
 
 		try {
 			String accessToken = AuthHelper.getAccessToken(corpId);
-			response.getWriter().append(UserHelper.getUserInfo(accessToken, code).toString());
-//			System.out.println(UserHelper.getUserInfo(accessToken, code).toString());
+			response.getWriter().append(UserHelper.getUser(accessToken, UserHelper.getUserInfo(accessToken, code).getString("userid")).toString());
+			System.out.println(UserHelper.getUser(accessToken, UserHelper.getUserInfo(accessToken, code).getString("")).toString());
 
 		} catch (OApiException e) {
 			// TODO Auto-generated catch block
