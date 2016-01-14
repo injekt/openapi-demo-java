@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html" charset="utf-8"; />
-
+<meta http-equiv=Content-Type content="text/html;charset=utf-8">
 <link type="text/css" rel="stylesheet" href="stylesheets/style.css" />
     <style>
         body {
@@ -29,7 +28,6 @@ var _config = <%= com.alibaba.dingtalk.openapi.demo.auth.AuthHelper.getConfig(re
 </script>
 <script>
 function openLink(){
-	var open = window.nuva.require('biz.util');
 	dd.biz.util.openLink({
 		url:'http://h5.m.laiwang.com/home/ding.html',
 	    onSuccess : function(result) {
