@@ -116,15 +116,14 @@ window.addEventListener('load', function() {
 	items[0].addEventListener('click',function(){
 		openLink();
 	});
+	items[1].addEventListener('click',function(){
+		window.location='./nav/1.html';
+	});
 	items[2].addEventListener('click',function(){
 		window.location='http://ddtalk.github.io/dingTalkDoc';
 	});
-	items[3].addEventListener('click',function(){
-		window.location='./list/list.html';
-	});
 
-
-	items[1].addEventListener('click', function(item, index) {
+	items[3].addEventListener('click', function(item, index) {
 			return function(ev) {
                 var left = 0
 				var top = item.getBoundingClientRect().top;
@@ -133,7 +132,7 @@ window.addEventListener('load', function() {
 
 				var icon = index % 3 + 1;
 				var text = 'This is an awesome detail ';
-				var url = './nav/1.html';
+				var url = './list/list.html';
                 var once = true;
 
                 window.nuva.require('ui.nav').preload({
@@ -144,7 +143,7 @@ window.addEventListener('load', function() {
                             setTimeout(function() {
                                 window.nuva.require('ui.nav').go({
                                     createIfNeeded: true,
-                                    id: 'jsapi',
+                                    id: 'jsapi_list',
                                     url: url,
                                     anim: 3,
                                     transit: {
@@ -172,7 +171,7 @@ window.addEventListener('load', function() {
                     }
                 });
 			};
-		}(items[1], 1));
+		}(items[3], 3));
 	
 	</script>
  
