@@ -67,41 +67,41 @@
             }
         });
 
-        dd.biz.navigation.setMenu({
-            backgroundColor : "#22ADD8E6",
-            items : [
-                {
-                    "id":"1",//字符串
-                // "iconId":"file",//字符串，图标命名
-                  "text":"帮助"
-                },
-                {
-                    "id":"2",
-                "iconId":"photo",
-                  "text":"dierge"
-                }
-                ,
-                {
-                    "id":"3",
-                "iconId":"setting",
-                  "text":"哈哈哈啊哈"
-                }
-                ,
-                {
-                    "id":"4",
-                "iconId":"time",
-                  "text":"disige"
-                }
-            ],
-            onSuccess: function(data) {
-                log.i(JSON.stringify(data));
+    	dd.biz.navigation.setMenu({
+    		backgroundColor : "#ADD8E6",
+    		items : [
+    			{
+    				id:"1",//字符串
+    			// "iconId":"file",//字符串，图标命名
+    			  text:"帮助"
+    			}
+    			,
+    			{
+    				"id":"2",
+    			"iconId":"photo",
+    			  "text":"我们"
+    			}
+    			,
+    			{
+    				"id":"3",
+    			"iconId":"file",
+    			  "text":"你们"
+    			}
+    			,
+    			{
+    				"id":"4",
+    			"iconId":"time",
+    			  "text":"他们"
+    			}
+    		],
+    		onSuccess: function(data) {
+    			alert(JSON.stringify(data));
 
-            },
-            onFail: function(err) {
-                log.e(JSON.stringify(err));
-            }
-        });
-
+    		},
+    		onFail: function(err) {
+    			alert(JSON.stringify(err));
+    		}
+    	});
         // dd.biz.navigation.setRight({
         //     show: true,
         //     control: true,
