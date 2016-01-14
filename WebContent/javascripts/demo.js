@@ -95,10 +95,12 @@ dd.ready(function() {
 					document.getElementById("userName").innerHTML = info.name;
 					document.getElementById("userId").innerHTML = info.userid;
 					
-					var img = document.getElementById("userImg");
-                    img.src = info.avatar;
-                    img.height = '100';
-                    img.width = '100';
+					if(info.avatar.length != 0){
+			            var img = document.getElementById("userImg");
+			            img.src = info.avatar;
+			                      img.height = '100';
+			                      img.width = '100';
+			          }
 
 				},
 				error : function(xhr, errorType, error) {

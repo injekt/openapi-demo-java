@@ -100,6 +100,10 @@ function openLink(){
 	<div class="icon"><img src="list/heart4.png"></div>
 	<div class="text">go to list</div>
 </li>
+<li>
+  <div class="icon"><img src="list/heart5.png"></div>
+  <div class="text">通讯录接口</div>
+</li>
 </ul>
  <script type="text/javascript">
 window.addEventListener('load', function() {
