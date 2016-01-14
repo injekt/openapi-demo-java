@@ -44,6 +44,9 @@ dd.ready(function() {
 					alert('user id: ' + info.userid + " data:"
 							+ JSON.stringify(info));
 					document.getElementById("userName").innerHTML = info.name;
+					document.getElementById("userId").innerHTML = info.userid;
+					document.getElementById("userImg").innerHTML = info.avatar;
+
 				},
 				error : function(xhr, errorType, error) {
 					alert("yinyien:" + _config.corpId);

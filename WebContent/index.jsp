@@ -40,8 +40,18 @@ function openLink(){
 </head>
 
 <body >
-	<span>UserName:</span>
-	<div id="userName"></div>
+	<div id="userImg">
+	<img alt="头像" >
+	</div>
+	<div>
+		<span>UserName:</span>
+		<div id="userName" style="display:inline-block"></div>
+	</div>
+	<div>
+		<span>UserId:</span>
+		<div id="userId" style="display:inline-block"></div>
+	</div>
+	
 	<div><button onclick="openLink()">JSAPI</button></div>
 	<div><button onclick="window.location='./nav/1.html'">go to nav</button></div>
 	<div><button onclick="window.location='./list/list.html'">go to list</button></div>
