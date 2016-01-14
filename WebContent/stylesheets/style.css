@@ -1,32 +1,8 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
-}
-
-.log-i {
-  color: green;
-}
-
-.log-e {
-  color: red;
-}
-
-.tag {
-  display: inline-block;
-  width: 170px;
-}
-
-.api {
-  display: inline-block;
-  width: 300px;
-}
-
-.hidden {
-  display: none;
+    color: #00B7FF;
 }
 
 button {
@@ -42,4 +18,35 @@ button {
 
 .clear-float {
     clear: both;
+}
+
+#log {
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+.log-i {
+    color: green;
+}
+
+.log-e {
+    color: red;
+}
+
+.tag {
+    display: inline-block;
+    width: 170px;
+}
+
+.api {
+    display: inline-block;
+    width: 300px;
+}
+
+.hidden {
+    display: none;
+}
+
+.log-row {
+    word-break: break-all;word-wrap: break-word;
 }
