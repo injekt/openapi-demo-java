@@ -74,8 +74,8 @@ function openLink(){
 </head>
 
 <body >
-	<div id="userImg">
-	<img alt="头像" >
+	<div>
+		<img id ="userImg" alt="头像" src="./nav/default.png">
 	</div>
 	<div>
 		<span>UserName:</span>

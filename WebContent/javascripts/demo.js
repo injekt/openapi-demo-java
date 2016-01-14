@@ -69,7 +69,7 @@ dd.ready(function() {
 	dd.runtime.permission.requestAuthCode({
 		corpId : _config.corpId,
 		onSuccess : function(info) {
-			alert('authcode: ' + info.code);
+			logger.e('authcode: ' + info.code);
 			$.ajax({
 				url : 'userinfo?code=' + info.code + '&corpid='
 						+ _config.corpId,
@@ -80,18 +80,18 @@ dd.ready(function() {
 							+ JSON.stringify(info));
 					document.getElementById("userName").innerHTML = info.name;
 					document.getElementById("userId").innerHTML = info.userid;
-					document.getElementById("userImg").attr = info.avatar;
+                    document.getElementById("userImg").src = info.avatar;
 
 				},
 				error : function(xhr, errorType, error) {
-					alert("yinyien:" + _config.corpId);
-					alert(errorType + ', ' + error);
+					logger.e("yinyien:" + _config.corpId);
+					logger.e(errorType + ', ' + error);
 				}
 			});
 
 		},
 		onFail : function(err) {
-			alert('fail: ' + JSON.stringify(err));
+			logger.e('fail: ' + JSON.stringify(err));
 		}
 	});
 });
