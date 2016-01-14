@@ -44,7 +44,7 @@ public class UserInfoServlet extends HttpServlet {
 			User user = (User)UserHelper.getUser(accessToken, UserHelper.getUserInfo(accessToken, code).getString("userid"));
 			String userJson = JSON.toJSONString(user);
 			response.getWriter().append(userJson);
-			System.out.println(userJson);
+			System.out.println("userjson:"+userJson);
 
 		} catch (OApiException e) {
 			// TODO Auto-generated catch block
