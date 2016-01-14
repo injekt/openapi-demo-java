@@ -17,6 +17,7 @@ dd.config({
 					'biz.util.openLink' ]
 		});
 
+
 dd.ready(function() {
     dd.biz.navigation.setTitle({
         title: '钉钉demo',
@@ -26,7 +27,7 @@ dd.ready(function() {
             log.e(JSON.stringify(err));
         }
     });
-	// alert('dd.ready rocks!');
+//	 alert('dd.ready rocks!');
 
 	dd.runtime.info({
 		onSuccess : function(info) {
@@ -71,7 +72,7 @@ dd.ready(function() {
 			}
 		],
 		onSuccess: function(data) {
-			alert(JSON.stringify(data));
+			logger.e(JSON.stringify(data));
 
 		},
 		onFail: function(err) {
@@ -83,37 +84,36 @@ dd.ready(function() {
 	dd.runtime.permission.requestAuthCode({
 		corpId : _config.corpId,
 		onSuccess : function(info) {
-			logger.e('authcode: ' + info.code);
+//			alert('authcode: ' + info.code);
 			$.ajax({
 				url : 'userinfo?code=' + info.code + '&corpid='
 						+ _config.corpId,
 				type : 'GET',
 				success : function(data, status, xhr) {
 					var info = JSON.parse(data);
-					alert('user id: ' + info.userid + " data:"
-							+ JSON.stringify(info));
+
 					document.getElementById("userName").innerHTML = info.name;
 					document.getElementById("userId").innerHTML = info.userid;
-                    document.getElementById("userImg").src = info.avatar;
-                    Element eImg = document.getElementById("userImg");
-					eImg.src = info.avatar;
-					eImg.height = '200';
-					eImg.height = '200';
+					
+					var img = document.getElementById("userImg");
+                    img.src = info.avatar;
+                    img.height = '100';
+                    img.width = '100';
 
 				},
 				error : function(xhr, errorType, error) {
 					logger.e("yinyien:" + _config.corpId);
-					logger.e(errorType + ', ' + error);
+					alert(errorType + ', ' + error);
 				}
 			});
 
 		},
 		onFail : function(err) {
-			logger.e('fail: ' + JSON.stringify(err));
+			alert('fail: ' + JSON.stringify(err));
 		}
 	});
 });
 
 dd.error(function(err) {
-	logger.e('dd error: ' + JSON.stringify(err));
+	alert('dd error: ' + JSON.stringify(err));
 });
