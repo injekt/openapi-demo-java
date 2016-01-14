@@ -23,7 +23,7 @@ dd.ready(function() {
 
 	dd.runtime.info({
 		onSuccess : function(info) {
-			alert('runtime info: ' + JSON.stringify(info));
+			logger.e('runtime info: ' + JSON.stringify(info));
 		},
 		onFail : function(err) {
 			logger.e('fail: ' + JSON.stringify(err));
@@ -33,19 +33,19 @@ dd.ready(function() {
 	dd.runtime.permission.requestAuthCode({
 		corpId : _config.corpId,
 		onSuccess : function(info) {
-			alert('authcode: ' + info.code);
+			logger.e('authcode: ' + info.code);
 			$.ajax({
 				url : 'userinfo?code=' + info.code + '&corpid='
 						+ _config.corpId,
 				type : 'GET',
 				success : function(data, status, xhr) {
 					var info = JSON.parse(data);
-					if (info.errcode === 0) {
+//					if (info.errcode === 0) {
 						alert('user id: ' + info.userid + " data:"
 								+ JSON.stringify(info));
-					} else {
-						alert('auth error: ' + data);
-					}
+//					} else {
+					// alert('auth error: ' + data);
+					//					}
 				},
 				error : function(xhr, errorType, error) {
 					alert("yinyien:" + _config.corpId);
