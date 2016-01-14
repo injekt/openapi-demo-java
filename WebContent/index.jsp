@@ -85,16 +85,6 @@ function openLink(){
 		<span>UserId:</span>
 		<div id="userId" style="display:inline-block"></div>
 	</div>
-	
-<!-- 	<div><button onclick="openLink()">JSAPI</button></div>
-	<div><button onclick="window.location='./nav/1.html'">导航框架</button></div>
-	<div><button onclick="window.location='./list/list.html'">go to list</button></div>
-	
-	<div><button onclick="window.location='http://ddtalk.github.io/dingTalkDoc'">go to doc</button></div>
-	
-    <div class="clear-float"/>
-    <div id="dd"></div>
- -->
  <ul>
 <li>
 	<div class="icon"><img src="list/heart1.png"></div>
