@@ -18,10 +18,7 @@ var _config = <%= com.alibaba.dingtalk.openapi.demo.auth.AuthHelper.getConfig(re
 <script type="text/javascript" src="javascripts/zepto.min.js"></script>
 <script type="text/javascript" src="http://g.alicdn.com/ilw/ding/0.7.3/scripts/dingtalk.js">
 </script>
-
-<!--  <script type="text/javascript" src="javascripts/dingtalk.js">
-</script>
- --> <script type="text/javascript" src="javascripts/logger.js">
+<script type="text/javascript" src="javascripts/logger.js">
 </script>
 <script type="text/javascript" src="javascripts/demo.js">
  
@@ -46,6 +43,8 @@ function openLink(){
 	<div><button onclick="openLink()">JSAPI</button></div>
 	<div><button onclick="window.location='./nav/1.html'">go to nav</button></div>
 	<div><button onclick="window.location='./list/list.html'">go to list</button></div>
+	
+	<div><button onclick="window.location='http://ddtalk.github.io/dingTalkDoc'">go to doc</button></div>
 	
     <div class="clear-float"/>
     <div id="dd"></div>
