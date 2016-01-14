@@ -43,10 +43,8 @@ function openLink(){
 </head>
 
 <body >
-
-	<div><button onclick="window.location='./nav/1.html'">导航框架</button></div>
 	<div><button onclick="openLink()">JSAPI</button></div>
-	
+	<div><button onclick="window.location='./nav/1.html'">导航框架</button></div>
     <div class="clear-float"/>
     <div id="dd"></div>
 
