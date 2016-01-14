@@ -36,6 +36,13 @@ dd.ready(function() {
 			logger.e('fail: ' + JSON.stringify(err));
 		}
 	});
+	dd.ui.pullToRefresh.enable({
+	    onSuccess: function() {
+	    },
+	    onFail: function() {
+	    }
+	})
+
 	dd.biz.navigation.setMenu({
 		backgroundColor : "#ADD8E6",
 		items : [
