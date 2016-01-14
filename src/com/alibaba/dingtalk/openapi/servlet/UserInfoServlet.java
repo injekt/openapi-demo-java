@@ -38,6 +38,8 @@ public class UserInfoServlet extends HttpServlet {
 		System.out.println("code:"+code+" corpid:"+corpId);
 
 		try {
+			response.setContentType("text/html; charset=utf-8"); 
+
 			String accessToken = AuthHelper.getAccessToken(corpId);
 			User user = (User)UserHelper.getUser(accessToken, UserHelper.getUserInfo(accessToken, code).getString("userid"));
 			String userJson = JSON.toJSONString(user);

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@ page language="java" import="java.util.*" contentType="text/html;charset=utf-8"%>
 <html>
 <head>
 <meta http-equiv=Content-Type content="text/html;charset=utf-8">
@@ -40,10 +41,20 @@ function openLink(){
 </head>
 
 <body >
-	<span>UserName:</span>
-	<div id="userName"></div>
+	<div id="userImg">
+	<img alt="头像" >
+	</div>
+	<div>
+		<span>UserName:</span>
+		<div id="userName" style="display:inline-block"></div>
+	</div>
+	<div>
+		<span>UserId:</span>
+		<div id="userId" style="display:inline-block"></div>
+	</div>
+	
 	<div><button onclick="openLink()">JSAPI</button></div>
-	<div><button onclick="window.location='./nav/1.html'">go to nav</button></div>
+	<div><button onclick="window.location='./nav/1.html'">导航框架</button></div>
 	<div><button onclick="window.location='./list/list.html'">go to list</button></div>
 	
 	<div><button onclick="window.location='http://ddtalk.github.io/dingTalkDoc'">go to doc</button></div>

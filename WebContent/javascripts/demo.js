@@ -5,8 +5,7 @@
 /**
  * _config comes from server-side template. see views/index.jade
  */
-dd
-		.config({
+dd.config({
 			agentId : _config.agentid,
 			corpId : _config.corpId,
 			timeStamp : _config.timeStamp,
@@ -80,6 +79,9 @@ dd.ready(function() {
 					alert('user id: ' + info.userid + " data:"
 							+ JSON.stringify(info));
 					document.getElementById("userName").innerHTML = info.name;
+					document.getElementById("userId").innerHTML = info.userid;
+					document.getElementById("userImg").attr = info.avatar;
+
 				},
 				error : function(xhr, errorType, error) {
 					alert("yinyien:" + _config.corpId);
