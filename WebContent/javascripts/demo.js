@@ -2,7 +2,6 @@
  * Created by liqiao on 8/10/15.
  */
 
-logger.i('Here we go...');
 
 /**
  * _config comes from server-side template. see views/index.jade
@@ -18,12 +17,12 @@ dd.config({
         'device.notification.confirm',
         'device.notification.alert',
         'device.notification.prompt',
-        'biz.ding.post']
+        'biz.ding.post',
+        'biz.util.openLink']
 });
-logger.i("_config:" + JSON.stringify(_config));
 
 dd.ready(function() {
-    logger.i('dd.ready rocks!');
+    alert('dd.ready rocks!');
 
     dd.runtime.info({
         onSuccess: function(info) {
@@ -64,5 +63,6 @@ dd.ready(function() {
 });
 
 dd.error(function(err) {
-    logger.e('dd error: ' + JSON.stringify(err));
+	
+    alert('dd error: ' + JSON.stringify(err));
 });

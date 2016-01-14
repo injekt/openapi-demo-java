@@ -28,3 +28,18 @@ a {
 .hidden {
   display: none;
 }
+
+button {
+    width: 48%;
+    height: 50px;
+    font-size: 20px;
+    margin-top: 5px;
+    margin-left: 5px;
+    border-radius: 10px;
+    display: inline-block;
+    float: left;
+}
+
+.clear-float {
+    clear: both;
+}
