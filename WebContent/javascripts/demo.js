@@ -19,7 +19,7 @@ dd.config({
 
 dd.ready(function() {
 	
-	alert('dd.ready rocks!');
+//	alert('dd.ready rocks!');
 
 	dd.runtime.info({
 		onSuccess : function(info) {
@@ -33,7 +33,7 @@ dd.ready(function() {
 	dd.runtime.permission.requestAuthCode({
 		corpId : _config.corpId,
 		onSuccess : function(info) {
-			logger.i('authcode: ' + info.code);
+			alert('authcode: ' + info.code);
 			$.ajax({
 				url : 'userinfo?code=' + info.code + '&corpid='
 						+ _config.corpId,
@@ -55,7 +55,7 @@ dd.ready(function() {
 
 		},
 		onFail : function(err) {
-			logger.e('fail: ' + JSON.stringify(err));
+			alert('fail: ' + JSON.stringify(err));
 		}
 	});
 });

@@ -8,7 +8,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.alibaba.dingtalk.openapi.demo.OApiException;
 import com.alibaba.dingtalk.openapi.demo.auth.AuthHelper;
+import com.alibaba.dingtalk.openapi.demo.user.User;
 import com.alibaba.dingtalk.openapi.demo.user.UserHelper;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 
 /**
  * Servlet implementation class userinfo
@@ -36,8 +39,10 @@ public class UserInfoServlet extends HttpServlet {
 
 		try {
 			String accessToken = AuthHelper.getAccessToken(corpId);
-			response.getWriter().append(UserHelper.getUser(accessToken, UserHelper.getUserInfo(accessToken, code).getString("userid")).toString());
-			System.out.println(UserHelper.getUser(accessToken, UserHelper.getUserInfo(accessToken, code).getString("")).toString());
+			User user = (User)UserHelper.getUser(accessToken, UserHelper.getUserInfo(accessToken, code).getString("userid"));
+			String userJson = JSON.toJSONString(user);
+			response.getWriter().append(userJson);
+			System.out.println(userJson);
 
 		} catch (OApiException e) {
 			// TODO Auto-generated catch block
