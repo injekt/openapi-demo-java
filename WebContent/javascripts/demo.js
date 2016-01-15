@@ -72,7 +72,7 @@ dd.ready(function() {
 			}
 		],
 		onSuccess: function(data) {
-			logger.e(JSON.stringify(data));
+			alert(JSON.stringify(data));
 
 		},
 		onFail: function(err) {

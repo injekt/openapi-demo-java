@@ -45,6 +45,25 @@ public class Demo {
 			// json2.put("time", "331");
 			// json.put("22", json2);
 			// FileUtils.write2File(json,"test12");
+			List<Department> departments = new ArrayList<Department>();
+			departments = DepartmentHelper.listDepartments("ea2a8b067c8d3cc8b93980da6119dafa");
+			JSONObject usersJSON = new JSONObject();
+			
+			System.out.println("depart num:"+departments.size());
+			for(int i = 0;i<departments.size();i++){
+				JSONObject userDepJSON = new JSONObject();
+				System.out.println("dep:"+departments.get(i).toString());
+				List<User> users = new ArrayList<User>();
+				users = UserHelper.getDepartmentUser("5ffa11df8e9c3cbf95c791f824512608",Long.valueOf(departments.get(i).id));
+				for(int j = 0;j<users.size();j++){
+					String user = JSON.toJSONString(users.get(j));
+					userDepJSON.put(j+"", JSONObject.parseObject(user, User.class));
+				}
+				usersJSON.put(departments.get(i).name, userDepJSON);
+				System.out.println("user:"+usersJSON.toString());
+			}
+//			response.getWriter().append(usersJSON.toJSONString());
+			System.out.println("depart:"+usersJSON.toJSONString());
 
 			System.out.println("11:" + FileUtils.read2JSON("test12"));
 			JSONObject json = new JSONObject();
