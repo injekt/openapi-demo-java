@@ -101,6 +101,10 @@ function openLink(){
 	<div class="text">go to list</div>
 </li>
 <li>
+	<div class="icon"><img src="list/heart6.png"></div>
+	<div class="text">go to drawer</div>
+</li>
+<li>
   <div class="icon"><img src="list/heart5.png"></div>
   <div class="text">通讯录接口</div>
 </li>
@@ -122,6 +126,11 @@ window.addEventListener('load', function() {
 	items[2].addEventListener('click',function(){
 		window.location='http://ddtalk.github.io/dingTalkDoc';
 	});
+	
+	items[4].addEventListener('click',function(){
+		window.location='./drawer/index.html';
+	});
+
 
 	items[3].addEventListener('click', function(item, index) {
 			return function(ev) {
@@ -136,7 +145,7 @@ window.addEventListener('load', function() {
                 var once = true;
 
                 window.nuva.require('ui.nav').preload({
-                    pages: [{id: 'jsapi', url: url}],
+                    pages: [{id: 'jsapi_list', url: url}],
                     onSuccess: function(data) {
                         if (once) {
                             once = false;

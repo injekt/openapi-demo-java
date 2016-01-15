@@ -11,8 +11,8 @@
         }
     </style>
 	<script type="text/javascript" src="javascripts/base.js"></script>
-<script type="text/javascript" src="http://g.alicdn.com/ilw/ding/0.7.3/scripts/dingtalk.js">
-</script>
+	<script type="text/javascript" src="http://g.alicdn.com/ilw/ding/0.7.3/scripts/dingtalk.js">
+	</script>
 	<script type="text/javascript">
 
 	dd.config({
@@ -154,10 +154,10 @@
         });
     }
 
-	function go1(id) {
+	function go1(id,anim) {
 		dd.ui.nav.go({
 			id: id,
-            anim: 1,
+            anim: anim,
 			onSuccess: function(data) {
                 log.i('go to ' + JSON.stringify(data));
 			},
@@ -198,11 +198,9 @@
 	<h2>Nav 1</h2>
 	<div><button onclick="preload()">Preload</button></div>
     <div><button onclick="back()">Back</button></div>
-	<div><button onclick="go1('2')">Go to '2'</button></div>
-	<div><button onclick="go1('3')">Go to '3'</button></div>
-    <div><button onclick="go2()">Go2 to '4'</button></div>
-    <div><button onclick="window.location='../drawer/index.html'">Go to drawer</button></div>
-    
+	<div><button onclick="go1('2',1)">Go to '2'</button></div>
+	<div><button onclick="go1('3',2)">Go to '3'</button></div>
+    <div><button onclick="go2()">Go2 to '4'</button></div>    
     <div class="clear-float"/>
     <div id="log"></div>
 </body>
