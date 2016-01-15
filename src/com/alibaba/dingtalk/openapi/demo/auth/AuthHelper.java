@@ -94,19 +94,28 @@ public class AuthHelper {
 		long curTime = System.currentTimeMillis();
 		String jsTicket = "";
 
-		// if (jsTicketValue == null || curTime -
-		// jsTicketValue.getLong("begin_time") >= cacheTime) {
-		String url = Env.OAPI_HOST + "/get_jsapi_ticket?" + "type=jsapi" + "&access_token=" + accessToken;
-		JSONObject response = HttpHelper.httpGet(url);
-		if (response.containsKey("ticket")) {
-			jsTicket = response.getString("ticket");
-			return jsTicket;
-		} else {
-			throw new OApiResultException("ticket");
-		}
-		// } else {
-		// return jsTicketValue.getString("ticket");
-		// }
+		 if (jsTicketValue == null || curTime -
+		 jsTicketValue.getLong("begin_time") >= cacheTime) {
+			String url = Env.OAPI_HOST + "/get_jsapi_ticket?" + "type=jsapi" + "&access_token=" + accessToken;
+			JSONObject response = HttpHelper.httpGet(url);
+			if (response.containsKey("ticket")) {
+				jsTicket = response.getString("ticket");
+				
+				JSONObject jsonTicket = new JSONObject();
+				JSONObject jsontemp = new JSONObject();
+				jsontemp.clear();
+				jsontemp.put("ticket", accessToken);
+				jsontemp.put("begin_time", curTime);
+				jsonTicket.put(corpId, jsontemp);
+				FileUtils.write2File(jsonTicket, "jsticket");
+
+				return jsTicket;
+			} else {
+				throw new OApiResultException("ticket");
+			}
+		 } else {
+		 return jsTicketValue.getString("ticket");
+		 }
 
 	}
 
