@@ -5,16 +5,20 @@
     <servlet-name>UserInfoServlet</servlet-name>
     <servlet-class>com.alibaba.dingtalk.openapi.servlet.UserInfoServlet</servlet-class>
   </servlet>
-    <servlet>
+  <servlet>
+    <display-name>ContactsServlet</display-name>
+    <servlet-name>ContactsServlet</servlet-name>
+    <servlet-class>com.alibaba.dingtalk.openapi.servlet.ContactsServlet</servlet-class>
+  </servlet>
+  <servlet>
     <display-name>OAoauth</display-name>
     <servlet-name>OAoauth</servlet-name>
     <servlet-class>com.alibaba.dingtalk.openapi.servlet.OAoauth</servlet-class>
   </servlet>
-    <servlet-mapping>
+  <servlet-mapping>
     <servlet-name>OAoauth</servlet-name>
     <url-pattern>/OAoauth</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <display-name>IsvReceiveServlet</display-name>
     <servlet-name>IsvReceiveServlet</servlet-name>
@@ -28,6 +32,10 @@
   <servlet-mapping>
     <servlet-name>UserInfoServlet</servlet-name>
     <url-pattern>/userinfo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ContactsServlet</servlet-name>
+    <url-pattern>/contactsinfo</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>IsvReceiveServlet</servlet-name>

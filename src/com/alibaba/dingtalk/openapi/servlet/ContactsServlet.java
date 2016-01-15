@@ -19,16 +19,15 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 
 /**
- * Servlet implementation class userinfo
- * 这个servlet用来获取用户信息
+ * Servlet implementation class ContactsServlet
  */
-public class UserInfoServlet extends HttpServlet {
+public class ContactsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UserInfoServlet() {
+    public ContactsServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,23 +37,34 @@ public class UserInfoServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String code = request.getParameter("code");
 		String corpId = request.getParameter("corpid");
-		System.out.println("code:"+code+" corpid:"+corpId);
 
 		try {
 			response.setContentType("text/html; charset=utf-8"); 
 
 			String accessToken = AuthHelper.getAccessToken(corpId);
-			User user = (User)UserHelper.getUser(accessToken, UserHelper.getUserInfo(accessToken, code).getString("userid"));
-			String userJson = JSON.toJSONString(user);
-			response.getWriter().append(userJson);
-			System.out.println("userjson:"+userJson);
 			
+			List<Department> departments = new ArrayList<Department>();
+			departments = DepartmentHelper.listDepartments(accessToken);
+			JSONObject usersJSON = new JSONObject();
 			
+			System.out.println("depart num:"+departments.size());
+			for(int i = 0;i<departments.size();i++){
+				JSONObject userDepJSON = new JSONObject();
+				System.out.println("dep:"+departments.get(i).toString());
+				List<User> users = new ArrayList<User>();
+				users = UserHelper.getDepartmentUser(accessToken,Long.valueOf(departments.get(i).id));
+				for(int j = 0;j<users.size();j++){
+					String user = JSON.toJSONString(users.get(j));
+					userDepJSON.put(j+"", JSONObject.parseObject(user, User.class));
+				}
+				System.out.println("user:"+usersJSON.toString());
+				usersJSON.put(departments.get(i).name, userDepJSON);
+			}
+			System.out.println("depart:"+usersJSON.toJSONString());
+			response.getWriter().append(usersJSON.toJSONString());
 
 		} catch (OApiException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			response.getWriter().append(e.getMessage());
 		}
