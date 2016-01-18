@@ -127,12 +127,20 @@ window.addEventListener('load', function() {
 		window.location='http://ddtalk.github.io/dingTalkDoc';
 	});
 	
+	items[3].addEventListener('click', function(){
+		window.location = './list/list.html';
+	});
+	
 	items[4].addEventListener('click',function(){
 		window.location='./drawer/index.html';
 	});
+	items[5].addEventListener('click',function(){
+		alert('corpid:'+_config.corpId);
+		window.location='./contacts.jsp?corpid='+_config.corpId;
+	});
 
 
-	items[3].addEventListener('click', function(item, index) {
+/* 	items[3].addEventListener('click', function(item, index) {
 			return function(ev) {
                 var left = 0
 				var top = item.getBoundingClientRect().top;
@@ -181,13 +189,9 @@ window.addEventListener('load', function() {
                 });
 			};
 		}(items[3], 3));
-		
-		items[5].addEventListener('click',function(){
-			alert('corpid:'+_config.corpId);
-			window.location='./contacts.jsp?corpid='+_config.corpId;
-		});
+ */		
 	
-	</script>
+</script>
  
 </body>
 
