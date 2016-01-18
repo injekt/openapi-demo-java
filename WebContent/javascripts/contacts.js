@@ -18,7 +18,7 @@ $.ajax({
 	success : function(data, status, xhr) {
 		alert('data:'+JSON.stringify(data));
 		var json = data;
-		document.getElementById("contactId").innerHTML = json.clean10.1.name;
+		document.getElementById("contactId").innerHTML = JSON.stringify(json);
 
 	},
 	error : function(xhr, errorType, error) {
