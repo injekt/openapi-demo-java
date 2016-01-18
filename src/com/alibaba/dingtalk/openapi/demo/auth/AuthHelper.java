@@ -28,7 +28,16 @@ public class AuthHelper {
 	public static long currentTime = 0 + cacheTime + 1;
 	public static long lastTime = 0;
 
-	// change
+	/*
+	 * 在此方法中，为了避免频繁获取access_token，
+	 * 在距离上一次获取access_token时间在两个小时之内的情况，
+	 * 将直接从持久化存储中读取access_token
+	 * 
+	 * 因为access_token和jsapi_ticket的过期时间都是7200秒
+	 * 所以在获取access_token的同时也去获取了jsapi_ticket
+	 * 注：jsapi_ticket是在前端页面JSAPI做权限验证配置的时候需要使用的
+	 * 具体信息请查看开发者文档--权限验证配置
+	 */
 	public static String getAccessToken(String corpId) throws OApiException {
 
 		long curTime = System.currentTimeMillis();
@@ -72,7 +81,7 @@ public class AuthHelper {
 				// save jsticket
 				JSONObject jsonTicket = new JSONObject();
 				jsontemp.clear();
-				jsontemp.put("ticket", accToken);
+				jsontemp.put("ticket", jsTicket);
 				jsontemp.put("begin_time", curTime);
 				jsonTicket.put(corpId, jsontemp);
 
@@ -104,7 +113,7 @@ public class AuthHelper {
 				JSONObject jsonTicket = new JSONObject();
 				JSONObject jsontemp = new JSONObject();
 				jsontemp.clear();
-				jsontemp.put("ticket", accessToken);
+				jsontemp.put("ticket", jsTicket);
 				jsontemp.put("begin_time", curTime);
 				jsonTicket.put(corpId, jsontemp);
 				FileUtils.write2File(jsonTicket, "jsticket");
@@ -114,9 +123,9 @@ public class AuthHelper {
 				throw new OApiResultException("ticket");
 			}
 		 } else {
-		 return jsTicketValue.getString("ticket");
+			 return jsTicketValue.getString("ticket");
 		 }
-
+//
 	}
 
 	public static String sign(String ticket, String nonceStr, long timeStamp, String url) throws OApiException {
@@ -176,6 +185,8 @@ public class AuthHelper {
 			accessToken = AuthHelper.getAccessToken(corpId);
 			ticket = AuthHelper.getJsapiTicket(accessToken, corpId);
 			// ticket = FileUtils.getValue("jsticket", corpId);
+//			JSONObject jsTicketValue = (JSONObject) FileUtils.getValue("jsticket", corpId);
+//			ticket =jsTicketValue.getString("ticket");
 			signature = AuthHelper.sign(ticket, nonceStr, timeStamp, signedUrl);
 			agentid = AuthHelper.getAgentId(corpId, appId);
 

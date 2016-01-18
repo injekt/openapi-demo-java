@@ -83,14 +83,14 @@ public class IsvReceiveServlet extends HttpServlet {
 		String plainText = null;
 		DingTalkEncryptException dingTalkEncryptException = null;
 		try {
-			// 对于DingTalkEncryptor的第三个参数，ISV进行配置的时候传对应套件的SUITE_KEY，普通企业传Corpid,由于此回调接口只有isv使用，所以传Env.SUITE_KEY
 			/*创建加解密类
 			 * 第一个参数为注册套件的之时填写的token
 			 * 第二个参数为注册套件的之时生成的数据加密密钥（ENCODING_AES_KEY）
 			 * 第三个参数，ISV开发传入套件的suiteKey，普通企业开发传Corpid
+			 * 具体参数值请查看开发者后台(http://console.d.aliyun.com)
 			 * 
 			 * 注：其中，对于第三个参数，在第一次接受『验证回调URL有效性事件的时候』
-			 * 传入Env.CREATE_SUITE_KEY，对于这种情况，此方法已在异常中做了处理。
+			 * 传入Env.CREATE_SUITE_KEY，对于这种情况，已在异常中catch做了处理。
 			 * 具体区别请查看文档『验证回调URL有效性事件』
 			 */ 
 			dingTalkEncryptor = new DingTalkEncryptor(Env.TOKEN, Env.ENCODING_AES_KEY, Env.SUITE_KEY);
@@ -130,7 +130,7 @@ public class IsvReceiveServlet extends HttpServlet {
 		 */
 		JSONObject plainTextJson = JSONObject.parseObject(plainText);
 		String eventType = plainTextJson.getString("EventType");
-		/*res需要返回给钉钉服务器的字符串，一般为success
+		/* res是需要返回给钉钉服务器的字符串，一般为success
 		 * "check_create_suite_url"和"check_update_suite_url"事件为random字段
 		 * 具体请查看文档或者对应eventType的处理步骤
 		 */
@@ -182,7 +182,7 @@ public class IsvReceiveServlet extends HttpServlet {
 			String permanent_code = permanentJson.getString("permanent_code");
 			/*
 			 * 将corpId（企业id）和permanent_code（永久授权码）做持久化存储
-			 * 之后获取企业的access_token需要使用
+			 * 之后在获取企业的access_token时需要使用
 			 */
 			JSONObject jsonPerm = new JSONObject();
 			jsonPerm.put(corpId, permanent_code);
@@ -193,7 +193,7 @@ public class IsvReceiveServlet extends HttpServlet {
 			ServiceHelper.getActivateSuite(suiteTokenPerm, Env.SUITE_KEY, corpId, permanent_code);
 			
 			/*
-			 * 接下来的步骤将获取对应企业的access_token，每一个企业都会有一个对应的access_token，访问对应企业的数据都将需要带上这个access_token
+			 * 获取对应企业的access_token，每一个企业都会有一个对应的access_token，访问对应企业的数据都将需要带上这个access_token
 			 * access_token的过期时间为两个小时
 			 */
 			try {

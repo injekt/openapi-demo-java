@@ -182,7 +182,7 @@ window.addEventListener('load', function() {
 			};
 		}(items[3], 3));
 		
-		items[4].addEventListener('click',function(){
+		items[5].addEventListener('click',function(){
 			alert('corpid:'+_config.corpId);
 			window.location='./contacts.jsp?corpid='+_config.corpId;
 		});

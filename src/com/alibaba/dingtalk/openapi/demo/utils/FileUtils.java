@@ -17,7 +17,7 @@ public class FileUtils {
 	public static final String FILEPATH = "Permanent_Data";
 
 	// json写入文件
-	public static void write2File(Object json, String fileName) {
+	public synchronized static void write2File(Object json, String fileName) {
 		BufferedWriter writer = null;
 		File filePath = new File(FILEPATH);
 		JSONObject eJSON = null;
