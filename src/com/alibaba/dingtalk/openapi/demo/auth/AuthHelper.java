@@ -52,6 +52,7 @@ public class AuthHelper {
 //					+ Long.MAX_VALUE);
 //		}
 		if (accessTokenValue == null || curTime - accessTokenValue.getLong("begin_time") >= cacheTime) {
+			System.out.println("authhelper: get new access_token and ticket");
 			String url = Env.OAPI_HOST + "/service/get_corp_token?" + "suite_access_token="
 					+ FileUtils.getValue("ticket", "suiteToken");
 			JSONObject args = new JSONObject();

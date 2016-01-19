@@ -10,8 +10,6 @@ dd.config({
 					'biz.util.openLink' ]
 		});
 
-//alert('contact');
-//alert('authcode: ' + info.code);
 $.ajax({
 	url : 'contactsinfo?corpid='+ _config.corpId,
 	type : 'GET',

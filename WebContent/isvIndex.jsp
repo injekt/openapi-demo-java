@@ -86,34 +86,30 @@ function openLink(url){
  <ul>
 <li>
 	<div class="icon"><img src="list/heart1.png"></div>
-	<div class="text">企业接入文档</div>
+	<div class="text">ISV接入文档</div>
 </li>
 <li>
 	<div class="icon"><img src="list/heart2.png"></div>
-	<div class="text">企业授权</div>
+	<div class="text">ISV快速部署</div>
 </li>
 <li>
 	<div class="icon"><img src="list/heart3.png"></div>
-	<div class="text">企业解授权</div>
-</li>
-<li>
-	<div class="icon"><img src="list/heart4.png"></div>
 	<div class="text">JSAPI</div>
 </li>
 <li>
-	<div class="icon"><img src="list/heart5.png"></div>
+	<div class="icon"><img src="list/heart4.png"></div>
 	<div class="text">导航框架</div>
 </li>
 <li>
-	<div class="icon"><img src="list/heart6.png"></div>
+	<div class="icon"><img src="list/heart5.png"></div>
 	<div class="text">go to list</div>
 </li>
 <li>
-	<div class="icon"><img src="list/heart7.png"></div>
+	<div class="icon"><img src="list/heart6.png"></div>
 	<div class="text">go to drawer</div>
 </li>
 <li>
-  <div class="icon"><img src="list/heart8.png"></div>
+  <div class="icon"><img src="list/heart1.png"></div>
   <div class="text">通讯录接口</div>
 </li>
 </ul>
@@ -126,94 +122,27 @@ window.addEventListener('load', function() {
 	var items = document.querySelectorAll('li');
 	var i = 0;
 	items[0].addEventListener('click',function(){
- 		window.location='http://ddtalk.github.io/dingTalkDoc/#企业接入指南';
-/* 		openLink('http://ddtalk.github.io/dingTalkDoc');
- */
+ 		window.location='http://ddtalk.github.io/dingTalkDoc/#isv接入指南';
 	});
 	items[1].addEventListener('click',function(){
  		window.location='http://www.dingtalk.com/index-b.html';
 	});
 	items[2].addEventListener('click',function(){
- 		window.location='http://www.dingtalk.com/index-b.html';
-	});
-	items[3].addEventListener('click',function(){
 		openLink('http://h5.m.laiwang.com/home/ding.html');
 	});
-	items[4].addEventListener('click',function(){
+	items[3].addEventListener('click',function(){
 		window.location='./nav/1.html';
-/* 	  	openLink('./nav/1.html');
- */	});
-	
-	
-	items[5].addEventListener('click', function(){
- 		window.location = './list/list.html';
-/*  		openLink('./list/list.html');
- */	});
-	
-	items[6].addEventListener('click',function(){
- 		window.location='./drawer/index.html';
-/* 		openLink('./drawer/index.html');
- */
 	});
-	items[7].addEventListener('click',function(){
+	items[4].addEventListener('click', function(){
+ 		window.location = './list/list.html';
+	});
+	items[5].addEventListener('click',function(){
+ 		window.location='./drawer/index.html';
+	});
+	items[6].addEventListener('click',function(){
 		alert('corpid:'+_config.corpId);
  		window.location='./contacts.jsp?corpid='+_config.corpId;
-/*  		openLink('./contacts.jsp?corpid='+_config.corpId);
- */
-	});
-
-
-/* 	items[3].addEventListener('click', function(item, index) {
-			return function(ev) {
-                var left = 0
-				var top = item.getBoundingClientRect().top;
-                var width = 90;
-				var height = item.offsetHeight;
-
-				var icon = index % 3 + 1;
-				var text = 'This is an awesome detail ';
-				var url = './list/list.html';
-                var once = true;
-
-                window.nuva.require('ui.nav').preload({
-                    pages: [{id: 'jsapi_list', url: url}],
-                    onSuccess: function(data) {
-                        if (once) {
-                            once = false;
-                            setTimeout(function() {
-                                window.nuva.require('ui.nav').go({
-                                    createIfNeeded: true,
-                                    id: 'jsapi_list',
-                                    url: url,
-                                    anim: 3,
-                                    transit: {
-                                        from: {
-                                            top: top,
-                                            left: 0,
-                                            height: height
-                                        },
-                                        to: {
-
-                                        }
-                                    },
-                                    onSuccess: function() {
-
-                                    },
-                                    onFail: function(err) {
-                                        alert(JSON.stringify(err));
-                                    }
-                                });
-                            }, 0);
-                        }
-                    },
-                    onFail: function(err) {
-                        alert(JSON.stringify(err));
-                    }
-                });
-			};
-		}(items[3], 3));
- */		
-	
+	});	
 </script>
  
 </body>
