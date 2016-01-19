@@ -197,7 +197,6 @@
 </script>
 <script type="text/javascript">
 var _config = <%= com.alibaba.dingtalk.openapi.demo.auth.AuthHelper.getConfig(request) %>;
-alert('config:'+JSON.stringify(_config));
 </script>
 <script type="text/javascript">
 function openCompLink(){

@@ -140,7 +140,7 @@ window.addEventListener('load', function() {
  		window.location='./drawer/index.html';
 	});
 	items[6].addEventListener('click',function(){
-		alert('corpid:'+_config.corpId);
+		/* alert('corpid:'+_config.corpId); */
  		window.location='./contacts.jsp?corpid='+_config.corpId;
 	});	
 </script>

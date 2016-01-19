@@ -156,7 +156,7 @@ window.addEventListener('load', function() {
  */
 	});
 	items[7].addEventListener('click',function(){
-		alert('corpid:'+_config.corpId);
+		/* alert('corpid:'+_config.corpId); */
  		window.location='./contacts.jsp?corpid='+_config.corpId;
 /*  		openLink('./contacts.jsp?corpid='+_config.corpId);
  */

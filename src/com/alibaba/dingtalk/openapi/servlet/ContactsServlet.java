@@ -16,6 +16,7 @@ import com.alibaba.dingtalk.openapi.demo.department.DepartmentHelper;
 import com.alibaba.dingtalk.openapi.demo.user.User;
 import com.alibaba.dingtalk.openapi.demo.user.UserHelper;
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
 /**
@@ -46,23 +47,35 @@ public class ContactsServlet extends HttpServlet {
 			
 			List<Department> departments = new ArrayList<Department>();
 			departments = DepartmentHelper.listDepartments(accessToken);
-			JSONObject usersJSON = new JSONObject();
+			JSONObject json = new JSONObject();
+			JSONArray usersArray = new JSONArray();
+			
 			
 			System.out.println("depart num:"+departments.size());
 			for(int i = 0;i<departments.size();i++){
 				JSONObject userDepJSON = new JSONObject();
+				
+				JSONObject usersJSON = new JSONObject();
+				JSONArray userArray = new JSONArray();
+				
 				System.out.println("dep:"+departments.get(i).toString());
 				List<User> users = new ArrayList<User>();
 				users = UserHelper.getDepartmentUser(accessToken,Long.valueOf(departments.get(i).id));
+				if(users.size()==0){
+					continue;
+				}
 				for(int j = 0;j<users.size();j++){
 					String user = JSON.toJSONString(users.get(j));
-					userDepJSON.put(j+"", JSONObject.parseObject(user, User.class));
+					userArray.add(JSONObject.parseObject(user, User.class));
 				}
-				System.out.println("user:"+usersJSON.toString());
-				usersJSON.put(departments.get(i).name, userDepJSON);
+				System.out.println("user:"+userArray.toString());
+				usersJSON.put("name", departments.get(i).name);
+				usersJSON.put("member", userArray);
+				usersArray.add(usersJSON);
 			}
-			System.out.println("depart:"+usersJSON.toJSONString());
-			response.getWriter().append(usersJSON.toJSONString());
+			json.put("department", usersArray);
+			System.out.println("depart:"+json.toJSONString());
+			response.getWriter().append(json.toJSONString());
 
 		} catch (OApiException e) {
 			e.printStackTrace();
