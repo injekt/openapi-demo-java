@@ -52,7 +52,10 @@
 
 <title>index</title>
 <script type="text/javascript">
+
+//在此拿到权限验证配置所需要的信息
 var _config = <%= com.alibaba.dingtalk.openapi.demo.auth.AuthHelper.getConfig(request) %>;
+
 </script>
 <script type="text/javascript" src="javascripts/zepto.min.js"></script>
 <script type="text/javascript" src="http://g.alicdn.com/ilw/ding/0.7.3/scripts/dingtalk.js">
