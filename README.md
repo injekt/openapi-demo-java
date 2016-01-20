@@ -1,16 +1,14 @@
 # open api demo (java ver.)
 java version "1.7.0_75"
 
-## Awesome project
-
 ### Getting started
 
 ###假如你是ISV 
 
 ####创建套件
-1.git clone https://github.com/injekt/openapi-demo-java.git
+1.```git clone https://github.com/injekt/openapi-demo-java.git```
 
-2.登录到 '''http://console.d.aliyun.com/#/dingding/suite'''创建套件
+2.登录到 http://console.d.aliyun.com/#/dingding/suite 创建套件
 
 3.填写套件信息，并将相应的套件信息填写到工程的Env.java
 
