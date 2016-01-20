@@ -8,21 +8,21 @@ java version "1.7.0_75"
 ###假如你是ISV 
 
 ####创建套件
-1.git clone https://github.com/injekt/openapi-demo-java.git
+1.将工程clone到本地：```git clone https://github.com/injekt/openapi-demo-java.git```
 
 2.登录到 '''http://console.d.aliyun.com/#/dingding/suite'''创建套件
 
 3.填写套件信息，
 
  | 套件信息   |  如何填写 |
- | -----:  | :----:  |
+ | ----- | ---- |
 | IP白名单 |   调用钉钉API的合法IP列表     |
  |  回调URL   | url为```主机地址/工程名/isvreceive``` |
 
 
 并将相应的套件信息填写到工程的Env.java
  | 套件信息   |  Env.java对应字段  |
- | -----:  | :----:  |
+ | ----- | ---- |
 | Token |   TOKEN     |
  |   数据加密密钥   |   ENCODING_AES_KEY   |
 
