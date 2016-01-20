@@ -20,7 +20,7 @@ java version "1.7.0_75"
 
 
 
-4.并将相应的套件信息填写到工程的Env.java
+4.并将相应的套件信息填写到工程的[Env.java](https://github.com/injekt/openapi-demo-java/blob/master/src/com/alibaba/dingtalk/openapi/demo/Env.java)
 
 需要填写的套件信息对应的字段。
 - Token:  Env.TOKEN
@@ -38,7 +38,7 @@ java version "1.7.0_75"
 
 ![suitea](https://img.alicdn.com/tps/TB1xGrpLpXXXXXMaXXXXXXXXXXX-1227-239.jpg)
 
-8.创建套件成功之后，得到的SuiteKey和SuiteSecret填写到工程的Env.java中，并**重新部署工程**。
+8.创建套件成功之后，得到的SuiteKey和SuiteSecret填写到工程的[Env.java](https://github.com/injekt/openapi-demo-java/blob/master/src/com/alibaba/dingtalk/openapi/demo/Env.java)中，并**重新部署工程**。
 
 ####创建微应用
 1.在相应套件下面创建微应用
