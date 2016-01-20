@@ -220,12 +220,12 @@ function openISVLink(){
   <div id="contentBox">
     <div id="boxTitle">选择身份体验钉钉ISV</div>
     <div class="role" id="compPanel" onclick="openCompLink()">
-      <img src='./pic/comp.png'> 
-      <div id="roleTitle" >我是企业开发者</div>
+      <img src='./pic/comp.png' style="text-align:left"> 
+      <div id="roleTitle" >&nbsp;我是企业开发者</div>
     </div>
     <div class="role" id="isvPanel" onclick="openISVLink()">
-      <img src='./pic/isv.png'>
-      <div id="roleTitle" >我是ISV开发者</div>
+      <img src='./pic/isv.png' style="text-align:left">
+      <div id="roleTitle" >&nbsp;我是ISV开发者</div>
     </div>
   </div>
   

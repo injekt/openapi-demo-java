@@ -90,12 +90,14 @@ function openLink(url){
 		<span>UserId:</span>
 		<div id="userId" style="display:inline-block"></div>
 	</div> -->
-	<div>&nbsp;&nbsp;欢迎您：<div id="userName" style="display: inline-block"></div>成为钉钉开发者，您当前在钉钉的uid为：
-		<div id="userId" style="display: inline-block"></div> 。</div>
-	<div>&nbsp;&nbsp;我们为您提供了文档＋api帮助您快速的开发微应用并接入钉钉。</div>
+	<br>
+	<div style="padding-left:10px;">&nbsp;&nbsp;&nbsp;&nbsp;欢迎您：<div id="userName" style="display:inline-block;font-weight:bold"></div>&nbsp;成为钉钉开发者，您当前在钉钉的<code>userId</code>为：
+		<div id="userId" style="display:inline-block;font-weight:bold"></div> 。</div>
+	<div style="padding-left:10px;">&nbsp;&nbsp;&nbsp;&nbsp;我们为您提供了文档＋<code>api</code>帮助您快速的开发微应用并接入钉钉。</div>
+	<br>
  <ul>
 <li>
-	<div class="icon"><img src="list/heart1.png"></div>
+	<div class="icon"><img src="list/num11.png" style="width: 50px; height: 50px"></div>
 	<div class="text">企业接入指南</div>
 </li>
 <!-- <li>
@@ -107,23 +109,23 @@ function openLink(url){
 	<div class="text">企业解授权</div>
 </li> -->
 <li>
-	<div class="icon"><img src="list/heart4.png"></div>
+	<div class="icon"><img src="list/num2.png" style="width: 50px; height: 50px"></div>
 	<div class="text">使用JSAPI</div>
 </li>
 <li>
-	<div class="icon"><img src="list/heart5.png"></div>
+	<div class="icon"><img src="list/num33.png" style="width: 50px; height: 50px"></div>
 	<div class="text">导航框架</div>
 </li>
 <li>
-	<div class="icon"><img src="list/heart6.png"></div>
+	<div class="icon"><img src="list/num4.png" style="width: 50px; height: 50px"></div>
 	<div class="text">go to list</div>
 </li>
 <li>
-	<div class="icon"><img src="list/heart7.png"></div>
+	<div class="icon"><img src="list/num5.png" style="width: 50px; height: 50px"></div>
 	<div class="text">go to drawer</div>
 </li>
 <li>
-  <div class="icon"><img src="list/heart8.png"></div>
+  <div class="icon"><img src="list/num6.png" style="width: 50px; height: 50px"></div>
   <div class="text">通讯录接口</div>
 </li>
 </ul>
@@ -146,26 +148,26 @@ window.addEventListener('load', function() {
 	items[2].addEventListener('click',function(){
  		window.location='http://www.dingtalk.com/index-b.html';
 	}); */
-	items[3].addEventListener('click',function(){
+	items[1].addEventListener('click',function(){
 		openLink('http://h5.m.laiwang.com/home/ding.html');
 	});
-	items[4].addEventListener('click',function(){
+	items[2].addEventListener('click',function(){
 		window.location='./nav/1.html';
 /* 	  	openLink('./nav/1.html');
  */	});
 	
 	
-	items[5].addEventListener('click', function(){
+	items[3].addEventListener('click', function(){
  		window.location = './list/list.html';
 /*  		openLink('./list/list.html');
  */	});
 	
-	items[6].addEventListener('click',function(){
+	items[4].addEventListener('click',function(){
  		window.location='./drawer/index.html';
 /* 		openLink('./drawer/index.html');
  */
 	});
-	items[7].addEventListener('click',function(){
+	items[5].addEventListener('click',function(){
 		/* alert('corpid:'+_config.corpId); */
  		window.location='./contacts.jsp?corpid='+_config.corpId;
 /*  		openLink('./contacts.jsp?corpid='+_config.corpId);
