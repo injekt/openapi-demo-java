@@ -28,7 +28,10 @@
 			border-bottom: 1px solid #ccc;
 			vertical-align: middle;
 		}
-        
+       	.imgSize{
+       		width: 50px; 
+       		height: 50px
+       	}
         .icon img {
 		height: 70px;
 		width: 70px;
@@ -90,36 +93,38 @@ function openLink(url){
 		<span>UserId:</span>
 		<div id="userId" style="display:inline-block"></div>
 	</div> -->
-	<div>欢迎您：<div id="userName" style="display: inline-block"></div>，成为钉钉ISV，您当前在钉钉的uid为：
-		<div id="userId" style="display: inline-block"></div> 。</div>
-	<div>我们为您提供了文档＋api帮助您快速的开发（套件）微应用并接入钉钉。</div>
+	<br>
+	<div style="padding-left:10px;">&nbsp;&nbsp;&nbsp;&nbsp;欢迎您：<div id="userName" style="display:inline-block;font-weight:bold"></div>&nbsp;成为钉钉ISV，您当前在钉钉的<code>userId</code>为：
+		<div id="userId" style="display:inline-block;font-weight:bold"></div> 。</div>
+	<div style="padding-left:10px;">&nbsp;&nbsp;&nbsp;&nbsp;我们为您提供了文档＋<code>api</code>帮助您快速的开发（套件）微应用并接入钉钉。</div>
+	<br>
  <ul>
 <li>
-	<div class="icon"><img src="list/heart1.png"></div>
+	<div class="icon"><img src="list/num11.png" style="width: 50px; height: 50px"></div>
 	<div class="text">ISV接入文档</div>
 </li>
 <li>
-	<div class="icon"><img src="list/heart2.png"></div>
+	<div class="icon"><img src="list/num2.png" style="width: 50px; height: 50px"></div>
 	<div class="text">ISV快速部署</div>
 </li>
 <li>
-	<div class="icon"><img src="list/heart3.png"></div>
+	<div class="icon"><img src="list/num33.png" style="width: 50px; height: 50px"></div>
 	<div class="text">JSAPI</div>
 </li>
 <li>
-	<div class="icon"><img src="list/heart4.png"></div>
+	<div class="icon"><img src="list/num4.png" style="width: 50px; height: 50px"></div>
 	<div class="text">导航框架</div>
 </li>
 <li>
-	<div class="icon"><img src="list/heart5.png"></div>
+	<div class="icon"><img src="list/num5.png" style="width: 50px; height: 50px"></div>
 	<div class="text">go to list</div>
 </li>
 <li>
-	<div class="icon"><img src="list/heart6.png"></div>
+	<div class="icon"><img src="list/num6.png" style="width: 50px; height: 50px"></div>
 	<div class="text">go to drawer</div>
 </li>
 <li>
-  <div class="icon"><img src="list/heart1.png"></div>
+  <div class="icon"><img src="list/num7.png" style="width: 50px; height: 50px"></div>
   <div class="text">通讯录接口</div>
 </li>
 </ul>
