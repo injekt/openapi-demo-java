@@ -1,8 +1,6 @@
 # open api demo (java ver.)
 java version "1.7.0_75"
 
-## Awesome project
-
 ### Getting started
 
 ###假如你是ISV 
@@ -24,7 +22,7 @@ IP白名单:  调用钉钉API的合法IP列表
 
 
 
-并将相应的套件信息填写到工程的Env.java
+4.并将相应的套件信息填写到工程的Env.java
 ---
 
 Token:  Env.TOKEN
@@ -33,17 +31,17 @@ Token:  Env.TOKEN
 ---
 
 
-4.将demo工程部署到服务器上，基本的javaweb环境即可。
+5.将demo工程部署到服务器上，基本的javaweb环境即可。
 
-5.点击『创建套件』弹窗中的『验证有效性』。
+6.点击『创建套件』弹窗中的『验证有效性』。
 
 具体验证过程，请查看[链接](https://github.com/injekt/openapi-demo-java/blob/master/src/com/alibaba/dingtalk/openapi/servlet/IsvReceiveServlet.java)
 
-6.创建套件成功。
+7.创建套件成功。
 
-!(suitea)[https://img.alicdn.com/tps/TB1xGrpLpXXXXXMaXXXXXXXXXXX-1227-239.jpg]
+![suitea](https://img.alicdn.com/tps/TB1xGrpLpXXXXXMaXXXXXXXXXXX-1227-239.jpg)
 
-7.创建套件成功之后，得到的SuiteKey和SuiteSecret填写到工程的Env.java中，并**重新部署工程**。
+8.创建套件成功之后，得到的SuiteKey和SuiteSecret填写到工程的Env.java中，并**重新部署工程**。
 
 ####创建微应用
 1.在相应套件下面创建微应用
@@ -52,7 +50,7 @@ Token:  Env.TOKEN
 
 3.微应用创建成功后，需要把微应用地址改为```主机地址/工程名/index.jsp?corpid=$CORPID$&appid=应用id```
 
-![miapp](https://img.alicdn.com/tps/TB12ougLpXXXXa9apXXXXXXXXXX-357-186.png)
+![miapp](https://img.alicdn.com/tps/TB1Z0HzLpXXXXc0XFXXXXXXXXXX-1193-132.jpg)
 
 3.在阿里云后台注册测试企业，并在后台为测试企业授权微应用
 
