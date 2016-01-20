@@ -20,9 +20,9 @@ $.ajax({
 		var jj = eval("(" + json + ")");;
 		var show ="";
 		for(var i=0; i<jj.department.length; i++){
-			show +='<div><h3>'+jj.department[i].name+'</h3>' 
+			show +='<div style="text-indent:15px"><h3>'+jj.department[i].name+'</h3>' 
 			for(var j=0;j< jj.department[i].member.length;j++){
-				show += '<div><blockquote>'+jj.department[i].member[j].name+'</blockquote></div>';
+				show += '<div style="text-indent:25px">'+jj.department[i].member[j].name+'</div>';
 			}
 			show+='</div>';
 			show+='<br >';
