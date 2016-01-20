@@ -6,14 +6,14 @@ java version "1.7.0_75"
 ###假如你是ISV 
 
 ####创建套件
-1.将工程clone到本地：```git clone https://github.com/injekt/openapi-demo-java.git```
+1.将工程clone到本地：```git clone https://github.com/injekt/openapi-demo-java.git```，导入到eclipse
 
 2.登录到 http://console.d.aliyun.com/#/dingding/suite 创建套件
 
 3.填写套件信息，
 
 其中：
-- IP白名单:  调用钉钉API的合法IP列表  
+- IP白名单:  调用钉钉API的合法IP列表(例如可能是你服务器的外网IP)
 - 回调URL:   url为```主机地址/工程名/isvreceive```
 
 
@@ -23,8 +23,8 @@ java version "1.7.0_75"
 4.并将相应的套件信息填写到工程的[Env.java](https://github.com/injekt/openapi-demo-java/blob/master/src/com/alibaba/dingtalk/openapi/demo/Env.java)
 
 需要填写的套件信息对应的字段。
-- Token:  Env.TOKEN
-- 数据加密密钥:   Env.ENCODING_AES_KEY
+- 『Token』填写到 ```Env.TOKEN```
+- 『数据加密密钥填写到 ```Env.ENCODING_AES_KEY```
 
 
 
@@ -38,7 +38,7 @@ java version "1.7.0_75"
 
 ![suitea](https://img.alicdn.com/tps/TB1xGrpLpXXXXXMaXXXXXXXXXXX-1227-239.jpg)
 
-8.创建套件成功之后，得到的SuiteKey和SuiteSecret填写到工程的[Env.java](https://github.com/injekt/openapi-demo-java/blob/master/src/com/alibaba/dingtalk/openapi/demo/Env.java)中，并**重新部署工程**。
+8.创建套件成功之后，将得到的SuiteKey和SuiteSecret填写到工程的[Env.java](https://github.com/injekt/openapi-demo-java/blob/master/src/com/alibaba/dingtalk/openapi/demo/Env.java)中，并**重新部署工程**。
 
 ####创建微应用
 1.在相应套件下面创建微应用
