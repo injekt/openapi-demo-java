@@ -3,8 +3,6 @@ java version "1.7.0_75"
 
 ### Getting started
 
-###假如你是ISV 
-
 ####创建套件
 1.将工程clone到本地：```git clone https://github.com/injekt/openapi-demo-java.git```，导入到eclipse
 
@@ -55,7 +53,7 @@ java version "1.7.0_75"
 
 5.done
 
-###本DEMO具体实现
+####本DEMO具体实现
 
 1.URL回调流程
 
