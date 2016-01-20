@@ -90,25 +90,25 @@ function openLink(url){
 		<span>UserId:</span>
 		<div id="userId" style="display:inline-block"></div>
 	</div> -->
-	<div>欢迎您：<div id="userName" style="display: inline-block"></div>，成为钉钉开发者，您当前在钉钉的uid为：
+	<div>&nbsp;&nbsp;欢迎您：<div id="userName" style="display: inline-block"></div>成为钉钉开发者，您当前在钉钉的uid为：
 		<div id="userId" style="display: inline-block"></div> 。</div>
-	<div>我们为您提供了文档＋api帮助您快速的开发微应用并接入钉钉。</div>
+	<div>&nbsp;&nbsp;我们为您提供了文档＋api帮助您快速的开发微应用并接入钉钉。</div>
  <ul>
 <li>
 	<div class="icon"><img src="list/heart1.png"></div>
 	<div class="text">企业接入指南</div>
 </li>
-<li>
+<!-- <li>
 	<div class="icon"><img src="list/heart2.png"></div>
 	<div class="text">企业授权</div>
 </li>
 <li>
 	<div class="icon"><img src="list/heart3.png"></div>
 	<div class="text">企业解授权</div>
-</li>
+</li> -->
 <li>
 	<div class="icon"><img src="list/heart4.png"></div>
-	<div class="text">JSAPI</div>
+	<div class="text">使用JSAPI</div>
 </li>
 <li>
 	<div class="icon"><img src="list/heart5.png"></div>
@@ -140,12 +140,12 @@ window.addEventListener('load', function() {
 /* 		openLink('http://ddtalk.github.io/dingTalkDoc');
  */
 	});
-	items[1].addEventListener('click',function(){
+	/* items[1].addEventListener('click',function(){
  		window.location='http://www.dingtalk.com/index-b.html';
 	});
 	items[2].addEventListener('click',function(){
  		window.location='http://www.dingtalk.com/index-b.html';
-	});
+	}); */
 	items[3].addEventListener('click',function(){
 		openLink('http://h5.m.laiwang.com/home/ding.html');
 	});
