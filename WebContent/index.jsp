@@ -121,11 +121,11 @@ function openLink(url){
 </li>
 <li>
 	<div class="icon"><img src="list/num4.png" style="width: 50px; height: 50px"></div>
-	<div class="text">go to list</div>
+    <div class="text">List展示（仅支持Android）</div>
 </li>
 <li>
 	<div class="icon"><img src="list/num5.png" style="width: 50px; height: 50px"></div>
-	<div class="text">go to drawer</div>
+    <div class="text">侧拉展现（抽屉效果）</div>
 </li>
 <li>
   <div class="icon"><img src="list/num6.png" style="width: 50px; height: 50px"></div>

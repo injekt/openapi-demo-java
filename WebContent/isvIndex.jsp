@@ -105,27 +105,35 @@ function openLink(url){
 </li>
 <li>
 	<div class="icon"><img src="list/num2.png" style="width: 50px; height: 50px"></div>
-	<div class="text">ISV快速部署</div>
-</li>
-<li>
-	<div class="icon"><img src="list/num33.png" style="width: 50px; height: 50px"></div>
 	<div class="text">JSAPI</div>
 </li>
 <li>
-	<div class="icon"><img src="list/num4.png" style="width: 50px; height: 50px"></div>
+	<div class="icon"><img src="list/num33.png" style="width: 50px; height: 50px"></div>
 	<div class="text">导航框架</div>
 </li>
 <li>
-	<div class="icon"><img src="list/num5.png" style="width: 50px; height: 50px"></div>
-	<div class="text">go to list</div>
+	<div class="icon"><img src="list/num4.png" style="width: 50px; height: 50px"></div>
+	<div class="text">List展示</div>
 </li>
 <li>
-	<div class="icon"><img src="list/num6.png" style="width: 50px; height: 50px"></div>
-	<div class="text">go to drawer</div>
+	<div class="icon"><img src="list/num5.png" style="width: 50px; height: 50px"></div>
+	<div class="text">侧拉展现（抽屉效果）</div>
+</li>
+<li>
+  <div class="icon"><img src="list/num6.png" style="width: 50px; height: 50px"></div>
+  <div class="text">通讯录</div>
 </li>
 <li>
   <div class="icon"><img src="list/num7.png" style="width: 50px; height: 50px"></div>
-  <div class="text">通讯录接口</div>
+  <div class="text">Table</div>
+</li>
+<li>
+  <div class="icon"><img src="list/num8.png" style="width: 50px; height: 50px"></div>
+  <div class="text">企业授权微应用</div>
+</li>
+<li>
+  <div class="icon"><img src="list/num9.png" style="width: 50px; height: 50px"></div>
+  <div class="text">快速部署授权微应用</div>
 </li>
 </ul>
  <script type="text/javascript">
@@ -140,24 +148,30 @@ window.addEventListener('load', function() {
  		window.location='http://ddtalk.github.io/dingTalkDoc/#isv接入指南';
 	});
 	items[1].addEventListener('click',function(){
- 		window.location='http://www.dingtalk.com/index-b.html';
+ 		window.location='http://h5.m.laiwang.com/home/ding.html';
 	});
 	items[2].addEventListener('click',function(){
-		openLink('http://h5.m.laiwang.com/home/ding.html');
-	});
-	items[3].addEventListener('click',function(){
 		window.location='./nav/1.html';
 	});
-	items[4].addEventListener('click', function(){
+	items[3].addEventListener('click', function(){
  		window.location = './list/list.html';
 	});
-	items[5].addEventListener('click',function(){
+	items[4].addEventListener('click',function(){
  		window.location='./drawer/index.html';
 	});
-	items[6].addEventListener('click',function(){
+	items[5].addEventListener('click',function(){
 		/* alert('corpid:'+_config.corpId); */
  		window.location='./contacts.jsp?corpid='+_config.corpId;
 	});	
+	items[6].addEventListener('click',function(){
+ 		window.location='./tab/index.html';
+	});
+	items[6].addEventListener('click',function(){
+ 		window.location='./tab/index.html';
+	});
+	items[6].addEventListener('click',function(){
+ 		window.location='./tab/index.html';
+	});
 </script>
  
 </body>
