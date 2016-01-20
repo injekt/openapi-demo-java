@@ -10,9 +10,14 @@ java version "1.7.0_75"
 ####创建套件
 1.将工程clone到本地：```git clone https://github.com/injekt/openapi-demo-java.git```
 
-2.登录到 '''http://console.d.aliyun.com/#/dingding/suite'''创建套件
+2.登录到 http://console.d.aliyun.com/#/dingding/suite 创建套件
 
 3.填写套件信息，
+
+---
+IP白名单:  调用钉钉API的合法IP列表  
+回调URL:   url为```主机地址/工程名/isvreceive```
+---
 
  | 套件信息   |  如何填写 |
  | ----- | ---- |
