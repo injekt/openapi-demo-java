@@ -48,7 +48,7 @@ dd.ready(function() {
 		backgroundColor : "#ADD8E6",
 		items : [
 			{
-				id:"1",//字符串
+				id:"此处可以设置帮助",//字符串
 			// "iconId":"file",//字符串，图标命名
 			  text:"帮助"
 			}
@@ -95,12 +95,13 @@ dd.ready(function() {
 					document.getElementById("userName").innerHTML = info.name;
 					document.getElementById("userId").innerHTML = info.userid;
 					
-					if(info.avatar.length != 0){
-			            var img = document.getElementById("userImg");
-			            img.src = info.avatar;
-			                      img.height = '100';
-			                      img.width = '100';
-			          }
+					// 图片
+//					if(info.avatar.length != 0){
+//			            var img = document.getElementById("userImg");
+//			            img.src = info.avatar;
+//			                      img.height = '100';
+//			                      img.width = '100';
+//			          }
 
 				},
 				error : function(xhr, errorType, error) {
