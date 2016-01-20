@@ -21,32 +21,38 @@ IP白名单:  调用钉钉API的合法IP列表
 
 ---
 
- | 套件信息   |  如何填写 |
- | ----- | ---- |
-| IP白名单 |   调用钉钉API的合法IP列表     |
- |  回调URL   | url为```主机地址/工程名/isvreceive``` |
+
 
 
 并将相应的套件信息填写到工程的Env.java
- | 套件信息   |  Env.java对应字段  |
- | ----- | ---- |
-| Token |   TOKEN     |
- |   数据加密密钥   |   ENCODING_AES_KEY   |
+---
+
+Token:  Env.TOKEN
+数据加密密钥:   Env.ENCODING_AES_KEY
+
+---
+
 
 4.将demo工程部署到服务器上，基本的javaweb环境即可。
 
-5.点击『创建套件』弹窗中的『验证有效性』。具体验证过程，请查看[链接](https://github.com/injekt/openapi-demo-java/blob/master/src/com/alibaba/dingtalk/openapi/servlet/IsvReceiveServlet.java)
+5.点击『创建套件』弹窗中的『验证有效性』。
+
+具体验证过程，请查看[链接](https://github.com/injekt/openapi-demo-java/blob/master/src/com/alibaba/dingtalk/openapi/servlet/IsvReceiveServlet.java)
 
 6.创建套件成功。
+
+!(suitea)[https://img.alicdn.com/tps/TB1xGrpLpXXXXXMaXXXXXXXXXXX-1227-239.jpg]
 
 7.创建套件成功之后，得到的SuiteKey和SuiteSecret填写到工程的Env.java中，并**重新部署工程**。
 
 ####创建微应用
 1.在相应套件下面创建微应用
 
-2.微应用主页地址填写。以部署到阿里云ECS为例，地址为```主机地址/工程名/index.jsp?corpid=$CORPID$```
+2.微应用主页地址填写。地址为```主机地址/工程名/index.jsp?corpid=$CORPID$```
 
 3.微应用创建成功后，需要把微应用地址改为```主机地址/工程名/index.jsp?corpid=$CORPID$&appid=应用id```
+
+![miapp](https://img.alicdn.com/tps/TB12ougLpXXXXa9apXXXXXXXXXX-357-186.png)
 
 3.在阿里云后台注册测试企业，并在后台为测试企业授权微应用
 
