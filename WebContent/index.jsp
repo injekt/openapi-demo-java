@@ -100,7 +100,7 @@ function openLink(url){
 	<br>
  <ul>
 <li>
-	<div class="icon"><img src="list/num11.png" style="width: 50px; height: 50px"></div>
+	<div class="icon"><img src="list/num11.png" style="width: 25px; height: 25px"></div>
 	<div class="text">企业接入指南</div>
 </li>
 <!-- <li>
@@ -112,23 +112,23 @@ function openLink(url){
 	<div class="text">企业解授权</div>
 </li> -->
 <li>
-	<div class="icon"><img src="list/num2.png" style="width: 50px; height: 50px"></div>
+	<div class="icon"><img src="list/num2.png" style="width: 25px; height: 25px"></div>
 	<div class="text">使用JSAPI</div>
 </li>
 <li>
-	<div class="icon"><img src="list/num33.png" style="width: 50px; height: 50px"></div>
+	<div class="icon"><img src="list/num33.png" style="width: 25px; height: 25px"></div>
 	<div class="text">导航框架</div>
 </li>
 <li>
-	<div class="icon"><img src="list/num4.png" style="width: 50px; height: 50px"></div>
-    <div class="text">List展示（仅支持Android）</div>
+	<div class="icon"><img src="list/num4.png" style="width: 25px; height: 25px"></div>
+    <div class="text">List展示（当前仅支持Android）</div>
 </li>
 <li>
-	<div class="icon"><img src="list/num5.png" style="width: 50px; height: 50px"></div>
+	<div class="icon"><img src="list/num5.png" style="width: 25px; height: 25px"></div>
     <div class="text">侧拉展现（抽屉效果）</div>
 </li>
 <li>
-  <div class="icon"><img src="list/num6.png" style="width: 50px; height: 50px"></div>
+  <div class="icon"><img src="list/num6.png" style="width: 25px; height: 25px"></div>
   <div class="text">通讯录接口</div>
 </li>
 </ul>

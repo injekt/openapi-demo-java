@@ -100,40 +100,40 @@ function openLink(url){
 	<br>
  <ul>
 <li>
-	<div class="icon"><img src="list/num11.png" style="width: 50px; height: 50px"></div>
+	<div class="icon"><img src="list/num11.png" style="width: 25px; height: 25px"></div>
 	<div class="text">ISV接入文档</div>
 </li>
 <li>
-	<div class="icon"><img src="list/num2.png" style="width: 50px; height: 50px"></div>
+	<div class="icon"><img src="list/num2.png" style="width: 25px; height: 25px"></div>
 	<div class="text">JSAPI</div>
 </li>
 <li>
-	<div class="icon"><img src="list/num33.png" style="width: 50px; height: 50px"></div>
+	<div class="icon"><img src="list/num33.png" style="width: 25px; height: 25px"></div>
 	<div class="text">导航框架</div>
 </li>
 <li>
-	<div class="icon"><img src="list/num4.png" style="width: 50px; height: 50px"></div>
-	<div class="text">List展示</div>
+	<div class="icon"><img src="list/num4.png" style="width: 25px; height: 25px"></div>
+	<div class="text">List展示（当前仅支持Android）</div>
 </li>
 <li>
-	<div class="icon"><img src="list/num5.png" style="width: 50px; height: 50px"></div>
+	<div class="icon"><img src="list/num5.png" style="width: 25px; height: 25px"></div>
 	<div class="text">侧拉展现（抽屉效果）</div>
 </li>
 <li>
-  <div class="icon"><img src="list/num6.png" style="width: 50px; height: 50px"></div>
+  <div class="icon"><img src="list/num6.png" style="width: 25px; height: 25px"></div>
   <div class="text">通讯录</div>
 </li>
 <li>
-  <div class="icon"><img src="list/num7.png" style="width: 50px; height: 50px"></div>
-  <div class="text">Table</div>
+  <div class="icon"><img src="list/num7.png" style="width: 25px; height: 25px"></div>
+  <div class="text">Tab页面</div>
 </li>
 <li>
-  <div class="icon"><img src="list/num8.png" style="width: 50px; height: 50px"></div>
-  <div class="text">企业授权微应用</div>
+  <div class="icon"><img src="list/num8.png" style="width: 25px; height: 25px"></div>
+  <div class="text">快速部署和授权微应用</div>
 </li>
 <li>
-  <div class="icon"><img src="list/num9.png" style="width: 50px; height: 50px"></div>
-  <div class="text">快速部署授权微应用</div>
+  <div class="icon"><img src="list/num9.png" style="width: 25px; height: 25px"></div>
+  <div class="text">解除授权微应用</div>
 </li>
 </ul>
  <script type="text/javascript">
@@ -166,11 +166,11 @@ window.addEventListener('load', function() {
 	items[6].addEventListener('click',function(){
  		window.location='./tab/index.html';
 	});
-	items[6].addEventListener('click',function(){
- 		window.location='./tab/index.html';
+	items[7].addEventListener('click',function(){
+ 		window.location='https://app.dingtalk.com/isvauth/index.html?productCode=cmdd008261&inviteCode=3900&logo=lALOBU9vEHh4&noLimit=0&url=microappauth';
 	});
-	items[6].addEventListener('click',function(){
- 		window.location='./tab/index.html';
+	items[8].addEventListener('click',function(){
+ 		window.location='https://app.dingtalk.com/microtryout/fire_auth.html?showmenu=false&dd_share=false&corpId=ding614d5d8168991fb3&productCode=cmdd008261';
 	});
 </script>
  
