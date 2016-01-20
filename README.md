@@ -23,6 +23,7 @@ IP白名单:  调用钉钉API的合法IP列表
 
 
 4.并将相应的套件信息填写到工程的Env.java
+
 ---
 
 Token:  Env.TOKEN
@@ -61,15 +62,19 @@ Token:  Env.TOKEN
 ###本DEMO具体实现
 
 1.URL回调流程
-请查看[链接](https://github.com/injekt/openapi-demo-java/blob/master/src/com/alibaba/dingtalk/openapi/servlet/IsvReceiveServlet.java)
+
+请查看[文档](http://ddtalk.github.io/dingTalkDoc/#2-回调接口（分为五个回调类型）)
+- 后端文件：[链接](https://github.com/injekt/openapi-demo-java/blob/master/src/com/alibaba/dingtalk/openapi/servlet/IsvReceiveServlet.java)
 
 2.jsapi权限验证配置流程
-请查看
+
+请查看[文档](http://ddtalk.github.io/dingTalkDoc/#页面引入js文件)
 - 前端文件:WebContent/index.jsp，WebContent/javascripts/demo.js
 - 后端文件:[链接](https://github.com/injekt/openapi-demo-java/blob/master/src/com/alibaba/dingtalk/openapi/demo/auth/AuthHelper.java)
 
 3.免登流程
-请查看
+
+请查看[文档](http://ddtalk.github.io/dingTalkDoc/#手机客户端微应用中调用免登)
 - 前端文件:WebContent/javascripts/demo.js和
 - 后端文件:[链接](https://github.com/injekt/openapi-demo-java/blob/master/src/com/alibaba/dingtalk/openapi/servlet/UserInfoServlet.java)
 
