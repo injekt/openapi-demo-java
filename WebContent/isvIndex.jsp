@@ -3,10 +3,17 @@
 <html>
 <head>
 <meta http-equiv=Content-Type content="text/html;charset=utf-8">
+<meta charset="gbk">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">  
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection"/>
+<meta content="yes" name="apple-touch-fullscreen"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />
 <link type="text/css" rel="stylesheet" href="stylesheets/style.css" />
     <style>
         body {
-            background-color: burlywood;
+            background-color: white;
         }
         *{
 		padding: 0;
@@ -72,7 +79,7 @@ function openLink(url){
 </head>
 
 <body >
-	<div align="center">
+	<!-- <div align="center">
 		<img id ="userImg" alt="头像" src="./nav/default.png">
 	</div>
 	<div align="center">
@@ -82,7 +89,10 @@ function openLink(url){
 	<div align="center">
 		<span>UserId:</span>
 		<div id="userId" style="display:inline-block"></div>
-	</div>
+	</div> -->
+	<div>欢迎您：<div id="userName" style="display: inline-block"></div>，成为钉钉ISV，您当前在钉钉的uid为：
+		<div id="userId" style="display: inline-block"></div> 。</div>
+	<div>我们为您提供了文档＋api帮助您快速的开发（套件）微应用并接入钉钉。</div>
  <ul>
 <li>
 	<div class="icon"><img src="list/heart1.png"></div>
