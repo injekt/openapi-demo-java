@@ -12,24 +12,20 @@ java version "1.7.0_75"
 
 3.填写套件信息，
 
----
+其中：
+- IP白名单:  调用钉钉API的合法IP列表  
+- 回调URL:   url为```主机地址/工程名/isvreceive```
 
-IP白名单:  调用钉钉API的合法IP列表  
-回调URL:   url为```主机地址/工程名/isvreceive```
-
----
 
 
 
 
 4.并将相应的套件信息填写到工程的Env.java
 
----
+需要填写的套件信息对应的字段。
+- Token:  Env.TOKEN
+- 数据加密密钥:   Env.ENCODING_AES_KEY
 
-Token:  Env.TOKEN
-数据加密密钥:   Env.ENCODING_AES_KEY
-
----
 
 
 5.将demo工程部署到服务器上，基本的javaweb环境即可。
