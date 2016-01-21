@@ -129,6 +129,10 @@ function openLink(url){
 </li>
 <li>
   <div class="icon"><img src="list/num6.png" style="width: 25px; height: 25px"></div>
+  <div class="text">Tab页面（当前仅支持Android）</div>
+</li>
+<li>
+  <div class="icon"><img src="list/num7.png" style="width: 25px; height: 25px"></div>
   <div class="text">企业通讯录</div>
 </li>
 </ul>
@@ -169,6 +173,11 @@ window.addEventListener('load', function() {
  		/* openLink('./drawer/index.html'); */
 	});
 	items[5].addEventListener('click',function(){
+		/* alert('corpid:'+_config.corpId); */
+ 		window.location='./tab/index.html';
+  		/* openLink('./contacts.jsp?corpid='+_config.corpId); */
+	});
+	items[6].addEventListener('click',function(){
 		/* alert('corpid:'+_config.corpId); */
  		window.location='./contacts.jsp?corpid='+_config.corpId;
   		/* openLink('./contacts.jsp?corpid='+_config.corpId); */

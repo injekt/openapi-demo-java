@@ -117,7 +117,7 @@ function openLink(){
 
 <body >
 <h2 style="text-align:center">企业通讯录</h2>
-<div id="contactId">企业通讯</div>
+<div id="contactId"></div>
 </body>
 
 </html>

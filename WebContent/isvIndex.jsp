@@ -121,7 +121,7 @@ function openLink(url){
 </li>
 <li>
   <div class="icon"><img src="list/num6.png" style="width: 25px; height: 25px"></div>
-  <div class="text">Tab页面</div>
+  <div class="text">Tab页面（当前仅支持Android）</div>
 </li>
 <li>
   <div class="icon"><img src="list/num7.png" style="width: 25px; height: 25px"></div>
