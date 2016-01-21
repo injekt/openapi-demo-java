@@ -40,7 +40,7 @@
 		}
 		.text {
 		margin-left: 10px;
-		width: calc(100% - 90px);
+		width: calc(100% - 50px);
 		display: inline-block;
 		text-align: left;
 		line-height: 70px;
