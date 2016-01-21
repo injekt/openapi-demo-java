@@ -94,9 +94,9 @@ function openLink(url){
 		<div id="userId" style="display:inline-block"></div>
 	</div> -->
 	<br>
-	<div style="padding-left:10px;">&nbsp;&nbsp;&nbsp;&nbsp;欢迎您：<div id="userName" style="display:inline-block;font-weight:bold"></div>&nbsp;成为钉钉ISV，您当前在钉钉的<code>userId</code>为：
+	<div style="padding-left:10px;padding-right:10px;">&nbsp;&nbsp;&nbsp;&nbsp;欢迎您：<div id="userName" style="display:inline-block;font-weight:bold"></div>&nbsp;成为钉钉ISV，您当前在钉钉的<code>userId</code>为：
 		<div id="userId" style="display:inline-block;font-weight:bold"></div> 。</div>
-	<div style="padding-left:10px;">&nbsp;&nbsp;&nbsp;&nbsp;我们为您提供了文档＋<code>api</code>帮助您快速的开发（套件）微应用并接入钉钉。</div>
+	<div style="padding-left:10px;padding-right:10px;">&nbsp;&nbsp;&nbsp;&nbsp;我们为您提供了文档＋<code>api</code>帮助您快速的开发（套件）微应用并接入钉钉。</div>
 	<br>
  <ul>
 <li>
@@ -121,11 +121,11 @@ function openLink(url){
 </li>
 <li>
   <div class="icon"><img src="list/num6.png" style="width: 25px; height: 25px"></div>
-  <div class="text">通讯录</div>
+  <div class="text">Tab页面</div>
 </li>
 <li>
   <div class="icon"><img src="list/num7.png" style="width: 25px; height: 25px"></div>
-  <div class="text">Tab页面</div>
+  <div class="text">ISV产品详情</div>
 </li>
 <li>
   <div class="icon"><img src="list/num8.png" style="width: 25px; height: 25px"></div>
@@ -161,10 +161,10 @@ window.addEventListener('load', function() {
 	});
 	items[5].addEventListener('click',function(){
 		/* alert('corpid:'+_config.corpId); */
- 		window.location='./contacts.jsp?corpid='+_config.corpId;
+ 		window.location='./tab/index.html';
 	});	
 	items[6].addEventListener('click',function(){
- 		window.location='./tab/index.html';
+ 		window.location='http://market.aliyun.com/mobile/productDetail.html?showmenu=false&dd_share=false&code=cmdd008261&corpId=ding614d5d8168991fb3';
 	});
 	items[7].addEventListener('click',function(){
  		window.location='https://app.dingtalk.com/isvauth/index.html?productCode=cmdd008261&inviteCode=3900&logo=lALOBU9vEHh4&noLimit=0&url=microappauth';
