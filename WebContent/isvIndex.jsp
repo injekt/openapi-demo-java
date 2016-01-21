@@ -125,7 +125,7 @@ function openLink(url){
 </li>
 <li>
   <div class="icon"><img src="list/num7.png" style="width: 25px; height: 25px"></div>
-  <div class="text">ISV产品详情</div>
+  <div class="text">应用中心授权</div>
 </li>
 <li>
   <div class="icon"><img src="list/num8.png" style="width: 25px; height: 25px"></div>
