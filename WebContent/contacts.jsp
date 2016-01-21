@@ -13,7 +13,7 @@
 <link type="text/css" rel="stylesheet" href="stylesheets/style.css" />
     <style>
         body {
-            background-color: burlywood;
+            background-color: white;
         }
         *{
 		padding: 0;
@@ -53,6 +53,44 @@
 <title>Contact</title>
 <script type="text/javascript">
 var _config = <%= com.alibaba.dingtalk.openapi.demo.auth.AuthHelper.getConfig(request) %>;
+dd.config({});
+dd.ready(function() {
+	dd.biz.navigation.setMenu({
+		backgroundColor : "#ADD8E6",
+		items : [
+			{
+				id:"此处可以设置帮助",//字符串
+			// "iconId":"file",//字符串，图标命名
+			  text:"帮助"
+			}
+			,
+			{
+				"id":"2",
+			"iconId":"photo",
+			  "text":"我们"
+			}
+			,
+			{
+				"id":"3",
+			"iconId":"file",
+			  "text":"你们"
+			}
+			,
+			{
+				"id":"4",
+			"iconId":"time",
+			  "text":"他们"
+			}
+		],
+		onSuccess: function(data) {
+			alert(JSON.stringify(data));
+
+		},
+		onFail: function(err) {
+			alert(JSON.stringify(err));
+		}
+	});
+});
 </script>
 <script type="text/javascript" src="javascripts/zepto.min.js"></script>
 <script type="text/javascript" src="http://g.alicdn.com/ilw/ding/0.7.3/scripts/dingtalk.js">

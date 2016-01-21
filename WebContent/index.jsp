@@ -125,11 +125,11 @@ function openLink(url){
 </li>
 <li>
 	<div class="icon"><img src="list/num5.png" style="width: 25px; height: 25px"></div>
-    <div class="text">侧拉展现（抽屉效果）</div>
+    <div class="text">侧拉展现（当前仅支持Android）</div>
 </li>
 <li>
   <div class="icon"><img src="list/num6.png" style="width: 25px; height: 25px"></div>
-  <div class="text">通讯录接口</div>
+  <div class="text">企业通讯录</div>
 </li>
 </ul>
  <script type="text/javascript">
@@ -141,9 +141,8 @@ window.addEventListener('load', function() {
 	var items = document.querySelectorAll('li');
 	var i = 0;
 	items[0].addEventListener('click',function(){
- 		window.location='http://ddtalk.github.io/dingTalkDoc/#企业接入指南';
-/* 		openLink('http://ddtalk.github.io/dingTalkDoc');
- */
+ 		/* window.location='http://ddtalk.github.io/dingTalkDoc/#企业接入指南'; */
+ 		openLink('http://ddtalk.github.io/dingTalkDoc/#企业接入指南');
 	});
 	/* items[1].addEventListener('click',function(){
  		window.location='http://www.dingtalk.com/index-b.html';
@@ -156,25 +155,23 @@ window.addEventListener('load', function() {
 	});
 	items[2].addEventListener('click',function(){
 		window.location='./nav/1.html';
-/* 	  	openLink('./nav/1.html');
- */	});
+ 	  	/* openLink('./nav/1.html'); */
+	});
 	
 	
 	items[3].addEventListener('click', function(){
  		window.location = './list/list.html';
-/*  		openLink('./list/list.html');
- */	});
+  		/* openLink('./list/list.html'); */
+	});
 	
 	items[4].addEventListener('click',function(){
  		window.location='./drawer/index.html';
-/* 		openLink('./drawer/index.html');
- */
+ 		/* openLink('./drawer/index.html'); */
 	});
 	items[5].addEventListener('click',function(){
 		/* alert('corpid:'+_config.corpId); */
  		window.location='./contacts.jsp?corpid='+_config.corpId;
-/*  		openLink('./contacts.jsp?corpid='+_config.corpId);
- */
+  		/* openLink('./contacts.jsp?corpid='+_config.corpId); */
 	});	
 	
 </script>
