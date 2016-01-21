@@ -10,6 +10,8 @@
 <meta content="yes" name="apple-touch-fullscreen"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />
 
+<title>Demo</title>
+
 <style>
   html,body{
     width: 100%;
@@ -195,6 +197,7 @@
 <script type="text/javascript" src="javascripts/zepto.min.js"></script>
 <script type="text/javascript" src="http://g.alicdn.com/ilw/ding/0.7.3/scripts/dingtalk.js"></script>
 </script>
+
 <script type="text/javascript">
 var _config = <%= com.alibaba.dingtalk.openapi.demo.auth.AuthHelper.getConfig(request) %>;
 </script>

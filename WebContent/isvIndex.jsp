@@ -53,7 +53,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
-<title>index</title>
+<title>ISV开发者首页</title>
 <script type="text/javascript">
 var _config = <%= com.alibaba.dingtalk.openapi.demo.auth.AuthHelper.getConfig(request) %>;
 </script>

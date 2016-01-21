@@ -50,7 +50,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
-<title>index</title>
+<title>企业开发者首页</title>
 <script type="text/javascript">
 
 //在此拿到权限验证配置所需要的信息
