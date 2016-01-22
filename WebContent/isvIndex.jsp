@@ -144,6 +144,7 @@ window.addEventListener('load', function() {
 
 	var items = document.querySelectorAll('li');
 	var i = 0;
+	var url = 'http://123.56.71.118:8080/demo1/';
 	items[0].addEventListener('click',function(){
  		/* window.location='http://ddtalk.github.io/dingTalkDoc/#isv接入指南'; */
  		openLink('http://ddtalk.github.io/dingTalkDoc/#isv接入指南');
@@ -154,22 +155,22 @@ window.addEventListener('load', function() {
  		openLink('http://h5.m.laiwang.com/home/ding.html');
 	});
 	items[2].addEventListener('click',function(){
-		window.location='./nav/1.html';
-		/* openLink('./nav/1.html'); */
+		/* window.location='./nav/1.html'; */
+		openLink(url+'./nav/1.html');
 		
 	});
 	items[3].addEventListener('click', function(){
- 		window.location = './list/list.html';
- 		/* openLink('./list/list.html'); 	 */	
+ 		/* window.location = './list/list.html'; */
+ 		openLink(url+'./list/list.html'); 	 	
 	});
 	items[4].addEventListener('click',function(){
- 		window.location='./drawer/index.html';
- 		/* openLink('./drawer/index.html'); */
+ 		/* window.location='./drawer/index.html'; */
+ 		openLink(url+'./drawer/index.html');
 	});
 	items[5].addEventListener('click',function(){
 		/* alert('corpid:'+_config.corpId); */
- 		window.location='./tab/index.html';
- 		/* openLink('./tab/index.html'); */
+ 		/* window.location='./tab/index.html'; */
+ 		openLink(url+'./tab/index.html');
 	});	
 	items[6].addEventListener('click',function(){
  		/* window.location='http://market.aliyun.com/mobile/productDetail.html?showmenu=false&dd_share=false&code=cmdd008261&corpId=ding614d5d8168991fb3'; */
