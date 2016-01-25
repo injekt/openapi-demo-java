@@ -242,11 +242,11 @@ dd.ready(function() {
 <script type="text/javascript">
 function openCompLink(){
 	/* alert('config:'+_config.corpId); */
-	window.location='index.jsp?appid=843&dd_nav_bgcolor=FF5E97F6&corpid='+_config.corpId;
+	window.location='index.jsp?appid='+_config.appid+'&dd_nav_bgcolor=FF5E97F6&corpid='+_config.corpId;
 }
 function openISVLink(){
 	/* alert('config'+_config.corpId); */
-	window.location='isvIndex.jsp?appid=843&dd_nav_bgcolor=FF5E97F6&corpid='+_config.corpId;
+	window.location='isvIndex.jsp?appid='+_config.appid+'&dd_nav_bgcolor=FF5E97F6&corpid='+_config.corpId;
 }
 </script>
 </head>
