@@ -4,6 +4,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Formatter;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -24,9 +26,11 @@ public class AuthHelper {
 	// public static String jsapiTicket = null;
 	// public static String accessToken = null;
 	public static Timer timer = null;
-	public static final long cacheTime = 1000 * 60 * 60 * 2;
+	// 调整到1小时50分钟
+	public static final long cacheTime = 1000 * 60 * 55 * 2;
 	public static long currentTime = 0 + cacheTime + 1;
 	public static long lastTime = 0;
+	public static SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 	/*
 	 * 在此方法中，为了避免频繁获取access_token，
@@ -39,7 +43,6 @@ public class AuthHelper {
 	 * 具体信息请查看开发者文档--权限验证配置
 	 */
 	public static String getAccessToken(String corpId) throws OApiException {
-
 		long curTime = System.currentTimeMillis();
 		JSONObject accessTokenValue = (JSONObject) FileUtils.getValue("accesstoken", corpId);
 		String accToken = "";
@@ -52,7 +55,7 @@ public class AuthHelper {
 //					+ Long.MAX_VALUE);
 //		}
 		if (accessTokenValue == null || curTime - accessTokenValue.getLong("begin_time") >= cacheTime) {
-			System.out.println("authhelper: get new access_token and ticket");
+			System.out.println(df.format(new Date())+" authhelper: get new access_token and ticket");
 			String url = Env.OAPI_HOST + "/service/get_corp_token?" + "suite_access_token="
 					+ FileUtils.getValue("ticket", "suiteToken");
 			JSONObject args = new JSONObject();
@@ -162,8 +165,8 @@ public class AuthHelper {
 		String corpId = request.getParameter("corpid");
 		String appId = request.getParameter("appid");
 
-		System.out.println(
-				"getconfig,url:" + urlString + " query:" + queryString + " corpid:" + corpId + " appid:" + appId);
+		System.out.println(df.format(new Date())+
+				" getconfig,url:" + urlString + " query:" + queryString + " corpid:" + corpId + " appid:" + appId);
 
 		String queryStringEncode = null;
 		String url;
