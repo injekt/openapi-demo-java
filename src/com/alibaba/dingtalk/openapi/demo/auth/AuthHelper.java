@@ -200,7 +200,7 @@ public class AuthHelper {
 		}
 
 		return "{jsticket:'" + ticket + "',signature:'" + signature + "',nonceStr:'" + nonceStr + "',timeStamp:'"
-				+ timeStamp + "',corpId:'" + corpId + "',agentid:'" + agentid + "'}";
+				+ timeStamp + "',corpId:'" + corpId + "',agentid:'" + agentid+ "',appid:'" + appId + "'}";
 	}
 
 	public static String getAgentId(String corpId, String appId) throws OApiException {

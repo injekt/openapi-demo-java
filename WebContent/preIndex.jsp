@@ -241,7 +241,7 @@ dd.ready(function() {
 </script>
 <script type="text/javascript">
 function openCompLink(){
-	/* alert('config:'+_config.corpId); */
+	/* alert('config:'+_config.corpId+' appid:'+_config.appid); */
 	window.location='index.jsp?appid='+_config.appid+'&dd_nav_bgcolor=FF5E97F6&corpid='+_config.corpId;
 }
 function openISVLink(){
