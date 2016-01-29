@@ -147,7 +147,7 @@ window.addEventListener('load', function() {
 	var url = 'http://123.56.71.118:8080/demo1/';
 	items[0].addEventListener('click',function(){
  		/* window.location='http://ddtalk.github.io/dingTalkDoc/#isv接入指南'; */
- 		openLink('http://ddtalk.github.io/dingTalkDoc/#isv接入指南');
+ 		openLink('http://123.56.71.118:8080/demo1/www/index.html');
  		
 	});
 	items[1].addEventListener('click',function(){
