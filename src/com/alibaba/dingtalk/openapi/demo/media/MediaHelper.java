@@ -33,16 +33,6 @@ public class MediaHelper {
 		UploadResult uploadResult = mediaService.uploadMediaFile(accessToken, type, file);
 		
 		return uploadResult;
-//		String url = Env.OAPI_HOST + "/media/upload?" +
-//				"access_token=" + accessToken + "&type="  + type;
-//		JSONObject response = HttpHelper.uploadMedia(url, file);
-//		if (!response.containsKey("type") || !response.containsKey("media_id") || 
-//				response.containsKey("created_at")) {
-//			return JSON.parseObject(response.toJSONString(), MediaUploadResult.class);
-//		}
-//		else {
-//			throw new OApiResultException("type or media_id or create_at");
-//		}
 	}
 	
 	
