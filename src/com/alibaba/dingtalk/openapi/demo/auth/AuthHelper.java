@@ -21,6 +21,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.dingtalk.open.client.ServiceFactory;
+import com.dingtalk.open.client.api.model.corp.JsapiTicket;
 import com.dingtalk.open.client.api.model.isv.CorpAuthToken;
 import com.dingtalk.open.client.api.service.corp.JsapiService;
 import com.dingtalk.open.client.api.service.isv.IsvService;
@@ -77,9 +78,8 @@ public class AuthHelper {
 				
 				JsapiService jsapiService = serviceFactory.getOpenService(JsapiService.class);
 
-				String JsapiTicket = jsapiService.getJsapiTicket(accToken, "jsapi");
-				JSONObject js  = (JSONObject)JSONObject.parse(JsapiTicket);
-				jsTicket = js.getString("ticket");
+				JsapiTicket JsapiTicket = jsapiService.getJsapiTicket(accToken, "jsapi");
+				jsTicket = JsapiTicket.getTicket();
 				
 				JSONObject jsonTicket = new JSONObject();
 				jsontemp.clear();
@@ -109,9 +109,8 @@ public class AuthHelper {
 			serviceFactory = ServiceFactory.getInstance();
 			JsapiService jsapiService = serviceFactory.getOpenService(JsapiService.class);
 
-			String JsapiTicket = jsapiService.getJsapiTicket(accessToken, "jsapi");
-			JSONObject js  = (JSONObject)JSONObject.parse(JsapiTicket);
-			jsTicket = js.getString("ticket");
+			JsapiTicket JsapiTicket = jsapiService.getJsapiTicket(accessToken, "jsapi");
+			jsTicket = JsapiTicket.getTicket();
 			
 			JSONObject jsonTicket = new JSONObject();
 			JSONObject jsontemp = new JSONObject();
@@ -121,30 +120,10 @@ public class AuthHelper {
 			jsonTicket.put(corpId, jsontemp);
 			FileUtils.write2File(jsonTicket, "jsticket");
 
-//			 
-//			 
-//			 
-//			String url = Env.OAPI_HOST + "/get_jsapi_ticket?" + "type=jsapi" + "&access_token=" + accessToken;
-//			JSONObject response = HttpHelper.httpGet(url);
-//			if (response.containsKey("ticket")) {
-//				jsTicket = response.getString("ticket");
-//				
-//				JSONObject jsonTicket = new JSONObject();
-//				JSONObject jsontemp = new JSONObject();
-//				jsontemp.clear();
-//				jsontemp.put("ticket", jsTicket);
-//				jsontemp.put("begin_time", curTime);
-//				jsonTicket.put(corpId, jsontemp);
-//				FileUtils.write2File(jsonTicket, "jsticket");
-
-				return jsTicket;
-//			} else {
-//				throw new OApiResultException("ticket");
-//			}
+			return jsTicket;
 		 } else {
 			 return jsTicketValue.getString("ticket");
 		 }
-//
 	}
 
 	public static String sign(String ticket, String nonceStr, long timeStamp, String url) throws OApiException {
