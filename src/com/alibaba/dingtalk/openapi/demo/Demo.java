@@ -7,245 +7,278 @@ import java.util.List;
 import java.util.Map;
 
 import com.alibaba.dingtalk.openapi.demo.auth.AuthHelper;
-import com.alibaba.dingtalk.openapi.demo.department.Department;
 import com.alibaba.dingtalk.openapi.demo.department.DepartmentHelper;
 import com.alibaba.dingtalk.openapi.demo.media.MediaHelper;
 import com.alibaba.dingtalk.openapi.demo.message.ConversationMessageDelivery;
-import com.alibaba.dingtalk.openapi.demo.message.ImageMessage;
 import com.alibaba.dingtalk.openapi.demo.message.LightAppMessageDelivery;
-import com.alibaba.dingtalk.openapi.demo.message.LinkMessage;
 import com.alibaba.dingtalk.openapi.demo.message.MessageHelper;
-import com.alibaba.dingtalk.openapi.demo.message.OAMessage;
-import com.alibaba.dingtalk.openapi.demo.message.TextMessage;
 import com.alibaba.dingtalk.openapi.demo.user.User;
 import com.alibaba.dingtalk.openapi.demo.user.UserHelper;
-import com.alibaba.dingtalk.openapi.demo.utils.FileUtils;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.dingtalk.open.client.api.model.corp.CorpUserDetail;
+import com.dingtalk.open.client.api.model.corp.CorpUserDetailList;
+import com.dingtalk.open.client.api.model.corp.CorpUserList;
+import com.dingtalk.open.client.api.model.corp.Department;
+import com.dingtalk.open.client.api.model.corp.MessageBody;
+import com.dingtalk.open.client.api.model.corp.MessageBody.OABody.Body;
+import com.dingtalk.open.client.api.model.corp.MessageBody.OABody.Body.Form;
+import com.dingtalk.open.client.api.model.corp.MessageBody.OABody.Body.Rich;
+import com.dingtalk.open.client.api.model.corp.MessageBody.OABody.Head;
+import com.dingtalk.open.client.api.model.corp.MessageType;
+import com.dingtalk.open.client.api.model.corp.UploadResult;
 
 public class Demo {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 
-		try {
-
-			// Map<String,String> values = new HashMap<String, String>();
-			// values.put("corpid", "1");
-			// values.put("token", "2");
-			// values.put("time", "3");
-
-			// JSONObject json = new JSONObject();
-			// json.put("corpid", "11");
-			// JSONObject json1 = new JSONObject();
-			// json1.put("token", "22");
-			// json1.put("time", "33");
-			// json.put("11", json1);
-			// JSONObject json2 = new JSONObject();
-			// json2.put("token", "221");
-			// json2.put("time", "331");
-			// json.put("22", json2);
-			// FileUtils.write2File(json,"test12");
-			List<Department> departments = new ArrayList<Department>();
-			departments = DepartmentHelper.listDepartments("ea2a8b067c8d3cc8b93980da6119dafa");
-			JSONObject usersJSON = new JSONObject();
-			
-			System.out.println("depart num:"+departments.size());
-			for(int i = 0;i<departments.size();i++){
-				JSONObject userDepJSON = new JSONObject();
-				System.out.println("dep:"+departments.get(i).toString());
-				List<User> users = new ArrayList<User>();
-				users = UserHelper.getDepartmentUser("5ffa11df8e9c3cbf95c791f824512608",Long.valueOf(departments.get(i).id));
-				for(int j = 0;j<users.size();j++){
-					String user = JSON.toJSONString(users.get(j));
-					userDepJSON.put(j+"", JSONObject.parseObject(user, User.class));
-				}
-				usersJSON.put(departments.get(i).name, userDepJSON);
-				System.out.println("user:"+usersJSON.toString());
-			}
-//			response.getWriter().append(usersJSON.toJSONString());
-			System.out.println("depart:"+usersJSON.toJSONString());
-
-			System.out.println("11:" + FileUtils.read2JSON("test12"));
-			JSONObject json = new JSONObject();
-			JSONObject json1 = new JSONObject();
-			json1.put("token", "22aa1");
-			json1.put("time", "33aa1");
-			json.put("11", json1);
-			FileUtils.write2File(json,"test12");
-//			System.out.println("time:" + ((JSONObject) FileUtils.getValue("test12", "22")).getString("token"));
-			System.out.println("11:" + FileUtils.read2JSON("test12"));
-
-			// 获取access token
-			String accessToken = AuthHelper.getAccessToken("ding0a4b72b432ac3b96");
-			log("成功获取access token: ", accessToken);
-
-			// 获取jsapi ticket
-			String ticket = AuthHelper.getJsapiTicket(accessToken,"");
-			log("成功获取jsapi ticket: ", ticket);
-
-			// 获取签名
-			String nonceStr = "nonceStr";
-			long timeStamp = System.currentTimeMillis();
-			String url = "http://www.dingtalk.com";
-			String signature = AuthHelper.sign(ticket, nonceStr, timeStamp, url);
-			log("成功签名: ", signature);
-
-			// 创建部门
-			String name = "TestDept.34";
-			String parentId = "1";
-			String order = "1";
-			boolean createDeptGroup = true;
-			long departmentId = DepartmentHelper.createDepartment(accessToken, name, parentId, order, createDeptGroup);
-			log("成功创建部门", name, " 部门id=", departmentId);
-
-			// 获取部门列表
-			List<Department> list = DepartmentHelper.listDepartments(accessToken);
-			log("成功获取部门列表", list);
-
-			// 更新部门
-			name = "hahahaha";
-			boolean autoAddUser = true;
-			String deptManagerUseridList = "11|11";
-			boolean deptHiding = false;
-			String deptPerimits = "aa|qq";
-			DepartmentHelper.updateDepartment(accessToken, name, parentId, order, departmentId, autoAddUser,
-					deptManagerUseridList, deptHiding, deptPerimits);
-			log("成功更新部门", " 部门id=", departmentId);
-
-			// 创建成员
-			User user = new User("id_yuhuan", "name_yuhuan");
-			user.email = "yuhuan@abc.com";
-			user.mobile = "18645512324";
-			user.department = new ArrayList();
-			user.department.add(departmentId);
-			UserHelper.createUser(accessToken, user);
-			log("成功创建成员", "成员信息=", user);
-
-			// 上传图片
-			File file = new File("/Users/liqiao/Desktop/icon.jpg");
-			MediaHelper.MediaUploadResult uploadResult = MediaHelper.upload(accessToken, MediaHelper.TYPE_IMAGE, file);
-			log("成功上传图片", uploadResult);
-
-			// 下载图片
-			String fileDir = "/Users/liqiao/Desktop/";
-			MediaHelper.download(accessToken, uploadResult.media_id, fileDir);
-			log("成功下载图片");
-
-			TextMessage textMessage = new TextMessage("TextMessage");
-			ImageMessage imageMessage = new ImageMessage(uploadResult.media_id);
-			LinkMessage linkMessage = new LinkMessage("http://www.baidu.com", "@lALOACZwe2Rk", "Link Message",
-					"This is a link message");
-
-			// 创建oa消息
-			OAMessage oaMessage = new OAMessage();
-			oaMessage.message_url = "http://www.dingtalk.com";
-			OAMessage.Head head = new OAMessage.Head();
-			head.bgcolor = "FFCC0000";
-			oaMessage.head = head;
-			OAMessage.Body body = new OAMessage.Body();
-			body.title = "征婚启事";
-			OAMessage.Body.Form form1 = new OAMessage.Body.Form();
-			form1.key = "姓名";
-			form1.value = "刘增产";
-			OAMessage.Body.Form form2 = new OAMessage.Body.Form();
-			form2.key = "年龄";
-			form2.value = "18";
-			body.form = new ArrayList();
-			body.form.add(form1);
-			body.form.add(form2);
-			OAMessage.Body.Rich rich = new OAMessage.Body.Rich();
-			rich.num = "5";
-			rich.unit = "毛";
-			body.rich = rich;
-			body.content = "这是一则严肃的征婚启事。不约。";
-			body.image = "";
-			body.file_found = "3";
-			body.author = "识器";
-			oaMessage.body = body;
-
-			// 发送微应用消息
-			String toUsers = Vars.TO_USER;
-			String toParties = Vars.TO_PARTY;
-			String agentId = Vars.AGENT_ID;
-			LightAppMessageDelivery lightAppMessageDelivery = new LightAppMessageDelivery(toUsers, toParties, agentId);
-
-			lightAppMessageDelivery.withMessage(textMessage);
-			MessageHelper.send(accessToken, lightAppMessageDelivery);
-			log("成功发送 微应用文本消息");
-			lightAppMessageDelivery.withMessage(imageMessage);
-			MessageHelper.send(accessToken, lightAppMessageDelivery);
-			log("成功发送 微应用图片消息");
-			lightAppMessageDelivery.withMessage(linkMessage);
-			MessageHelper.send(accessToken, lightAppMessageDelivery);
-			log("成功发送 微应用link消息");
-			lightAppMessageDelivery.withMessage(oaMessage);
-			MessageHelper.send(accessToken, lightAppMessageDelivery);
-			log("成功发送 微应用oa消息");
-
-			// 发送会话消息
-			String sender = Vars.SENDER;
-			String cid = Vars.CID;
-			ConversationMessageDelivery conversationMessageDelivery = new ConversationMessageDelivery(sender, cid,
-					agentId);
-
-			conversationMessageDelivery.withMessage(textMessage);
-			MessageHelper.send(accessToken, conversationMessageDelivery);
-			log("成功发送 会话文本消息");
-			conversationMessageDelivery.withMessage(imageMessage);
-			MessageHelper.send(accessToken, conversationMessageDelivery);
-			log("成功发送 会话图片消息");
-			conversationMessageDelivery.withMessage(linkMessage);
-			MessageHelper.send(accessToken, conversationMessageDelivery);
-			log("成功发送 会话link消息");
-
-			// 更新成员
-			user.mobile = "18612341234";
-			UserHelper.updateUser(accessToken, user);
-			log("成功更新成员", "成员信息=", user);
-
-			// 获取成员
-			UserHelper.getUser(accessToken, user.userid);
-			log("成功获取成员", "成员userid=", user.userid);
-
-			// 获取部门成员
-			List<User> userList = UserHelper.getDepartmentUser(accessToken, departmentId);
-			log("成功获取部门成员", "部门成员user=", userList);
-
-			// 获取部门成员（详情）
-			List<User> userList2 = UserHelper.getUserDetails(accessToken, departmentId);
-			log("成功获取部门成员详情", "部门成员详情user=", userList2);
-
-			// 批量删除成员
-			User user2 = new User("id_yuhuan2", "name_yuhuan2");
-			user2.email = "yuhua2n@abc.com";
-			user2.mobile = "18611111111";
-			user2.department = new ArrayList();
-			user2.department.add(departmentId);
-			UserHelper.createUser(accessToken, user2);
-
-			List<String> useridlist = new ArrayList();
-			useridlist.add(user.userid);
-			useridlist.add(user2.userid);
-			UserHelper.batchDeleteUser(accessToken, useridlist);
-			log("成功批量删除成员", "成员列表useridlist=", useridlist);
-
-			// 删除成员
-			User user3 = new User("id_yuhuan3", "name_yuhuan3");
-			user3.email = "yuhua2n@abc.com";
-			user3.mobile = "18611111111";
-			user3.department = new ArrayList();
-			user3.department.add(departmentId);
-			UserHelper.createUser(accessToken, user3);
-			UserHelper.deleteUser(accessToken, user3.userid);
-			log("成功删除成员", "成员userid=", user3.userid);
-
-			// 删除部门
-			DepartmentHelper.deleteDepartment(accessToken, departmentId);
-			log("成功删除部门", " 部门id=", departmentId);
-
-		} catch (OApiException e) {
-			e.printStackTrace();
-		}
+//		try {
+//
+//			List<Department> departments = new ArrayList<Department>();
+//			departments = DepartmentHelper.listDepartments(AuthHelper.getAccessToken(), "1");
+//			JSONObject usersJSON = new JSONObject();
+//			
+//			System.out.println("depart num:"+departments.size());
+//			for(int i = 0;i<departments.size();i++){
+//				JSONObject userDepJSON = new JSONObject();
+//				System.out.println("dep:"+departments.get(i).toString());
+//		
+//	            long offset = 0;
+//	            int size = 5;
+//	            CorpUserList corpUserList = new CorpUserList();	           
+//	            while (true) {
+//	                corpUserList = UserHelper.getDepartmentUser(AuthHelper.getAccessToken(), Long.valueOf(departments.get(i).getId())
+//	                		, offset, size, null);
+//	                System.out.println(JSON.toJSONString(corpUserList));
+//	                if (Boolean.TRUE.equals(corpUserList.isHasMore())) {
+//	                    offset += size;
+//	                } else {
+//	                    break;
+//	                }
+//	            }
+//				if(corpUserList.getUserlist().size()==0){
+//					continue;
+//				}
+//				for(int j = 0;j<corpUserList.getUserlist().size();j++){
+//					String user = JSON.toJSONString(corpUserList.getUserlist().get(j));
+//					userDepJSON.put(j+"", JSONObject.parseObject(user, CorpUserDetail.class));
+//
+//				}
+//
+//				
+//				usersJSON.put(departments.get(i).getName(), userDepJSON);
+//				System.out.println("user:"+usersJSON.toString());
+//			}
+//			
+//			System.out.println("depart:"+usersJSON.toJSONString());
+//
+//
+//			// 获取access token
+//			String accessToken = AuthHelper.getAccessToken();
+//			log("成功获取access token: ", accessToken);
+//
+//			// 获取jsapi ticket
+//			String ticket = AuthHelper.getJsapiTicket(accessToken);
+//			log("成功获取jsapi ticket: ", ticket);
+//
+//			// 获取签名
+//			String nonceStr = "nonceStr";
+//			long timeStamp = System.currentTimeMillis();
+//			String url = "http://www.dingtalk.com";
+//			String signature = AuthHelper.sign(ticket, nonceStr, timeStamp, url);
+//			log("成功签名: ", signature);
+//
+//			// 创建部门
+//			String name = "TestDept.34";
+//			String parentId = "1";
+//			String order = "1";
+//			boolean createDeptGroup = true;
+//			long departmentId = Long.parseLong(DepartmentHelper.createDepartment(accessToken, name, parentId, order, createDeptGroup));
+//			log("成功创建部门", name, " 部门id=", departmentId);
+//
+//			// 获取部门列表
+//			List<Department> list = DepartmentHelper.listDepartments(accessToken, parentId);
+//			log("成功获取部门列表", list);
+//
+//			// 更新部门
+//			name = "hahahaha";
+//			boolean autoAddUser = true;
+//			String deptManagerUseridList = null;
+//			boolean deptHiding = false;
+//			String deptPerimits = "aa|qq";			
+//			DepartmentHelper.updateDepartment(accessToken, departmentId, name, parentId, order, createDeptGroup, 
+//					autoAddUser, deptManagerUseridList, deptHiding, deptPerimits, null, 
+//					null, null, null, null);
+//
+//			
+//			log("成功更新部门", " 部门id=", departmentId);
+//			
+//			CorpUserDetail userDetail = new CorpUserDetail();
+//			userDetail.setUserid("id_yuhuan");
+//			userDetail.setName("name_yuhuan");
+//			userDetail.setEmail("yuhuan@abc.com");
+//			userDetail.setMobile("18612124567");
+//			userDetail.setDepartment(new ArrayList());
+//			userDetail.getDepartment().add(departmentId);
+//
+//			
+//			UserHelper.createUser(accessToken, userDetail);
+//			log("成功创建成员", "成员信息=", userDetail);
+//
+//			// 上传图片
+//			File file = new File("/Users/ian/Downloads/lALOAVYgbc0DIM0Bwg_450_800.png");
+//			UploadResult uploadResult = MediaHelper.upload(accessToken, MediaHelper.TYPE_IMAGE, file);
+//			log("成功上传图片", uploadResult);
+//
+//			// 下载图片
+//			String fileDir = "/Users/ian/Desktop/";
+//			MediaHelper.download(accessToken, uploadResult.getMedia_id(), fileDir);
+//			log("成功下载图片");
+//
+//			
+//			MessageBody.TextBody textBody = new MessageBody.TextBody();
+//			textBody.setContent("TextMessage");
+//			
+//			MessageBody.ImageBody imageBody = new MessageBody.ImageBody();
+//			imageBody.setMedia_id(uploadResult.getMedia_id());
+//			
+//			MessageBody.LinkBody linkBody = new MessageBody.LinkBody();
+//			linkBody.setMessageUrl("http://www.baidu.com");
+//			linkBody.setPicUrl("@lALOACZwe2Rk");
+//			linkBody.setTitle("Link Message");
+//			linkBody.setText("This is a link message");
+//
+//			// 创建oa消息
+//            MessageBody.OABody oaBody = new MessageBody.OABody();
+//            oaBody.setMessage_url("message_url");
+//            Head head = new Head();
+//            head.setText("head.text");
+//            head.setBgcolor("FFBBBBBB");
+//            oaBody.setHead(head);
+//
+//            Body body = new Body();
+//            body.setAuthor("author");
+//            body.setContent("content");
+//            body.setFile_count("file_count");
+//            body.setImage("@image");
+//            body.setTitle("body.title");
+//            Rich rich = new Rich();
+//            rich.setNum("num");
+//            rich.setUnit("unit");
+//            body.setRich(rich);
+//            List<Form> formList = new ArrayList<Form>();
+//            Form form = new Form();
+//            form.setKey("key");
+//            form.setValue("value");
+//            formList.add(form);
+//            body.setForm(formList);
+//            oaBody.setBody(body);
+//
+//			// 发送微应用消息
+//			String toUsers = Vars.TO_USER;
+//			String toParties = Vars.TO_PARTY;
+//			String agentId = Vars.AGENT_ID;
+//			LightAppMessageDelivery lightAppMessageDelivery = new LightAppMessageDelivery(toUsers, toParties, agentId);
+//
+//			lightAppMessageDelivery.withMessage(MessageType.TEXT, textBody);
+//			MessageHelper.send(accessToken, lightAppMessageDelivery);
+//			log("成功发送 微应用文本消息");
+//			lightAppMessageDelivery.withMessage(MessageType.IMAGE, imageBody);
+//			MessageHelper.send(accessToken, lightAppMessageDelivery);
+//			log("成功发送 微应用图片消息");
+//			lightAppMessageDelivery.withMessage(MessageType.LINK, linkBody);
+//			MessageHelper.send(accessToken, lightAppMessageDelivery);
+//			log("成功发送 微应用link消息");
+//			lightAppMessageDelivery.withMessage(MessageType.OA, oaBody);
+//			MessageHelper.send(accessToken, lightAppMessageDelivery);
+//			log("成功发送 微应用oa消息");
+//
+//			// 发送会话消息
+////			String sender = Vars.SENDER;
+////			String cid = Vars.CID;//cid需要通过jsapi获取，具体详情请查看开放平台文档--->客户端文档--->会话
+//
+////			ConversationMessageDelivery conversationMessageDelivery = new ConversationMessageDelivery(sender, cid,
+////					agentId);
+////
+////			conversationMessageDelivery.withMessage(MessageType.TEXT, textBody);
+////			MessageHelper.send(accessToken, conversationMessageDelivery);
+////			log("成功发送 会话文本消息");
+////			conversationMessageDelivery.withMessage(MessageType.IMAGE, imageBody);
+////			MessageHelper.send(accessToken, conversationMessageDelivery);
+////			log("成功发送 会话图片消息");
+////			conversationMessageDelivery.withMessage(MessageType.LINK, linkBody);
+////			MessageHelper.send(accessToken, conversationMessageDelivery);
+////			log("成功发送 会话link消息");
+//
+//			// 更新成员
+//			userDetail.setMobile("11177776666");
+//			UserHelper.updateUser(accessToken, userDetail);
+//			log("成功更新成员", "成员信息=", userDetail);
+//
+//			// 获取成员
+//			CorpUserDetail  userDetail11 = UserHelper.getUser(accessToken, userDetail.getUserid());
+//			log("成功获取成员", "成员userid=", userDetail11.getUserid());
+//
+//			// 获取部门成员
+//			CorpUserList userList = UserHelper.getDepartmentUser(accessToken, departmentId, null, null, null);
+//			log("成功获取部门成员", "部门成员user=", userList.getUserlist());
+//
+//			// 获取部门成员（详情）
+//			CorpUserDetailList userList2 = UserHelper.getUserDetails(accessToken, departmentId, null, null, null);
+//			log("成功获取部门成员详情", "部门成员详情user=", userList2.getUserlist());
+//
+//			// 批量删除成员
+////			User user2 = new User("id_yuhuan2", "name_yuhuan2");
+////			user2.email = "yuhua2n@abc.com";
+////			user2.mobile = "18611111111";
+////			user2.department = new ArrayList();
+////			user2.department.add(departmentId);
+////			UserHelper.createUser(accessToken, user2);
+//			
+//			CorpUserDetail userDetail2 = new CorpUserDetail();
+//			userDetail2.setUserid("id_yuhuan2");
+//			userDetail2.setName("name_yuhuan2");
+//			userDetail2.setEmail("yuhua2n@abc.com");
+//			userDetail2.setMobile("18612124926");
+//			userDetail2.setDepartment(new ArrayList());
+//			userDetail2.getDepartment().add(departmentId);
+//			UserHelper.createUser(accessToken, userDetail2);
+//
+//			
+//			
+//
+//			List<String> useridlist = new ArrayList();
+//			useridlist.add(userDetail.getUserid());
+//			useridlist.add(userDetail2.getUserid());
+//			UserHelper.batchDeleteUser(accessToken, useridlist);
+//			log("成功批量删除成员", "成员列表useridlist=", useridlist);
+//
+//			// 删除成员
+////			User user3 = new User("id_yuhuan3", "name_yuhuan3");
+////			user3.email = "yuhua2n@abc.com";
+////			user3.mobile = "18611111111";
+////			user3.department = new ArrayList();
+////			user3.department.add(departmentId);
+//			CorpUserDetail userDetail3 = new CorpUserDetail();
+//			userDetail3.setUserid("id_yuhuan3");
+//			userDetail3.setName("name_yuhuan3");
+//			userDetail3.setMobile("13146654734");
+//			userDetail3.setDepartment(new ArrayList());
+//			userDetail3.getDepartment().add(departmentId);
+//
+//			
+//			
+//			UserHelper.createUser(accessToken, userDetail3);
+//			UserHelper.deleteUser(accessToken, userDetail3.getUserid());
+//			log("成功删除成员", "成员userid=", userDetail3.getUserid());
+//
+//			// 删除部门
+//			DepartmentHelper.deleteDepartment(accessToken, departmentId);
+//			log("成功删除部门", " 部门id=", departmentId);
+//
+//		} catch (OApiException e) {
+//			e.printStackTrace();
+//		}
 	}
 
 	private static void log(Object... msgs) {

@@ -14,13 +14,4 @@ public class LightAppMessageDelivery extends MessageDelivery {
 		this.agentid = agentId;
 	}
 	
-	@Override
-	public JSONObject toJsonObject() {
-		JSONObject json = super.toJsonObject();
-		json.put("touser", this.touser);
-		json.put("toparty", this.toparty);
-		json.put("agentid", this.agentid);
-		
-		return json;
-	}
 }

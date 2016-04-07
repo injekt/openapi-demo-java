@@ -144,46 +144,36 @@ window.addEventListener('load', function() {
 
 	var items = document.querySelectorAll('li');
 	var i = 0;
-	var url = 'http://123.56.71.118:8080/demo1/';
+	var url = 'http://123.56.71.118:8080/dd_demo/';
 	items[0].addEventListener('click',function(){
- 		/* window.location='http://ddtalk.github.io/dingTalkDoc/#isv接入指南'; */
- 		openLink('http://123.56.71.118:8080/demo1/www/index.html');
+ 	 window.location='http://ddtalk.github.io/dingTalkDoc/#isv接入指南'; 
  		
 	});
 	items[1].addEventListener('click',function(){
- 		/* window.location='http://h5.m.laiwang.com/home/ding.html'; */
- 		openLink('http://h5.m.laiwang.com/home/ding.html');
-	});
+/*  		 window.location='http://h5.m.laiwang.com/home/ding.html'; 
+ */ 		openLink('http://h5.m.laiwang.com/home/ding.html');
+ 	});
 	items[2].addEventListener('click',function(){
-		/* window.location='./nav/1.html'; */
-		openLink(url+'./nav/1.html');
-		
+	 window.location='./nav/1.html'; 	
 	});
 	items[3].addEventListener('click', function(){
- 		/* window.location = './list/list.html'; */
- 		openLink(url+'./list/list.html'); 	 	
-	});
+ 		window.location = './list/list.html'; 
+ });
 	items[4].addEventListener('click',function(){
- 		/* window.location='./drawer/index.html'; */
- 		openLink(url+'./drawer/index.html');
-	});
+		 window.location='./drawer/index.html'; 
+ 	});
 	items[5].addEventListener('click',function(){
-		/* alert('corpid:'+_config.corpId); */
- 		/* window.location='./tab/index.html'; */
- 		openLink(url+'./tab/index.html');
+ 		window.location='./tab/index.html';
 	});	
 	items[6].addEventListener('click',function(){
- 		/* window.location='http://market.aliyun.com/mobile/productDetail.html?showmenu=false&dd_share=false&code=cmdd008261&corpId=ding614d5d8168991fb3'; */
-  		openLink('http://market.aliyun.com/mobile/productDetail.html?showmenu=false&dd_share=false&code=cmdd008261&corpId=ding614d5d8168991fb3');
+ 		window.location='http://market.aliyun.com/mobile/productDetail.html?showmenu=false&dd_share=false&code=cmdd008261&corpId=ding614d5d8168991fb3'; 
 
 	});
 	items[7].addEventListener('click',function(){
- 		/* window.location='https://app.dingtalk.com/isvauth/index.html?productCode=cmdd008261&inviteCode=3900&logo=lALOBU9vEHh4&noLimit=0&url=microappauth'; */
- 		openLink('https://app.dingtalk.com/isvauth/index.html?productCode=cmdd008261&inviteCode=3900&logo=lALOBU9vEHh4&noLimit=0&url=microappauth'); 		
+ 		window.location='https://app.dingtalk.com/isvauth/index.html?productCode=cmdd008261&inviteCode=3900&logo=lALOBU9vEHh4&noLimit=0&url=microappauth'; 
 	});
 	items[8].addEventListener('click',function(){
- 		/* window.location='https://app.dingtalk.com/microtryout/fire_auth.html?showmenu=false&dd_share=false&corpId=ding614d5d8168991fb3&productCode=cmdd008261'; */
- 		openLink('https://app.dingtalk.com/microtryout/fire_auth.html?showmenu=false&dd_share=false&corpId=ding614d5d8168991fb3&productCode=cmdd008261'); 		
+ 		window.location='https://app.dingtalk.com/microtryout/fire_auth.html?showmenu=false&dd_share=false&corpId=ding614d5d8168991fb3&productCode=cmdd008261'; 
 	});
 </script>
  

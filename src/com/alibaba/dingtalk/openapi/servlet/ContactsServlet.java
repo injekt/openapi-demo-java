@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.alibaba.dingtalk.openapi.demo.OApiException;
 import com.alibaba.dingtalk.openapi.demo.auth.AuthHelper;
-import com.alibaba.dingtalk.openapi.demo.department.Department;
+import com.dingtalk.open.client.api.model.corp.CorpUserDetail;
+import com.dingtalk.open.client.api.model.corp.CorpUserList;
+import com.dingtalk.open.client.api.model.corp.Department;
 import com.alibaba.dingtalk.openapi.demo.department.DepartmentHelper;
 import com.alibaba.dingtalk.openapi.demo.user.User;
 import com.alibaba.dingtalk.openapi.demo.user.UserHelper;
@@ -34,9 +36,10 @@ public class ContactsServlet extends HttpServlet {
     }
 
 	/**
+	 * @throws IOException 
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException  {
 		// TODO Auto-generated method stub
 		String corpId = request.getParameter("corpid");
 
@@ -46,7 +49,7 @@ public class ContactsServlet extends HttpServlet {
 			String accessToken = AuthHelper.getAccessToken(corpId);
 			
 			List<Department> departments = new ArrayList<Department>();
-			departments = DepartmentHelper.listDepartments(accessToken);
+			departments = DepartmentHelper.listDepartments(accessToken, "1");
 			JSONObject json = new JSONObject();
 			JSONArray usersArray = new JSONArray();
 			
@@ -58,18 +61,29 @@ public class ContactsServlet extends HttpServlet {
 				JSONObject usersJSON = new JSONObject();
 				JSONArray userArray = new JSONArray();
 				
-				System.out.println("dep:"+departments.get(i).toString());
-				List<User> users = new ArrayList<User>();
-				users = UserHelper.getDepartmentUser(accessToken,Long.valueOf(departments.get(i).id));
-				if(users.size()==0){
+	            long offset = 0;
+	            int size = 5;
+	            CorpUserList corpUserList = new CorpUserList();	           
+	            while (true) {
+	                corpUserList = UserHelper.getDepartmentUser(accessToken, Long.valueOf(departments.get(i).getId())
+	                		, offset, size, null);
+	                System.out.println(JSON.toJSONString(corpUserList));
+	                if (Boolean.TRUE.equals(corpUserList.isHasMore())) {
+	                    offset += size;
+	                } else {
+	                    break;
+	                }
+	            }
+
+				if(corpUserList.getUserlist().size()==0){
 					continue;
 				}
-				for(int j = 0;j<users.size();j++){
-					String user = JSON.toJSONString(users.get(j));
-					userArray.add(JSONObject.parseObject(user, User.class));
+				for(int j = 0;j<corpUserList.getUserlist().size();j++){
+					String user = JSON.toJSONString(corpUserList.getUserlist().get(j));
+					userArray.add(JSONObject.parseObject(user, CorpUserDetail.class));
 				}
 				System.out.println("user:"+userArray.toString());
-				usersJSON.put("name", departments.get(i).name);
+				usersJSON.put("name", departments.get(i).getName());
 				usersJSON.put("member", userArray);
 				usersArray.add(usersJSON);
 			}
@@ -77,7 +91,7 @@ public class ContactsServlet extends HttpServlet {
 			System.out.println("depart:"+json.toJSONString());
 			response.getWriter().append(json.toJSONString());
 
-		} catch (OApiException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			response.getWriter().append(e.getMessage());
 		}
@@ -86,7 +100,7 @@ public class ContactsServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)  throws IOException{
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

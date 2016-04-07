@@ -18,6 +18,11 @@ public class User {
 	public String email;
 	public String jobnumber;
 	public JSONObject extattr;
+	public boolean isAdmin;
+	public boolean isBoss;
+	public String dingId;
+
+
 	
 	public User() {
 	}

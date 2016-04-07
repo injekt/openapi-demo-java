@@ -2,22 +2,16 @@ package com.alibaba.dingtalk.openapi.demo.message;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.dingtalk.open.client.api.model.corp.MessageBody;
 
 public class MessageDelivery {
 	
-	public String msgtype;
-	public Message message;
+	public String msgType;
+	public MessageBody message;
 	
-	public MessageDelivery withMessage(Message msg) {
-		this.msgtype = msg.type();
+	public MessageDelivery withMessage(String msgType, MessageBody msg) {
+		this.msgType = msgType;
 		this.message = msg;
 		return this;
-	}
-	
-	public JSONObject toJsonObject() {
-		JSONObject json = new JSONObject();
-		json.put("msgtype", this.msgtype);
-		json.put(this.msgtype, JSON.toJSON(this.message));
-		return json;
 	}
 }

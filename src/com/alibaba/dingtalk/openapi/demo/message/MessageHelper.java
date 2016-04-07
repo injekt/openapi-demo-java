@@ -1,11 +1,7 @@
 package com.alibaba.dingtalk.openapi.demo.message;
-
-
-import com.alibaba.dingtalk.openapi.demo.Env;
-import com.alibaba.dingtalk.openapi.demo.OApiException;
-import com.alibaba.dingtalk.openapi.demo.OApiResultException;
-import com.alibaba.dingtalk.openapi.demo.utils.HttpHelper;
-import com.alibaba.fastjson.JSONObject;
+import com.dingtalk.open.client.ServiceFactory;
+import com.dingtalk.open.client.api.model.corp.MessageSendResult;
+import com.dingtalk.open.client.api.service.corp.MessageService;
 
 public class MessageHelper {
 
@@ -14,36 +10,22 @@ public class MessageHelper {
 		String invalidparty;
 	}
 	
-	
 	public static Receipt send(String accessToken, LightAppMessageDelivery delivery) 
-			throws OApiException {
-		String url = Env.OAPI_HOST + "/message/send?" +
-				"access_token=" + accessToken;
-		
-		JSONObject response = HttpHelper.httpPost(url, delivery.toJsonObject());
-		if (response.containsKey("invaliduser") || response.containsKey("invalidparty")) {
-			Receipt receipt = new Receipt();
-			receipt.invaliduser = response.getString("invaliduser");
-			receipt.invalidparty = response.getString("invalidparty");
-			return receipt;
+			throws Exception {
+		MessageService messageService = ServiceFactory.getInstance().getOpenService(MessageService.class);
+		MessageSendResult reulst = messageService.sendToCorpConversation(accessToken, delivery.touser, 
+				delivery.toparty, delivery.agentid, delivery.msgType, delivery.message);
+		Receipt receipt = new Receipt();
+		receipt.invaliduser = reulst.getInvaliduser();
+		receipt.invalidparty = reulst.getInvalidparty();
+		return receipt;
 		}
-		else {
-			throw new OApiResultException("invaliduser or invalidparty");
-		}
-	}
 	
 	
 	public static String send(String accessToken, ConversationMessageDelivery delivery) 
-		throws OApiException {
-		String url = Env.OAPI_HOST + "/message/send_to_conversation?" +
-				"access_token=" + accessToken;
-		
-		JSONObject response = HttpHelper.httpPost(url, delivery.toJsonObject());
-		if (response.containsKey("receiver")) {
-			return response.getString("receiver");
-		}
-		else {
-			throw new OApiResultException("receiver");
-		}
+		throws Exception {
+		MessageService messageService = ServiceFactory.getInstance().getOpenService(MessageService.class);
+		return  messageService.sendToNormalConversation(accessToken, delivery.sender, 
+				delivery.cid, delivery.msgType, delivery.message);
 	}
 }

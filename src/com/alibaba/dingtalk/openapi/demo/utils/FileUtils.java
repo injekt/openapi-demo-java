@@ -6,9 +6,13 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
+
+import org.apache.http.util.TextUtils;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -102,5 +106,32 @@ public class FileUtils {
 			return null;
 		}
 	}
+   public static HashMap<Long, Long> toHashMap(JSONObject js)  
+   {  
+	   if(js == null){
+		   return null;
+	   }
+       HashMap<Long, Long> data = new HashMap<Long, Long>();  
+       // 将json字符串转换成jsonObject  
+       Set<String> set = js.keySet();
+       // 遍历jsonObject数据，添加到Map对象  
+       Iterator<String>  it = set.iterator();
+       while (it.hasNext())  
+       {  
+           String key = String.valueOf(it.next());
+           Long keyLong = Long.valueOf(key);
+           
+           String value = js.getString(key);
+           Long valueLong;
+           if(TextUtils.isEmpty(value)){
+        	  valueLong = js.getLong(key);
+           }else{
+	          valueLong = Long.valueOf(value);
+           }
+           data.put(keyLong, valueLong);  
+       }  
+       return data;  
+   }  
+
 
 }

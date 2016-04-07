@@ -15,12 +15,4 @@ public class ConversationMessageDelivery extends MessageDelivery {
 		this.agentid = agentId;
 	}
 		
-	public JSONObject toJsonObject() {
-		JSONObject json = super.toJsonObject();
-		json.put("sender", this.sender);
-		json.put("cid", this.cid);
-		json.put("agentid", this.agentid);
-		
-		return json;
-	}
 }

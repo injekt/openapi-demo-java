@@ -8,6 +8,9 @@ import com.alibaba.dingtalk.openapi.demo.OApiResultException;
 import com.alibaba.dingtalk.openapi.demo.utils.HttpHelper;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.dingtalk.open.client.ServiceFactory;
+import com.dingtalk.open.client.api.model.corp.UploadResult;
+import com.dingtalk.open.client.api.service.corp.MediaService;
 
 public class MediaHelper {
 	
@@ -24,21 +27,27 @@ public class MediaHelper {
 	}
 	
 
-	public static MediaUploadResult upload(String accessToken, String type, File file) throws OApiException {
-		String url = Env.OAPI_HOST + "/media/upload?" +
-				"access_token=" + accessToken + "&type="  + type;
-		JSONObject response = HttpHelper.uploadMedia(url, file);
-		if (!response.containsKey("type") || !response.containsKey("media_id") || 
-				response.containsKey("created_at")) {
-			return JSON.parseObject(response.toJSONString(), MediaUploadResult.class);
-		}
-		else {
-			throw new OApiResultException("type or media_id or create_at");
-		}
+	public static UploadResult upload(String accessToken, String type, File file) throws Exception {
+		
+		MediaService mediaService = ServiceFactory.getInstance().getOpenService(MediaService.class);
+		UploadResult uploadResult = mediaService.uploadMediaFile(accessToken, type, file);
+		
+		return uploadResult;
+//		String url = Env.OAPI_HOST + "/media/upload?" +
+//				"access_token=" + accessToken + "&type="  + type;
+//		JSONObject response = HttpHelper.uploadMedia(url, file);
+//		if (!response.containsKey("type") || !response.containsKey("media_id") || 
+//				response.containsKey("created_at")) {
+//			return JSON.parseObject(response.toJSONString(), MediaUploadResult.class);
+//		}
+//		else {
+//			throw new OApiResultException("type or media_id or create_at");
+//		}
 	}
 	
 	
-	public static void download(String accessToken, String mediaId, String fileDir) throws OApiException {
+	public static void download(String accessToken, String mediaId, String fileDir) throws Exception {
+		
 		String url = Env.OAPI_HOST + "/media/get?" +
 				"access_token=" + accessToken + "&media_id="  + mediaId;
 		JSONObject response = HttpHelper.downloadMedia(url, fileDir);
