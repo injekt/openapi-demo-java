@@ -24,7 +24,7 @@ public class eventChangeHelper {
 			return response.getString("errcode");
 		}
 		else {
-			throw new OApiResultException("errcode");
+			return null;
 		}
 	}
 	//查询事件回调接口
@@ -49,7 +49,7 @@ public class eventChangeHelper {
 			return response.getString("errcode");
 		}
 		else {
-			throw new OApiResultException("errcode");
+			return null;
 		}
 	}
 	//删除事件回调接口
